@@ -1,0 +1,65 @@
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll.config
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Users\bhoward\Documents\MEGAsync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll.config
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb
+E:\BenDocs\MegaSync\Technical\Web API\IntegrationApiTemplate-master\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.csprojResolveAssemblyReference.cache
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll.config
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.dll
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.xml
+E:\BenDocs\MegaSync\Technical\Web API\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.csprojResolveAssemblyReference.cache
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll.config
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.dll
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.xml
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.csprojResolveAssemblyReference.cache
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+N:\People System System Support\Public\Ben\FourthPSLiveDataLoads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb
+C:\Dev\PS_Live\Development\Services\Fourth.Connect\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.csprojResolveAssemblyReference.cache
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\Fourth.PSLiveDataLoads.Data.pdb
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\bin\Debug\log4net.xml
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.csprojResolveAssemblyReference.cache
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.dll
+C:\Dev\PS_Live\Development\Services\Fourth.Dataloads\Fourth.PSLiveDataLoads.Data\obj\Debug\Fourth.PSLiveDataLoads.Data.pdb

@@ -1,0 +1,21 @@
+Fourth.SelfService.ApiEndPoint
+has PayslipSqlReadRepository that seem to connect to DB at numerous places e.g. 
+
+		private async Task<dynamic> GetPensionPaymentSummary()
+		{
+			const string sql = "sprc_PEN_GetPensionPaymentSummary_asp";
+
+			var parameters = new DynamicParameters();
+			parameters.Add("TaxYear", _taxYear, DbType.Int32);
+			parameters.Add("ClientID", _employeeClientId, DbType.Int32, ParameterDirection.Input);
+
+			dynamic pensionPaymentSummary;
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                pensionPaymentSummary = await sqlConnection.QueryAsync<dynamic>
+                    (sql, parameters, commandType: CommandType.StoredProcedure);
+			}
+
+			return pensionPaymentSummary;
+		} 

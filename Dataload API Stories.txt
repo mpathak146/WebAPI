@@ -1,0 +1,52 @@
+
+
+As a project user for People System, I should be able to do mass termination of employees 
+using informatica.
+
+As a Fourth Developer, I must follow fourth standards for architecture and design to develop dataload system 
+
+As a Fourth Developer, to implement Fourth standards, I should have a windows service that 
+reads the message bus for any dataload requests.
+
+As a Fourth Developer, to implement Fourth standards, I should have a windows service that 
+reads the staging DB for any dataload requests.
+
+As a Fourth Developer, to implement Fourth standards, I should have a windows service that 
+process the data retrieved from staging DB and the message bus.
+
+As a Fourth Developer, to implement Fourth standards, I should have a windows service that 
+can audit the uploads inside PS DB after processing the data.
+
+As a Fourth Developer, to implement Fourth standards, I should have a WebAPI that would accept dataload
+requests and data and break them into commands that could be splitted into two parts.
+
+As a Fourth Developer, to implement Fourth standards, I should have a WebAPI that would connect to staging repository 
+and upload the dataload papameters.
+
+As a Fourth Developer, to implement Fourth standards, I should have a WebAPI that would connect to message bus 
+and upload the commands into the bus for the data that it has uploaded.
+
+As a Fourth Developer, to implement Fourth standards, I define canonical models for each of the dataloads 
+
+
+
+
+
+
+Canonical Model 
+	Update Orchestration model
+	Update people system Docs
+	
+Windows listner Service creation
+
+
+Local DB creation
+	Design the DB and prepare script	
+	Azure Message Design
+	
+Rest API Changes to talk to local DB and azure bus instead of portal DB
+
+
+Integration and Unit tests
+
+	
