@@ -9,7 +9,6 @@ using Fourth.DataLoads.Data.Models;
 using Fourth.DataLoads.Data;
 using log4net;
 using Fourth.DataLoads.ApiEndPoint.Authorization;
-using Fourth.DataLoads.v
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
     public class MassTerminateController : ApiController

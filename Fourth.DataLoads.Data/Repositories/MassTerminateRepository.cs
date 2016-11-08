@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Fourth.DataLoads.Data.Models;
 using log4net;
-using Fourth.DataLoads.PeopleSystem
+using Fourth.DataLoads.Validation;
+
 namespace Fourth.DataLoads.Data.Entities
 {
     class MassTerminateRepository : IMassTerminateRepository
@@ -37,7 +38,10 @@ namespace Fourth.DataLoads.Data.Entities
             {
                 foreach (var record in input)
                 {
-                   
+                   if(Validate.EmployeeNumber(""))
+                    {
+                        //do something
+                    }
                 }
             }
             return true;

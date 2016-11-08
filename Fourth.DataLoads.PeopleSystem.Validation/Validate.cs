@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Validation
 {
+
     public static class Validate
     {
         public static bool EmployeeNumber(string empNum)
