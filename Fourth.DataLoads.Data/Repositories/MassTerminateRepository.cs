@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Fourth.DataLoads.Data.Models;
 using log4net;
-
+using Fourth.DataLoads.PeopleSystem
 namespace Fourth.DataLoads.Data.Entities
 {
     class MassTerminateRepository : IMassTerminateRepository

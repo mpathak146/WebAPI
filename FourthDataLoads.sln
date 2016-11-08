@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.ApiEndPoin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Data", "Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj", "{038974A4-2F8C-4637-96B7-2B1966C3703F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Validation", "Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj", "{EE6422BA-25CD-4946-A925-22B516A6ADE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,23 +29,12 @@ Global
 		{038974A4-2F8C-4637-96B7-2B1966C3703F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{038974A4-2F8C-4637-96B7-2B1966C3703F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{038974A4-2F8C-4637-96B7-2B1966C3703F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Fourth.DataLoads.ApiEndPoint\\Fourth.DataLoads.ApiEndPoint.csproj
-		SccProjectName1 = Fourth.DataLoads.ApiEndPoint
-		SccLocalPath1 = Fourth.DataLoads.ApiEndPoint
-		SccProjectUniqueName2 = Fourth.DataLoads.ApiEndPoint.Tests\\Fourth.DataLoads.ApiEndPoint.Tests.csproj
-		SccProjectName2 = Fourth.DataLoads.ApiEndPoint.Tests
-		SccLocalPath2 = Fourth.DataLoads.ApiEndPoint.Tests
-		SccProjectUniqueName3 = Fourth.DataLoads.Data\\Fourth.DataLoads.Data.csproj
-		SccProjectName3 = Fourth.DataLoads.Data
-		SccLocalPath3 = Fourth.DataLoads.Data
 	EndGlobalSection
 EndGlobal

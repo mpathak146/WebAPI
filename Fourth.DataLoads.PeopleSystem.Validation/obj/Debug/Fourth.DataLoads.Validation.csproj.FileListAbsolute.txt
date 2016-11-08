@@ -1,0 +1,5 @@
+C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\bin\Debug\Fourth.DataLoads.Validation.dll
+C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\bin\Debug\Fourth.DataLoads.Validation.pdb
+C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\obj\Debug\Fourth.DataLoads.Validation.csprojResolveAssemblyReference.cache
+C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\obj\Debug\Fourth.DataLoads.Validation.dll
+C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\obj\Debug\Fourth.DataLoads.Validation.pdb
