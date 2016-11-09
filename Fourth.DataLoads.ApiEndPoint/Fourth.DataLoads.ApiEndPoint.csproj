@@ -244,6 +244,7 @@
     <Compile Include="Authorization\DummyAuthorizionProvider.cs" />
     <Compile Include="Authorization\IAuthorizationProvider.cs" />
     <Compile Include="Authorization\RequestHeaderAuthorizionProvider.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\DefaultHolidayAllowanceController.cs" />
     <Compile Include="Controllers\MassTerminateController.cs" />
     <Compile Include="Errors\ErrorModel.cs" />
