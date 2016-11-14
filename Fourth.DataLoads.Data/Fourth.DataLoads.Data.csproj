@@ -74,7 +74,7 @@
     <Compile Include="SqlServer\ManagementDBContext.cs" />
     <Compile Include="SqlServer\PortalDBContextFactory.cs" />
     <Compile Include="Interfaces\IDefaultHolidayAllowanceRepository.cs" />
-    <Compile Include="SqlServer\DataFactory.cs" />
+    <Compile Include="SqlServer\SQLDataFactory.cs" />
     <Compile Include="Repositories\DefaultHolidayAllowanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
