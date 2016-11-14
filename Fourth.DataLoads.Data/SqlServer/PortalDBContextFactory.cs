@@ -17,11 +17,10 @@
     public class PortalDBContextFactory : IPortalDBContextFactory
     {
         private const string CONNECTION_STRING_FORMAT = "Server={0};Database={1};User ID={2};Password={3};Connection Timeout=30;MultipleActiveResultSets=True;persist security info=True;";
-        private string connectionString = string.Empty;
         /// <summary>
         /// The connection string to use in database connections.
         /// </summary>
-        private readonly string _ConnectionString;
+        private string _ConnectionString;
 
         ///// <summary>
         ///// Initializes a new instance of the <see cref="PSLivePortalDBContextFactoryAsync"/> class.
@@ -46,7 +45,7 @@
         {
             //string output = string.Empty;
             string file = AppSettings.PathConfig;
-            if (connectionString == string.Empty)
+            if (_ConnectionString == string.Empty)
                 if (file != "")
                 {
                     XmlDocument xmlFile = new XmlDocument();
@@ -55,7 +54,7 @@
                     XmlNode node = xmlFile.SelectSingleNode("/Settings/DSNs/DSN[@GroupID='" + groupId + "']");
                     if (node != null)
                     {
-                        connectionString = string.Format(CONNECTION_STRING_FORMAT, node.Attributes["DataSource"].Value,
+                        _ConnectionString = string.Format(CONNECTION_STRING_FORMAT, node.Attributes["DataSource"].Value,
                             node.Attributes["SchemaName"].Value, node.Attributes["Username"].Value, node.Attributes["Password"].Value);
                     }
                     else
@@ -65,7 +64,7 @@
                 }
                 else
                     throw new Exception("Database File not configured on app.Config");
-            return connectionString;
+            return _ConnectionString;
 
             //    using (var context = new PSLiveManagementDBContext(this._ConnectionString))
             //    {
