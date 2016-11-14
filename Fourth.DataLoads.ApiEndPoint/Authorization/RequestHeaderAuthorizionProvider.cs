@@ -8,9 +8,6 @@
     /// </summary>
     public class RequestHeaderAuthorizionProvider : IAuthorizationProvider
     {
-        /// <summary> The HTTP header that contains the authorized organisation identifier. </summary>
-        private const string HeaderName = "X-Fourth-Org";
-
         /// <inheritdoc />
         public bool IsAuthorized(string organisationId)
         {

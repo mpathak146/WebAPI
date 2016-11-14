@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Data", "Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Validation", "Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj", "{EE6422BA-25CD-4946-A925-22B516A6ADE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Listener", "Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj", "{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6422BA-25CD-4946-A925-22B516A6ADE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
