@@ -56,7 +56,7 @@
 
                 // Add any other dependencies here, i.e. the repositories and context factory
                 builder.RegisterType<SqlDataFactory>().As<IDataFactory>().InstancePerRequest()
-                    .WithParameter("connectionString", ConfigurationManager.ConnectionStrings["TRGManagementContext"].ConnectionString);
+                    .WithParameter("connectionString", ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
 
                 
                 // Set Autofac as the dependency resolver

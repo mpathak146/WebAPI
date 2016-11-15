@@ -45,7 +45,7 @@
         {
             //string output = string.Empty;
             string file = AppSettings.PathConfig;
-            if (_ConnectionString == string.Empty)
+            if (_ConnectionString != string.Empty)
                 if (file != "")
                 {
                     XmlDocument xmlFile = new XmlDocument();
@@ -66,20 +66,6 @@
                     throw new Exception("Database File not configured on app.Config");
             return _ConnectionString;
 
-            //    using (var context = new PSLiveManagementDBContext(this._ConnectionString))
-            //    {
-            //        var group = await context.Groups.Where(g => g.GroupId == groupId)
-            //                         .AsNoTracking()
-            //                         .FirstOrDefaultAsync<DSNTable>();
-            //        if (group == null)
-            //        {
-            //            throw new ArgumentException(string.Format("No connection details could be found for the group ID \"{0}\".", groupId));
-            //        }
-
-            //        output = string.Format(CONNECTION_STRING_FORMAT, group.DataSource, group.SchemaName, group.Username, group.Password);
-
-            //    }
-            //}
         }
     }
 }
