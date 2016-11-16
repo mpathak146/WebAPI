@@ -14,7 +14,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Tests
 
             string connString = ConfigurationManager.ConnectionStrings["TRGManagementContext"].ConnectionString;
 
-            var contextFactory = new Data.SqlServer.PortalDBContextFactory(connString);
+            var contextFactory = new Data.SqlServer.DBContextFactory(connString);
 
             var repository = new Data.SqlServer.DefaultHolidayAllowanceRepository(contextFactory);
 

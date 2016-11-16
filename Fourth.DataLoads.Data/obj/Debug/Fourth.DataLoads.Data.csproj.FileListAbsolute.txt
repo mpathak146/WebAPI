@@ -54,3 +54,4 @@ C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\Fourth.DataLoads.Validati
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\EntityFramework.xml
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\log4net.xml
+C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\Fourth.DataLoads.Data.dll.config

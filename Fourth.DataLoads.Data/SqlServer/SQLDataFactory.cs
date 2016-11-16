@@ -11,7 +11,7 @@
     public class SqlDataFactory : IDataFactory
     {
         /// <summary> The factory that creates database contexts. </summary>
-        private readonly IPortalDBContextFactory _ContextFactory;
+        private readonly IDBContextFactory _ContextFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlDataFactory"/> class.
@@ -19,14 +19,14 @@
         /// <param name="connectionString">The connection string for the TRGManagement database. </param>
         public SqlDataFactory(string connectionString)
         {
-            this._ContextFactory = new PortalDBContextFactory(connectionString);
+            this._ContextFactory = new DBContextFactory(connectionString);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlDataFactory"/> class.
         /// </summary>
         /// <remarks> Allows a mocked context factory to be injected. </remarks>
-        internal SqlDataFactory(IPortalDBContextFactory contextFactory)
+        internal SqlDataFactory(IDBContextFactory contextFactory)
         {
             this._ContextFactory = contextFactory;
         }

@@ -268,5 +268,3 @@ C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\bin\Debug\System.Web.W
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\obj\Debug\Fourth.DataLoads.ApiEndPoint.Tests.csprojResolveAssemblyReference.cache
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\obj\Debug\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\obj\Debug\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.pdb
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\bin\Debug\Fourth.DataLoads.Validation.dll
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\bin\Debug\Fourth.DataLoads.Validation.pdb

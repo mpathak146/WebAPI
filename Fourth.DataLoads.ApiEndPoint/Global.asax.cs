@@ -41,7 +41,7 @@
                 var appConfig = ApiConfigurationSection.GetConfig();
 
                 // Determine which authorization to use, i.e. header or dummy
-                if (appConfig.Authorization == ApiConfigurationSection.AuthorizationMode.Header)
+                if (appConfig.Authorization == ApiConfigurationSection.AuthorizationMode.Enabled)
                 {
                     builder.RegisterType<RequestHeaderAuthorizionProvider>().As<IAuthorizationProvider>().InstancePerRequest();
                 }
@@ -56,7 +56,8 @@
 
                 // Add any other dependencies here, i.e. the repositories and context factory
                 builder.RegisterType<SqlDataFactory>().As<IDataFactory>().InstancePerRequest()
-                    .WithParameter("connectionString", ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
+                    .WithParameter("connectionString", 
+                    ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
 
                 
                 // Set Autofac as the dependency resolver

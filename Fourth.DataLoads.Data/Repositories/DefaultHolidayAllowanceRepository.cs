@@ -20,7 +20,7 @@
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary> The factory responsible for creating data contexts. </summary>
-        private readonly IPortalDBContextFactory _contextfactory;
+        private readonly IDBContextFactory _contextfactory;
 
         /// <summary> The connection string to use for this instance. </summary>
         //private string _connectionString;
@@ -29,7 +29,7 @@
         /// Initializes a new instance of the <see cref="SqlSupplierExampleRepository"/> class.
         /// </summary>
         /// <param name="contextfactory">The factory responsible for creating data contexts.</param>
-        public DefaultHolidayAllowanceRepository(IPortalDBContextFactory factory)
+        public DefaultHolidayAllowanceRepository(IDBContextFactory factory)
         {
             this._contextfactory = factory;
         }

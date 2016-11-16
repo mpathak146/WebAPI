@@ -289,7 +289,6 @@ C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Fourth.DataLoads.ApiEndP
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Autofac.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Autofac.Integration.WebApi.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\EntityFramework.dll
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\EntityFramework.SqlServer.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Fourth.DataLoads.Data.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\log4net.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Microsoft.AI.Agent.Intercept.dll
@@ -316,7 +315,6 @@ C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Fourth.DataLoads.Data.pd
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Autofac.xml
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Autofac.Integration.WebApi.xml
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\EntityFramework.xml
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\EntityFramework.SqlServer.xml
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\log4net.xml
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Microsoft.AI.DependencyCollector.xml
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -338,5 +336,3 @@ C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\System.Web.WebPages.Razo
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\obj\Debug\Fourth.DataLoads.ApiEndPoint.csprojResolveAssemblyReference.cache
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\obj\Debug\Fourth.DataLoads.ApiEndPoint.dll
 C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\obj\Debug\Fourth.DataLoads.ApiEndPoint.pdb
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Fourth.DataLoads.Validation.dll
-C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\bin\Fourth.DataLoads.Validation.pdb

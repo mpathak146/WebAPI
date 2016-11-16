@@ -16,5 +16,6 @@ namespace Fourth.DataLoads.Data.Interfaces
         /// <param name="input">The list of default holiday allawances to update.</param>
         /// <returns>An indication of whether any records were updated.</returns>
         Task<bool> SetDataAsync(int groupID, List<MassTerminate> input);
+
     }
 }

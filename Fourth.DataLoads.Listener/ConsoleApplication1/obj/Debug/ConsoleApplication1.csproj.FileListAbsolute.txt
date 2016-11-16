@@ -1,0 +1,6 @@
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Dev\DataloadService\Fourth.DataLoads.Listener\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

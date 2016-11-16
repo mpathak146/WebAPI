@@ -17,16 +17,18 @@ namespace Fourth.DataLoads.Data.Entities
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary> The factory responsible for creating data contexts. </summary>
-        private readonly IPortalDBContextFactory _contextfactory;
+        private readonly IDBContextFactory _contextfactory;
 
         /// <summary>
         /// Creation of MassterminateRepo
         /// </summary>
         /// <param name="factory"></param>
-        public MassTerminateRepository(IPortalDBContextFactory factory)
+        public MassTerminateRepository(IDBContextFactory factory)
         {
             this._contextfactory = factory;
         }
+
+
 
         public async Task<bool> SetDataAsync(int groupID, List<MassTerminate> input)
         {
@@ -34,15 +36,19 @@ namespace Fourth.DataLoads.Data.Entities
             {
                 throw new ArgumentException("Parameter \"input\" is required.");
             }
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = this._contextfactory.GetContextAsync())
             {
                 foreach (var record in input)
                 {
-                   if(Validate.EmployeeNumber(""))
+                    context.MassTerminations.Add(new MassTermination
                     {
-                        //do something
-                    }
+                        BatchID = record.BatchID,
+                        EmployeeNumber = record.EmployeeNumber,
+                        TerminationDate = record.TerminationDate,
+                        TerminationReason = record.TerminationReason
+                    });
                 }
+                await context.SaveChangesAsync();
             }
             return true;
         }

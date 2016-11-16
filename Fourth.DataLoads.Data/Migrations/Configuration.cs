@@ -1,26 +1,20 @@
 namespace Fourth.DataLoads.Data.Migrations
 {
-    //internal sealed class Configuration : DbMigrationsConfiguration<Fourth.DataLoads.Data.SupplierExampleDataContext>
-    //{
-    //    public Configuration()
-    //    {
-    //        AutomaticMigrationsEnabled = true;
-    //    }
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    //    protected override void Seed(Fourth.DataLoads.Data.SupplierExampleDataContext context)
-    //    {
-    //        //  This method will be called after migrating to the latest version.
+    internal sealed class Configuration : DbMigrationsConfiguration<Fourth.DataLoads.Data.DataloadsContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
 
-    //        //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-    //        //  to avoid creating duplicate seed data. E.g.
-    //        //
-    //        //    context.People.AddOrUpdate(
-    //        //      p => p.FullName,
-    //        //      new Person { FullName = "Andrew Peters" },
-    //        //      new Person { FullName = "Brice Lambson" },
-    //        //      new Person { FullName = "Rowan Miller" }
-    //        //    );
-    //        //
-    //    }
-    //}
+        protected override void Seed(Fourth.DataLoads.Data.DataloadsContext context)
+        {
+            context.MassTerminations.AddOrUpdate(new Entities.MassTermination { BatchID = new System.Guid().ToString(), EmployeeNumber = "1", TerminationDate = DateTime.Parse("1 dec 2014"), TerminationReason = "Just like that" });
+        }
+    }
 }

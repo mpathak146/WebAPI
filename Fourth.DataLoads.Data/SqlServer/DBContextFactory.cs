@@ -9,12 +9,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    
+    using System.Xml.Linq;
+
 
     /// <summary>
     /// A factory class that creates data contexts for SQL Server.
     /// </summary>
-    public class PortalDBContextFactory : IPortalDBContextFactory
+    public class DBContextFactory : IDBContextFactory
     {
         private const string CONNECTION_STRING_FORMAT = "Server={0};Database={1};User ID={2};Password={3};Connection Timeout=30;MultipleActiveResultSets=True;persist security info=True;";
         /// <summary>
@@ -25,7 +26,7 @@
         ///// <summary>
         ///// Initializes a new instance of the <see cref="PSLivePortalDBContextFactoryAsync"/> class.
         ///// </summary>
-        public PortalDBContextFactory(string connectionString)
+        public DBContextFactory(string connectionString)
         {
             this._ConnectionString = connectionString;
         }
@@ -36,6 +37,10 @@
             return new PortalDBContext(await GetConnectionForGroupAsync(groupId));
         }
 
+        public DataloadsContext GetContextAsync()
+        {
+            return new DataloadsContext(_ConnectionString);
+        }
         /// <summary>
         /// Gets the connection details for a particular group id (aka organisation).
         /// </summary>
@@ -50,22 +55,23 @@
                 {
                     XmlDocument xmlFile = new XmlDocument();
                     xmlFile.Load(file);
+                    XDocument xdoc = XDocument.Load(file);
+                    var dsns = from dsn in xdoc.Elements("Settings").Elements("DSNs").Elements("DSN")
+                               where dsn.Attribute("GroupID").Value == groupId.ToString()
+                               select new
+                               {
+                                   UserName = dsn.Attribute("Username").Value,
+                                   Password = dsn.Attribute("Password").Value,
+                                   DataSource = dsn.Attribute("DataSource").Value,
+                                   SchemaName = dsn.Attribute("SchemaName").Value
+                               };
+                    var g_dsn = dsns.SingleOrDefault();
+                    if (g_dsn!=null)
+                    _ConnectionString = string.Format(CONNECTION_STRING_FORMAT, g_dsn.DataSource,
+                        g_dsn.SchemaName, g_dsn.UserName, g_dsn.Password);
 
-                    XmlNode node = xmlFile.SelectSingleNode("/Settings/DSNs/DSN[@GroupID='" + groupId + "']");
-                    if (node != null)
-                    {
-                        _ConnectionString = string.Format(CONNECTION_STRING_FORMAT, node.Attributes["DataSource"].Value,
-                            node.Attributes["SchemaName"].Value, node.Attributes["Username"].Value, node.Attributes["Password"].Value);
-                    }
-                    else
-                    {
-                        throw new Exception("Database not configured on XML");
-                    }
                 }
-                else
-                    throw new Exception("Database File not configured on app.Config");
             return _ConnectionString;
-
         }
     }
 }

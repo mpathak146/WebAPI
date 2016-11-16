@@ -9,6 +9,8 @@ using Fourth.DataLoads.Data.Models;
 using Fourth.DataLoads.Data;
 using log4net;
 using Fourth.DataLoads.ApiEndPoint.Authorization;
+using System.Web;
+
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
     public class MassTerminateController : ApiController
@@ -40,7 +42,9 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         [Route("Dataload/Groups/{groupID}/MassTerminate")]
         public async Task<IHttpActionResult> SetDataAsync(string groupID, [FromBody] List<MassTerminate> input)
         {
-            controllerAction = "MassTerminate: groupID:" + groupID;
+            string UserName = GetUserName();
+
+            controllerAction = "MassTerminate: By User: " + UserName + " for groupID:" + groupID;
             int ID;
             if (string.IsNullOrEmpty(groupID) || input == null)
                 return BadRequest();
@@ -73,6 +77,13 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 Logger.WarnFormat("Unauthorized call made to supplier for organisation \"{0}\".", groupID);
                 return Unauthorized();
             }
-        }        
+        }
+
+        private string GetUserName()
+        {
+            return HttpContext.Current.Request.Headers["X-Fourth-User"] == null ?
+                    string.Empty :
+                    HttpContext.Current.Request.Headers["X-Fourth-User"];
+        }
     }
 }

@@ -15,14 +15,14 @@
         /// <summary> The valid options for authorization mode, i.e. check the header or just allow every request.</summary>
         public enum AuthorizationMode
         {
-            Header,
+            Enabled,
             Disabled
         }
 
         /// <summary>
         /// Gets or sets the type of authorization to use.
         /// </summary>
-        [ConfigurationProperty("authorizationMode", IsRequired = false, DefaultValue = AuthorizationMode.Header)]
+        [ConfigurationProperty("authorizationMode", IsRequired = false, DefaultValue = AuthorizationMode.Enabled)]
         public AuthorizationMode Authorization
         {
             get
