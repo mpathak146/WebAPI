@@ -55,3 +55,5 @@ C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\EntityFramework.xml
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\log4net.xml
 C:\Dev\DataloadService\Fourth.DataLoads.Data\bin\Debug\Fourth.DataLoads.Data.dll.config
+C:\Dev\DataloadService\Fourth.DataLoads.Data\obj\Debug\Fourth.DataLoads.Data.Migrations.initialmodel.resources
+C:\Dev\DataloadService\Fourth.DataLoads.Data\obj\Debug\Fourth.DataLoads.Data.csproj.GenerateResource.Cache

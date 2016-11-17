@@ -42,7 +42,7 @@ namespace Fourth.DataLoads.Data.Entities
                 {
                     context.MassTerminations.Add(new MassTermination
                     {
-                        BatchID = record.BatchID,
+                        DataLoadBatchId = record.DataLoadBatchId,
                         EmployeeNumber = record.EmployeeNumber,
                         TerminationDate = record.TerminationDate,
                         TerminationReason = record.TerminationReason

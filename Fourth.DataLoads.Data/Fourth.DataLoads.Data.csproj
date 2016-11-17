@@ -61,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Entities\Common\DataloadBatch.cs" />
+    <Compile Include="Entities\Common\DataloadType.cs" />
+    <Compile Include="Migrations\201611171414258_initialmodel.cs" />
+    <Compile Include="Migrations\201611171414258_initialmodel.Designer.cs">
+      <DependentUpon>201611171414258_initialmodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SqlServer\DataloadsContext.cs" />
     <Compile Include="Entities\DefaultHolidayAllowance\JobTitleTable.cs" />
@@ -91,7 +97,11 @@
       <Name>Fourth.DataLoads.Validation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611171414258_initialmodel.resx">
+      <DependentUpon>201611171414258_initialmodel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

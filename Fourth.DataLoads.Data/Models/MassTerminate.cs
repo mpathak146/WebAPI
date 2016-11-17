@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Data.Models
 {
-    public class MassTerminate
+    public abstract class MassTerminate
     {
-        public string BatchID { get; set; }
+        public long Id { get; set; }
+        public long DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }
         public DateTime TerminationDate { get; set; }
         public string TerminationReason { get; set; }
