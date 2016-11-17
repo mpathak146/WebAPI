@@ -167,7 +167,6 @@ ecf/
 rcf/
 
 # Microsoft Azure ApplicationInsights config file
-ApplicationInsights.config
 
 # Windows Store app package directory
 AppPackages/
