@@ -15,7 +15,6 @@
         }
         public long DataloadTypeID { get; set; }
         public string DataloadType { get; set; }
-
         public virtual ICollection<DataLoadBatch> Batches { get; set; }
     }
 }
