@@ -80,7 +80,6 @@
     <Compile Include="Interfaces\IMassTerminateRepository.cs" />
     <Compile Include="Interfaces\IPortalDBContextFactory.cs" />
     <Compile Include="Models\DefaultHolidayAllowance.cs" />
-    <Compile Include="Models\MassTerminate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\DefaultHolidayAllowance\DefaultAllowanceTable.cs" />
     <Compile Include="SqlServer\PortalDBContext.cs" />
