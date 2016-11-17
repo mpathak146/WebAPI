@@ -30,7 +30,7 @@ namespace Fourth.DataLoads.Data.Entities
 
 
 
-        public async Task<bool> SetDataAsync(int groupID, List<MassTerminate> input)
+        public async Task<bool> SetDataAsync(int groupID, List<MassTermination> input)
         {
             if (input == null)
             {
@@ -38,16 +38,10 @@ namespace Fourth.DataLoads.Data.Entities
             }
             using (var context = this._contextfactory.GetContextAsync())
             {
+                if(input.Count>0)
+                //    context.DataLoadBatch 
                 foreach (var record in input)
-                {
-                    context.MassTerminations.Add(new MassTermination
-                    {
-                        DataLoadBatchId = record.DataLoadBatchId,
-                        EmployeeNumber = record.EmployeeNumber,
-                        TerminationDate = record.TerminationDate,
-                        TerminationReason = record.TerminationReason
-                    });
-                }
+                    context.MassTerminations.Add(record);
                 await context.SaveChangesAsync();
             }
             return true;

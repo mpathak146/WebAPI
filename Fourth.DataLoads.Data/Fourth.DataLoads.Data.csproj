@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201611171414258_initialmodel.Designer.cs">
       <DependentUpon>201611171414258_initialmodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611171550103_seed_data_Dataload_type.cs" />
+    <Compile Include="Migrations\201611171550103_seed_data_Dataload_type.Designer.cs">
+      <DependentUpon>201611171550103_seed_data_Dataload_type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SqlServer\DataloadsContext.cs" />
     <Compile Include="Entities\DefaultHolidayAllowance\JobTitleTable.cs" />
@@ -100,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611171414258_initialmodel.resx">
       <DependentUpon>201611171414258_initialmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611171550103_seed_data_Dataload_type.resx">
+      <DependentUpon>201611171550103_seed_data_Dataload_type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,7 +14,11 @@ namespace Fourth.DataLoads.Data.Migrations
 
         protected override void Seed(Fourth.DataLoads.Data.DataloadsContext context)
         {
-            //context.MassTerminations.AddOrUpdate(new Entities.MassTermination { BatchID = new System.Guid().ToString(), EmployeeNumber = "1", TerminationDate = DateTime.Parse("1 dec 2014"), TerminationReason = "Just like that" });
+            context.DataLoadType.AddOrUpdate(
+                new Entities.DataLoadType
+                {
+                    DataloadType="Mass Termination"
+                });
         }
         
     }

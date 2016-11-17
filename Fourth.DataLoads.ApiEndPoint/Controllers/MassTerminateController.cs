@@ -10,6 +10,7 @@ using Fourth.DataLoads.Data;
 using log4net;
 using Fourth.DataLoads.ApiEndPoint.Authorization;
 using System.Web;
+using Fourth.DataLoads.Data.Entities;
 
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
@@ -40,7 +41,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
 
         [HttpPost]
         [Route("Dataload/Groups/{groupID}/MassTerminate")]
-        public async Task<IHttpActionResult> SetDataAsync(string groupID, [FromBody] List<MassTerminate> input)
+        public async Task<IHttpActionResult> SetDataAsync(string groupID, [FromBody] List<MassTermination> input)
         {
             string UserName = GetUserName();
 
