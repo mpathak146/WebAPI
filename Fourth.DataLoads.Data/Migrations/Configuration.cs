@@ -17,7 +17,7 @@ namespace Fourth.DataLoads.Data.Migrations
             context.DataLoadType.AddOrUpdate(
                 new Entities.DataLoadType
                 {
-                    DataloadType="Mass Termination"
+                    DataloadType = DataLoadTypes.MassTermination.ToString()
                 });
         }
         

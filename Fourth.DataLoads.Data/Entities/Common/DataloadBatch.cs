@@ -17,11 +17,11 @@
         public long DataloadTypeID { get; set; }
         public int GroupID { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime DateProcessed { get; set; }
+        public DateTime ?DateProcessed { get; set; }
         public string Status { get; set; }
         public string UserName { get; set; }
-        public virtual DataLoadType DataLoadType { get; set; }
-        public virtual ICollection<MassTermination> MassesToTerminate { get; set; }
+        protected virtual DataLoadType DataLoadType { get; set; }
+        protected virtual ICollection<MassTermination> MassesToTerminate { get; set; }
 
     }
 }

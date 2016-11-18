@@ -63,6 +63,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Entities\Common\DataloadBatch.cs" />
     <Compile Include="Entities\Common\DataloadType.cs" />
+    <Compile Include="Enum.cs" />
     <Compile Include="Migrations\201611171414258_initialmodel.cs" />
     <Compile Include="Migrations\201611171414258_initialmodel.Designer.cs">
       <DependentUpon>201611171414258_initialmodel.cs</DependentUpon>
@@ -70,6 +71,10 @@
     <Compile Include="Migrations\201611171550103_seed_data_Dataload_type.cs" />
     <Compile Include="Migrations\201611171550103_seed_data_Dataload_type.Designer.cs">
       <DependentUpon>201611171550103_seed_data_Dataload_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611181624453_dateprocessednullable.cs" />
+    <Compile Include="Migrations\201611181624453_dateprocessednullable.Designer.cs">
+      <DependentUpon>201611181624453_dateprocessednullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SqlServer\DataloadsContext.cs" />
@@ -106,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611171550103_seed_data_Dataload_type.resx">
       <DependentUpon>201611171550103_seed_data_Dataload_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181624453_dateprocessednullable.resx">
+      <DependentUpon>201611181624453_dateprocessednullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

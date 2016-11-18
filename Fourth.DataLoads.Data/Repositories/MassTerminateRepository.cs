@@ -38,13 +38,23 @@ namespace Fourth.DataLoads.Data.Entities
             }
             using (var context = this._contextfactory.GetContextAsync())
             {
-                if(input.Count>0)
-                //    context.DataLoadBatch 
+                if (input.Count > 0)
+                {
+                    var dataloadType =
+                        context.DataLoadType.Where
+                        (d => d.DataloadType == DataLoadTypes.MassTermination.ToString())
+                        .Take(1).ToList();
+
+                    context.DataLoadBatch.Add(new DataLoadBatch { DataloadTypeID = dataloadType[0].DataloadTypeID, DateCreated = DateTime.Now, DateProcessed = DateTime.Now, Status = "Requested" });
+                                                                              
+                }
                 foreach (var record in input)
                     context.MassTerminations.Add(record);
                 await context.SaveChangesAsync();
             }
             return true;
         }
+
+        
     }
 }

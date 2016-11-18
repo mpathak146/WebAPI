@@ -31,6 +31,7 @@ namespace Fourth.DataLoads.Data
             modelBuilder.Entity<MassTermination>().Property(m => m.TerminationReason).HasMaxLength(512).IsRequired();
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.Status).HasMaxLength(32);
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.UserName).HasMaxLength(128);
+            modelBuilder.Entity<DataLoadBatch>().Property(d => d.DateProcessed).IsOptional();
 
         }
     }
