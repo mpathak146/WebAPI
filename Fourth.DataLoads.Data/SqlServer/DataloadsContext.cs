@@ -8,11 +8,13 @@ namespace Fourth.DataLoads.Data
 
     public partial class DataloadsContext : DbContext
     {
+        public string connectionString;
         public DataloadsContext(string connectionString)
             : base(connectionString!=null?connectionString:"DataloadsContext")
         {   
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataloadsContext, 
                 Migrations.Configuration>());
+            this.connectionString = connectionString;
         }
         public DataloadsContext()
             : base("DataloadsContext")
@@ -23,16 +25,37 @@ namespace Fourth.DataLoads.Data
         public virtual DbSet<MassTermination> MassTerminations {get; set;}
         public virtual DbSet<DataLoadBatch> DataLoadBatch { get; set; }
         public virtual DbSet<DataLoadType> DataLoadType { get; set; }
+        public virtual DbSet<DataLoadErrors> DataLoadErrors { get; set; }
 
+
+        //public virtual DbSet<TableSchema> TableSchema { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<MassTermination>().Property(m => m.EmployeeNumber).HasMaxLength(128).IsRequired();
             modelBuilder.Entity<MassTermination>().Property(m => m.TerminationReason).HasMaxLength(512).IsRequired();
+
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.Status).HasMaxLength(32);
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.UserName).HasMaxLength(128);
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.DateProcessed).IsOptional();
+            
 
+            modelBuilder.Entity<DataLoadErrors>().Property(e => e.DataLoadBatchId).IsRequired();
+
+            modelBuilder.Entity<DataLoadType>().Property(t => t.DataloadTypeID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
+                .IsRequired();
+
+            modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.MassesToTerminate)
+                .WithOptionalDependent()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.dataloadErrors)
+                .WithOptionalDependent()
+                .WillCascadeOnDelete(false);                
+            modelBuilder.Entity<DataLoadType>().HasOptional(x=>x.Batches)
+                .WithOptionalDependent()
+                .WillCascadeOnDelete(false);
         }
     }
 }

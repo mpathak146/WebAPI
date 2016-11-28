@@ -14,7 +14,7 @@ using Fourth.DataLoads.Data.Entities;
 
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
-    public class MassTerminateController : ApiController
+    public class MassTerminateController : BaseApiController
     {
         string controllerAction = string.Empty;
         /// <summary> Factory that creates data repository instances. </summary>
@@ -41,11 +41,16 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
 
         [HttpPost]
         [Route("Dataload/Groups/{groupID}/MassTerminate")]
-        public async Task<IHttpActionResult> SetDataAsync(string groupID, [FromBody] List<MassTermination> input)
+        public async Task<IHttpActionResult> SetDataAsync(string groupID, 
+            [FromBody] List<MassTerminationModel> input)
         {
-            string UserName = GetUserName();
 
-            controllerAction = "MassTerminate: By User: " + UserName + " for groupID:" + groupID;
+            // var jsonString = model.ToString();
+            //PreferenceRequest result = JsonConvert.DeserializeObject<PreferenceRequest>(jsonString);
+
+            //UserContext UserName = base.GetUserContext();
+
+            controllerAction = "MassTerminate: By User: for groupID:" + groupID;
             int ID;
             if (string.IsNullOrEmpty(groupID) || input == null)
                 return BadRequest();
@@ -57,7 +62,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 try
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
-                    var result = await repository.SetDataAsync(ID, input);
+                    var result = await repository.SetDataAsync(base.GetUserContext(), input);
                     if (result)
                         return Ok();
                     else
@@ -78,13 +83,6 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 Logger.WarnFormat("Unauthorized call made to supplier for organisation \"{0}\".", groupID);
                 return Unauthorized();
             }
-        }
-
-        private string GetUserName()
-        {
-            return HttpContext.Current.Request.Headers["X-Fourth-User"] == null ?
-                    string.Empty :
-                    HttpContext.Current.Request.Headers["X-Fourth-User"];
         }
     }
 }

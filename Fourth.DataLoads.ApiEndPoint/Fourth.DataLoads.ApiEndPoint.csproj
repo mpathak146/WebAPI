@@ -58,6 +58,10 @@
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -237,6 +241,7 @@
     <Compile Include="Authorization\IAuthorizationProvider.cs" />
     <Compile Include="Authorization\RequestHeaderAuthorizionProvider.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\DefaultHolidayAllowanceController.cs" />
     <Compile Include="Controllers\MassTerminateController.cs" />
     <Compile Include="Errors\ErrorModel.cs" />
@@ -271,7 +276,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54541</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54541/</IISUrl>
+          <IISUrl>http://localhost:54544/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

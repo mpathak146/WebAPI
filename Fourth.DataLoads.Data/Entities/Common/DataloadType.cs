@@ -13,8 +13,9 @@
         {
             this.Batches = new HashSet<DataLoadBatch>();
         }
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public long DataloadTypeID { get; set; }
         public string DataloadType { get; set; }
-        public virtual ICollection<DataLoadBatch> Batches { get; set; }
+        internal virtual ICollection<DataLoadBatch> Batches { get; set; }
     }
 }

@@ -13,7 +13,7 @@
         {
             if (HttpContext.Current != null && HttpContext.Current.Request != null && HttpContext.Current.Request.Headers != null)
             {
-                var header = HttpContext.Current.Request.Headers[Constants.HeaderName];
+                var header = HttpContext.Current.Request.Headers[Constants.HeaderOrg];
                 if (!string.IsNullOrEmpty(header))
                 {
                     return header.Equals(organisationId, StringComparison.InvariantCultureIgnoreCase);

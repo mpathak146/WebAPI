@@ -1,5 +1,6 @@
 ﻿using Fourth.DataLoads.Data.Entities;
 using Fourth.DataLoads.Data.Models;
+using Fourth.DataLoads.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Fourth.DataLoads.Data.Interfaces
         /// <param name="groupID">The identifier of the groupID.</param>
         /// <param name="input">The list of default holiday allawances to update.</param>
         /// <returns>An indication of whether any records were updated.</returns>
-        Task<bool> SetDataAsync(int groupID, List<MassTermination> input);
+        Task<bool> SetDataAsync(UserContext groupID, List<MassTerminationModel> input);
 
     }
 }

@@ -20,8 +20,9 @@
         public DateTime ?DateProcessed { get; set; }
         public string Status { get; set; }
         public string UserName { get; set; }
-        protected virtual DataLoadType DataLoadType { get; set; }
-        protected virtual ICollection<MassTermination> MassesToTerminate { get; set; }
+        public virtual DataLoadType DataLoadType { get; set; }
+        public virtual ICollection<MassTermination> MassesToTerminate { get; set; }
+        public virtual ICollection<DataLoadErrors> dataloadErrors { get; set; }   
 
     }
 }

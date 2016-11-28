@@ -1,5 +1,6 @@
 namespace Fourth.DataLoads.Data.Migrations
 {
+    using Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,10 +16,16 @@ namespace Fourth.DataLoads.Data.Migrations
         protected override void Seed(Fourth.DataLoads.Data.DataloadsContext context)
         {
             context.DataLoadType.AddOrUpdate(
-                new Entities.DataLoadType
-                {
-                    DataloadType = DataLoadTypes.MassTermination.ToString()
-                });
+                Enum.GetValues(typeof(DataLoadTypes))
+                    .OfType<DataLoadTypes>()
+                    .Select(
+                    x => new DataLoadType
+                    {
+                        DataloadTypeID = (long)x,
+                        DataloadType = x.ToString(),
+                        Batches=null
+                    })
+                        .ToArray());
         }
         
     }
