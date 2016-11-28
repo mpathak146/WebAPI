@@ -12,6 +12,8 @@
     using System.Reflection;
     using System.Web.Http;
     using System.Web.Mvc;
+    using AutoMapper;
+    using Mappers;
 
     public class Global : System.Web.HttpApplication
     {
@@ -59,7 +61,9 @@
                     .WithParameter("connectionString", 
                     ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
 
-                
+                builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
+
+
                 // Set Autofac as the dependency resolver
                 var container = builder.Build();
                 config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

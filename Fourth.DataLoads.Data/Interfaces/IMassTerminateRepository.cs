@@ -17,7 +17,7 @@ namespace Fourth.DataLoads.Data.Interfaces
         /// <param name="groupID">The identifier of the groupID.</param>
         /// <param name="input">The list of default holiday allawances to update.</param>
         /// <returns>An indication of whether any records were updated.</returns>
-        Task<bool> SetDataAsync(UserContext groupID, List<MassTerminationModel> input);
+        Task<bool> SetDataAsync(UserContext groupID, List<MassTerminationModelSerialized> input);
 
     }
 }

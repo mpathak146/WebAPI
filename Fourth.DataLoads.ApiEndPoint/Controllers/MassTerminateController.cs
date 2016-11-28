@@ -11,6 +11,8 @@ using log4net;
 using Fourth.DataLoads.ApiEndPoint.Authorization;
 using System.Web;
 using Fourth.DataLoads.Data.Entities;
+using AutoMapper;
+using Fourth.DataLoads.ApiEndPoint.Mappers;
 
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
@@ -24,18 +26,24 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         private readonly ILog Logger =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
         ///// <summary> The data repository that supplies the data. </summary>
 
+        private readonly IMapper _mapper;
         /// <summary> The authorization provider that checks the validity of requests. </summary>
         private IAuthorizationProvider Authorization { get; }
+
+        private readonly IMappingFactory _mapFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MassTerminateController"/> class.
         /// </summary>
-        public MassTerminateController(IDataFactory dataFactory, IAuthorizationProvider authorization)
+        public MassTerminateController(IDataFactory dataFactory, 
+            IAuthorizationProvider authorization, IMappingFactory mapFactory)
         {
             this.DataFactory = dataFactory;
             this.Authorization = authorization;
+            this._mapFactory = mapFactory;
         }
 
 
@@ -44,12 +52,8 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         public async Task<IHttpActionResult> SetDataAsync(string groupID, 
             [FromBody] List<MassTerminationModel> input)
         {
-
-            // var jsonString = model.ToString();
-            //PreferenceRequest result = JsonConvert.DeserializeObject<PreferenceRequest>(jsonString);
-
-            //UserContext UserName = base.GetUserContext();
-
+            var mapper = this._mapFactory.Mapper;
+            var serializedmodel = mapper.Map<List<MassTerminationModelSerialized>>(input);
             controllerAction = "MassTerminate: By User: for groupID:" + groupID;
             int ID;
             if (string.IsNullOrEmpty(groupID) || input == null)
@@ -62,7 +66,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 try
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
-                    var result = await repository.SetDataAsync(base.GetUserContext(), input);
+                    var result = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
                     if (result)
                         return Ok();
                     else

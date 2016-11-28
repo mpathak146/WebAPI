@@ -46,7 +46,8 @@ namespace Fourth.DataLoads.Data.Entities
 
 
 
-        public async Task<bool> SetDataAsync(UserContext userContext, List<MassTerminationModel> input)
+        public async Task<bool> SetDataAsync(UserContext userContext, 
+            List<MassTerminationModelSerialized> input)
         {
             if (input == null)
             {
@@ -94,39 +95,47 @@ namespace Fourth.DataLoads.Data.Entities
             }
         }
 
-        private void UpdateDataloadContext(List<MassTerminationModel> input, UserContext userContext , DataloadsContext context)
+        private void UpdateDataloadContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
         {
-            context.DataLoadBatch.Add(new DataLoadBatch
+            try
             {
-                DataloadTypeRefID = (long)(DataLoadTypes.MassTermination),
-                DateCreated = DateTime.Now,
-                DateProcessed = null,
-                Status = DataloadStatus.Requested.ToString(),
-                GroupID = int.Parse(userContext.OrganisationId),
-                UserName = userContext.UserId
-            });
-            context.MassTerminations.AddRange
-                (from m in input
-                 where (IsValid(m))
-                 select new MassTermination
-                 {
-                     DataLoadBatchRefId = m.DataLoadBatchId,
-                     EmployeeNumber = m.EmployeeNumber,
-                     TerminationDate = DateTime.Parse(m.TerminationDate),
-                     TerminationReason = m.TerminationReason
-                 });
-            context.DataLoadErrors.AddRange
-                (from m in input
-                 where (!IsValid(m))
-                 select new DataLoadErrors
-                 {
-                     DataLoadBatchRefId = m.DataLoadBatchId,
-                     ErrRecord = ((IModelMarker)m).ToXml(),
-                     ErrDescription = m.ErrValidation
-                 });
+                context.DataLoadBatch.Add(new DataLoadBatch
+                {
+                    DataloadTypeRefID = (long)(DataLoadTypes.MassTermination),
+                    DateCreated = DateTime.Now,
+                    DateProcessed = null,
+                    Status = DataloadStatus.Requested.ToString(),
+                    GroupID = int.Parse(userContext.OrganisationId),
+                    UserName = userContext.UserId
+                });
+                context.MassTerminations.AddRange
+                    (from m in input
+                     where (IsValid(m))
+                     select new MassTermination
+                     {
+                         DataLoadBatchRefId = m.DataLoadBatchId,
+                         EmployeeNumber = m.EmployeeNumber,
+                         TerminationDate = DateTime.Parse(m.TerminationDate),
+                         TerminationReason = m.TerminationReason
+                     });
+                context.DataLoadErrors.AddRange
+                    (from m in input
+                     where (!IsValid(m))
+                     select new DataLoadErrors
+                     {
+                         DataLoadBatchRefId = m.DataLoadBatchId,
+                         ErrRecord = ((IModelMarker)m).ToXml(),
+                         ErrDescription = m.ErrValidation
+                     });
+            }
+            catch(Exception e)
+            {
+                Logger.Error(e.Message);
+                throw e;
+            }
         }
 
-         private bool IsValid(MassTerminationModel mr)
+         private bool IsValid(MassTerminationModelSerialized mr)
         {
             DateTime td;
             if (int.Parse(TableSchemas["EmployeeNumber"].CHARACTER_MAXIMUM_LENGTH)
