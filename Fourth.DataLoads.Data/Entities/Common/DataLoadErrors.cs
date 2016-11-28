@@ -12,7 +12,8 @@ namespace Fourth.DataLoads.Data.Entities
         [Column(TypeName = "xml")]
         public string ErrRecord { get; set; }
         public string ErrDescription { get; set; }
-        public long DataLoadBatchId { get; set; }
+        public long DataLoadBatchRefId { get; set; }
+        [ForeignKey("DataLoadBatchRefId")]
         public virtual DataLoadBatch DataLoadBatch { get; set; }
 
     }

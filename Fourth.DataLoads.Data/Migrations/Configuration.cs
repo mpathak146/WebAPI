@@ -23,7 +23,6 @@ namespace Fourth.DataLoads.Data.Migrations
                     {
                         DataloadTypeID = (long)x,
                         DataloadType = x.ToString(),
-                        Batches=null
                     })
                         .ToArray());
         }

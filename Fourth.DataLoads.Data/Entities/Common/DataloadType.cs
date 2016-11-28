@@ -11,7 +11,7 @@
     {
         public DataLoadType()
         {
-            this.Batches = new HashSet<DataLoadBatch>();
+            Batches = new List<DataLoadBatch>();
         }
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public long DataloadTypeID { get; set; }

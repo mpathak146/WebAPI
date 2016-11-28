@@ -68,13 +68,13 @@
     <Compile Include="Entities\Common\DataloadBatch.cs" />
     <Compile Include="Entities\Common\DataLoadErrors.cs" />
     <Compile Include="Entities\Common\DataloadType.cs" />
+    <Compile Include="Migrations\201611281442248_INITIAL_SETUP.cs" />
+    <Compile Include="Migrations\201611281442248_INITIAL_SETUP.Designer.cs">
+      <DependentUpon>201611281442248_INITIAL_SETUP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Interfaces\IModelMarker.cs" />
-    <Compile Include="Migrations\201611281114120_INITIAL_SETUP.cs" />
-    <Compile Include="Migrations\201611281114120_INITIAL_SETUP.Designer.cs">
-      <DependentUpon>201611281114120_INITIAL_SETUP.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MassTerminationModel.cs" />
     <Compile Include="Models\ModelActions.cs" />
@@ -108,8 +108,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611281114120_INITIAL_SETUP.resx">
-      <DependentUpon>201611281114120_INITIAL_SETUP.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611281442248_INITIAL_SETUP.resx">
+      <DependentUpon>201611281442248_INITIAL_SETUP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

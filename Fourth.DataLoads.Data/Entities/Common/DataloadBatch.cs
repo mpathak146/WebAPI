@@ -14,12 +14,14 @@
             this.MassesToTerminate = new HashSet<MassTermination>();
         }
         public long DataLoadBatchId { get; set; }
-        public long DataloadTypeID { get; set; }
+        public long DataloadTypeRefID { get; set; }
         public int GroupID { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime ?DateProcessed { get; set; }
         public string Status { get; set; }
         public string UserName { get; set; }
+
+        [ForeignKey("DataloadTypeRefID")]
         public virtual DataLoadType DataLoadType { get; set; }
         public virtual ICollection<MassTermination> MassesToTerminate { get; set; }
         public virtual ICollection<DataLoadErrors> dataloadErrors { get; set; }   

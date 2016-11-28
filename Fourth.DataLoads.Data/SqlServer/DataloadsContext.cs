@@ -41,21 +41,23 @@ namespace Fourth.DataLoads.Data
             modelBuilder.Entity<DataLoadBatch>().Property(d => d.DateProcessed).IsOptional();
             
 
-            modelBuilder.Entity<DataLoadErrors>().Property(e => e.DataLoadBatchId).IsRequired();
+            modelBuilder.Entity<DataLoadErrors>().Property(e => e.DataLoadBatchRefId).IsRequired();
 
             modelBuilder.Entity<DataLoadType>().Property(t => t.DataloadTypeID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
 
-            modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.MassesToTerminate)
-                .WithOptionalDependent()
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.dataloadErrors)
-                .WithOptionalDependent()
-                .WillCascadeOnDelete(false);                
-            modelBuilder.Entity<DataLoadType>().HasOptional(x=>x.Batches)
-                .WithOptionalDependent()
-                .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.MassesToTerminate)
+            //    .WithOptionalDependent()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.dataloadErrors)
+            //    .WithOptionalDependent()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<DataLoadType>().HasOptional(x=>x.Batches)
+            //    .WithOptionalDependent()
+            //    .WillCascadeOnDelete(false);
+
         }
     }
 }

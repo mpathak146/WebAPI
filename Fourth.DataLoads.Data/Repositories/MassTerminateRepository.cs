@@ -98,7 +98,7 @@ namespace Fourth.DataLoads.Data.Entities
         {
             context.DataLoadBatch.Add(new DataLoadBatch
             {
-                DataloadTypeID = (long)(DataLoadTypes.MassTermination),
+                DataloadTypeRefID = (long)(DataLoadTypes.MassTermination),
                 DateCreated = DateTime.Now,
                 DateProcessed = null,
                 Status = DataloadStatus.Requested.ToString(),
@@ -110,7 +110,7 @@ namespace Fourth.DataLoads.Data.Entities
                  where (IsValid(m))
                  select new MassTermination
                  {
-                     DataLoadBatchId = m.DataLoadBatchId,
+                     DataLoadBatchRefId = m.DataLoadBatchId,
                      EmployeeNumber = m.EmployeeNumber,
                      TerminationDate = DateTime.Parse(m.TerminationDate),
                      TerminationReason = m.TerminationReason
@@ -120,7 +120,7 @@ namespace Fourth.DataLoads.Data.Entities
                  where (!IsValid(m))
                  select new DataLoadErrors
                  {
-                     DataLoadBatchId = m.DataLoadBatchId,
+                     DataLoadBatchRefId = m.DataLoadBatchId,
                      ErrRecord = ((IModelMarker)m).ToXml(),
                      ErrDescription = m.ErrValidation
                  });
