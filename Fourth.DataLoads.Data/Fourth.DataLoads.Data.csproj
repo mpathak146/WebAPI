@@ -72,6 +72,7 @@
     <Compile Include="Migrations\201611281442248_INITIAL_SETUP.Designer.cs">
       <DependentUpon>201611281442248_INITIAL_SETUP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ITableSchema.cs" />
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Interfaces\IModelMarker.cs" />

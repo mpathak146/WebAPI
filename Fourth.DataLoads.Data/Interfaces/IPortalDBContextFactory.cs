@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Fourth.DataLoads.Data
+namespace Fourth.DataLoads.Data.Interfaces
 
 {
     /// <summary>

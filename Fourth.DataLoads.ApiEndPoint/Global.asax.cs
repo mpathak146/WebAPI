@@ -14,7 +14,8 @@
     using System.Web.Mvc;
     using AutoMapper;
     using Mappers;
-
+    using Fourth.DataLoads.Data.Interfaces;
+    using Fourth.DataLoads.Data.Entities;
     public class Global : System.Web.HttpApplication
     {
         /// <summary>The class logger.</summary>
@@ -57,9 +58,13 @@
                 }
 
                 // Add any other dependencies here, i.e. the repositories and context factory
-                builder.RegisterType<SqlDataFactory>().As<IDataFactory>().InstancePerRequest()
+                builder
+                    .RegisterType<SqlDataFactory>()
+                    .As<IDataFactory<MassTerminationModelSerialized>>()
+                    .InstancePerRequest()
                     .WithParameter("connectionString", 
-                    ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
+                    ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString)
+                    .WithParameter("tableSchemas", null);
 
                 builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
 

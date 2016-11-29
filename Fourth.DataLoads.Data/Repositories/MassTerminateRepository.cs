@@ -17,7 +17,7 @@ using Fourth.DataLoads.Data.Interface;
 
 namespace Fourth.DataLoads.Data.Entities
 {
-    class MassTerminateRepository : IMassTerminateRepository
+    class MassTerminateRepository : IRepository<MassTerminationModelSerialized>
     {
         /// <summary> The log4net Logger instance. </summary>
         private static readonly ILog Logger =
@@ -27,11 +27,11 @@ namespace Fourth.DataLoads.Data.Entities
         private readonly IDBContextFactory _contextfactory;
         private static readonly string connectionString = 
             ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString;
-        private static IEnumerable<TableSchema> tableSchemas;
-        public static Dictionary<string, TableSchema> TableSchemas
+        private IEnumerable<ITableSchema> _tableSchemas;
+        public Dictionary<string, ITableSchema> TableSchemas
         {
             get {
-                return tableSchemas.ToDictionary(x => x.COLUMN_NAME, x => x);
+                return _tableSchemas.ToDictionary(x => x.COLUMN_NAME, x => x);
            }
         }
 
@@ -39,9 +39,12 @@ namespace Fourth.DataLoads.Data.Entities
         /// Creation of MassterminateRepo
         /// </summary>
         /// <param name="factory"></param>
-        public MassTerminateRepository(IDBContextFactory factory)
+        public MassTerminateRepository(IDBContextFactory factory,
+            IEnumerable<ITableSchema> tableSchema)
         {
             this._contextfactory = factory;
+            if(tableSchema!=null)
+                this._tableSchemas = tableSchema;
         }
 
 
@@ -54,7 +57,10 @@ namespace Fourth.DataLoads.Data.Entities
                 throw new ArgumentException("No legible data received through the body of upload, please check the data and upload right format.");
             }
             Logger.InfoFormat("MassTermination upload contains no null data, upload request process starting now...");
-            await GetTableSchema();
+
+            if (_tableSchemas == null)
+                _tableSchemas = await GetTableSchema();
+
             Logger.InfoFormat("MassTermination schema loaded into memory");
             using (var context = this._contextfactory.GetContextAsync())
             {
@@ -62,7 +68,7 @@ namespace Fourth.DataLoads.Data.Entities
                 {
                     try
                     {
-                        UpdateDataloadContext(input, userContext, context);
+                        UpdateDataloadToContext(input, userContext, context);
                     }
                     catch (Exception e)
                     {
@@ -95,7 +101,7 @@ namespace Fourth.DataLoads.Data.Entities
             }
         }
 
-        private void UpdateDataloadContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
+        private void UpdateDataloadToContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
         {
             try
             {
@@ -158,21 +164,33 @@ namespace Fourth.DataLoads.Data.Entities
             return true;
         }
 
-        private static async Task<bool> GetTableSchema()
+        public async Task<IEnumerable<ITableSchema>> GetTableSchema()
         {
-            var sql = string.Format(@"select TABLE_NAME, COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH, DATA_TYPE 
-                                      from INFORMATION_SCHEMA.COLUMNS IC where TABLE_NAME = '{0}'", 
-                                      "t_MassTermination");
-
-            if (tableSchemas==null)
+            IEnumerable<ITableSchema> ts =null;            
+            try
             {
+                var sql =
+                    string.Format(@"SELECT TABLE_NAME, 
+                                COLUMN_NAME, 
+                                CHARACTER_MAXIMUM_LENGTH, 
+                                DATA_TYPE 
+                                FROM INFORMATION_SCHEMA.COLUMNS 
+                                WHERE TABLE_NAME = '{0}'", "t_MassTermination");
+
                 using (var sqlConnection = new SqlConnection(connectionString))
                 {
                     await sqlConnection.OpenAsync();
-                    tableSchemas = await sqlConnection.QueryAsync<TableSchema>(sql);
+                    ts = await sqlConnection.QueryAsync<TableSchema>(sql);
                 }
             }
-            return true;
+            catch(Exception e)
+            {
+                Logger.FatalFormat("Error in getting Table Schema for Mass Terminate, " +
+                    "Exception Message: {0}, Inner Exception Message: {1}", 
+                    e.Message, e.InnerException.Message);
+                throw e;                
+            }
+            return ts;
         }
     }
     

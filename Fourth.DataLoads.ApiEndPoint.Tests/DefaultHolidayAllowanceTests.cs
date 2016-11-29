@@ -10,7 +10,7 @@
     using Fourth.DataLoads.ApiEndPoint.Controllers;
     using Fourth.DataLoads.Data;
     using System.Web.Http.Results;
-
+    using Fourth.DataLoads.Data.Interfaces;
 
     [TestClass]
     public class DefaultHolidayAllowanceTests
@@ -32,7 +32,7 @@
             repository.Setup(m => m.GetDataAsync(It.IsAny<int>())).ReturnsAsync(repoOutput);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -64,7 +64,7 @@
             repository.Setup(m => m.GetDataAsync(It.IsAny<int>())).ReturnsAsync(repoOutput);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -98,7 +98,7 @@
             repository.Setup(m => m.GetDataAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(repoOutput);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -132,7 +132,7 @@
             repository.Setup(m => m.GetDataAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(repoOutput);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -167,7 +167,7 @@
             repository.Setup(m => m.GetDataAsync(It.IsAny<int>())).ReturnsAsync(repoOutput);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -197,7 +197,7 @@
             repository.Setup(m => m.SetDataAsync(It.IsAny<int>(), It.IsAny<List<DefaultHolidayAllowance>>())).ReturnsAsync(true);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -231,7 +231,7 @@
             repository.Setup(m => m.SetDataAsync(It.IsAny<int>(), It.IsAny<List<DefaultHolidayAllowance>>())).ReturnsAsync(true);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -261,7 +261,7 @@
             repository.Setup(m => m.DeleteDataAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(true);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth
@@ -290,7 +290,7 @@
             repository.Setup(m => m.DeleteDataAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(false);
 
             //Mock data factory
-            var dataFactory = new Mock<IDataFactory>(MockBehavior.Strict);
+            var dataFactory = new Mock<IDataFactory<DefaultHolidayAllowance>>(MockBehavior.Strict);
             dataFactory.Setup(d => d.GetDefaultHolidayAllowanceRepository()).Returns(repository.Object);
 
             //Mock Auth

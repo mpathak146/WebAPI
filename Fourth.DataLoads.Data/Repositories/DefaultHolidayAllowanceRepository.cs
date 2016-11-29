@@ -10,7 +10,7 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Fourth.DataLoads.Data.Interfaces;
     /// <summary>
     /// A repository that returns supplier data from SQL Server
     /// </summary>
@@ -238,6 +238,16 @@
                 // Return an indication of whether any records have been updated
                 return (result > 0);
             }
+        }
+
+        public Task<IEnumerable<ITableSchema>> GetTableSchema()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SetDataAsync(UserContext userContext, List<DefaultHolidayAllowance> input)
+        {
+            throw new NotImplementedException();
         }
     }
 }

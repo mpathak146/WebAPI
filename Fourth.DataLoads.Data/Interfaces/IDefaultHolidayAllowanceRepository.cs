@@ -1,5 +1,6 @@
 ﻿namespace Fourth.DataLoads.Data.Repositories
 {
+    using Interfaces;
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -11,7 +12,7 @@
     /// Note that repositories should use asynchronous methods so we can get the scaling benefit of
     /// asynchronous execution when making calls to the database.
     /// </remarks>
-    public interface IDefaultHolidayAllowanceRepository
+    public interface IDefaultHolidayAllowanceRepository:IRepository<DefaultHolidayAllowance>
     {
         /// <summary>
         /// Fetches default holiday allowance data for the supplied job group id.

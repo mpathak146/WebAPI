@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Fourth.DataLoads.Data.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Configuration;
-
 namespace Fourth.DataLoads.ApiEndPoint.Tests
 {
     [TestClass]
@@ -33,7 +34,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Tests
         {
             //ARRANEG
             string connString = ConfigurationManager.ConnectionStrings["TRGManagementContext"].ConnectionString;
-            var contextFactory = new Data.SqlServer.SqlDataFactory(connString);
+            var contextFactory = new Data.SqlServer.SqlDataFactory(connString,null);
             var repository = contextFactory.GetDefaultHolidayAllowanceRepository();//new Data.SqlServer.SqlDefaultHolidayAllowanceRepository(contextFactory);
             // ACT
             var response = repository.GetDataAsync(426, 1000, 11);

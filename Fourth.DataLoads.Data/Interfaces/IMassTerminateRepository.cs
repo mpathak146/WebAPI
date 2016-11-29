@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Data.Interfaces
 {
-    public interface IMassTerminateRepository
+    public interface IMassTerminateRepository:IRepository<MassTerminationModelSerialized>
     {
-        /// <summary>
-        /// Updates a submitted list of default holiday allowances.
-        /// </summary>
-        /// <param name="groupID">The identifier of the groupID.</param>
-        /// <param name="input">The list of default holiday allawances to update.</param>
-        /// <returns>An indication of whether any records were updated.</returns>
-        Task<bool> SetDataAsync(UserContext groupID, List<MassTerminationModelSerialized> input);
+    }
 
+    public interface IRepository<T>
+    {
+        Task<IEnumerable<ITableSchema>> GetTableSchema();
+
+        Task<bool> SetDataAsync(UserContext userContext, List<T> input);
     }
 }

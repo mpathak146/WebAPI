@@ -13,14 +13,14 @@ using System.Web;
 using Fourth.DataLoads.Data.Entities;
 using AutoMapper;
 using Fourth.DataLoads.ApiEndPoint.Mappers;
-
+using Fourth.DataLoads.Data.Interfaces;
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
     public class MassTerminateController : BaseApiController
     {
         string controllerAction = string.Empty;
         /// <summary> Factory that creates data repository instances. </summary>
-        private IDataFactory DataFactory { get; }
+        private IDataFactory<MassTerminationModelSerialized> DataFactory { get; }
 
         /// <summary> The log4net Logger instance. </summary>
         private readonly ILog Logger =
@@ -38,7 +38,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="MassTerminateController"/> class.
         /// </summary>
-        public MassTerminateController(IDataFactory dataFactory, 
+        public MassTerminateController(IDataFactory<MassTerminationModelSerialized> dataFactory, 
             IAuthorizationProvider authorization, IMappingFactory mapFactory)
         {
             this.DataFactory = dataFactory;
@@ -68,7 +68,9 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                     var repository = this.DataFactory.GetMassTerminateRepository();
                     var result = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
                     if (result)
+                    {
                         return Ok();
+                    }
                     else
                     {
                         Logger.WarnFormat("Import failed for organisation \"{0}\".", groupID);
@@ -80,6 +82,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                     Logger.ErrorFormat("Mass Terminate failed on getting the repository at {0}, with error message {1}",
                         controllerAction, e.Message);
                     throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                    
                 }
             }
             else

@@ -10,6 +10,8 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using Fourth.DataLoads.Data.Interfaces;
+using Fourth.DataLoads.Data.Entities;
 
 namespace Fourth.DataLoads.Listener
 {
@@ -22,7 +24,7 @@ namespace Fourth.DataLoads.Listener
         private readonly IMessagingFactory _messageFactory;
 
         /// <summary> The data factory to use when creating repositories. </summary>
-        private readonly IDataFactory _dataFactory;
+        private readonly IDataFactory<MassTerminationModel> _dataFactory;
 
         /// <summary> The listener instance. </summary>
         private IMessageListener _messageListener;
@@ -30,8 +32,10 @@ namespace Fourth.DataLoads.Listener
         /// <summary> The message bus instance to use when sending messages. </summary>
         private IMessageBus _bus;
 
-        public ListenerService(IMessagingFactory messageFactory, IDataFactory dataFactory)
+        public ListenerService(IMessagingFactory messageFactory, 
+            IDataFactory<MassTerminationModel> dataFactory)
         {
+            // Need to change <T> of IDataFactory<MassTerminationModel> fixing it for compilation
             InitializeComponent();
             _messageFactory = messageFactory;
             _dataFactory = dataFactory;

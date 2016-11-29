@@ -10,7 +10,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Linq;
-
+    using Fourth.DataLoads.Data.Interfaces;
 
     /// <summary>
     /// A factory class that creates data contexts for SQL Server.

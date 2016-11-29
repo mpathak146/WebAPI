@@ -12,7 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-
+using Fourth.DataLoads.Data.Interfaces;
+using Fourth.DataLoads.Data.Entities;
 namespace Fourth.DataLoads.Listener
 {
     class ContainerConfig
@@ -36,7 +37,9 @@ namespace Fourth.DataLoads.Listener
             builder.RegisterType<AzureMessagingFactory>().As<IMessagingFactory>().InstancePerLifetimeScope();
 
             // Set the data factory - feed in the connection string for the login database
-            builder.RegisterType<SqlDataFactory>().As<IDataFactory>().InstancePerLifetimeScope()
+            builder.RegisterType<SqlDataFactory>()
+                .As<IDataFactory<MassTerminationModel>>()
+                .InstancePerLifetimeScope()
                 .WithParameter("connectionString", ConfigurationManager.ConnectionStrings["LoginDatabase"].ConnectionString);
 
             // Register the service class that sits at the top of the dependency chain

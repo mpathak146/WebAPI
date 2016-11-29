@@ -4,22 +4,26 @@
     using Fourth.DataLoads.Data;
     using Fourth.DataLoads.Data.Repositories;
     using Interfaces;
+    using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Creates MS Sql Server repository instances for consuming applications.
     /// </summary>
-    public class SqlDataFactory : IDataFactory
+    public class SqlDataFactory : IDataFactory<MassTerminationModelSerialized>
     {
         /// <summary> The factory that creates database contexts. </summary>
-        private readonly IDBContextFactory _ContextFactory;
+        private readonly IDBContextFactory _contextFactory;
+        private readonly IEnumerable<ITableSchema> _tableSchemas;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlDataFactory"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string for the TRGManagement database. </param>
-        public SqlDataFactory(string connectionString)
+        public SqlDataFactory(string connectionString, IEnumerable<ITableSchema> tableSchemas)
         {
-            this._ContextFactory = new DBContextFactory(connectionString);
+            this._contextFactory = new DBContextFactory(connectionString);
+            this._tableSchemas = tableSchemas;
         }
 
         /// <summary>
@@ -28,17 +32,17 @@
         /// <remarks> Allows a mocked context factory to be injected. </remarks>
         internal SqlDataFactory(IDBContextFactory contextFactory)
         {
-            this._ContextFactory = contextFactory;
+            this._contextFactory = contextFactory;
         }
 
         /// <inheritdoc />
         public IDefaultHolidayAllowanceRepository GetDefaultHolidayAllowanceRepository()
         {
-            return new DefaultHolidayAllowanceRepository(this._ContextFactory);
+            return new DefaultHolidayAllowanceRepository(this._contextFactory);
         }
-        public IMassTerminateRepository GetMassTerminateRepository()
+        public IRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
         {
-            return new MassTerminateRepository(this._ContextFactory);
+            return new MassTerminateRepository(this._contextFactory, _tableSchemas);
         }
 
     }

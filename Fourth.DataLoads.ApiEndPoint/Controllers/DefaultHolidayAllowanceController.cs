@@ -8,14 +8,14 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
+    using Fourth.DataLoads.Data.Interfaces;
     /// <summary>
     /// Exposes an import\export endpoint for default holiday allowances.
     /// </summary>
     public class DefaultHolidayAllowanceController : ApiController
     {
         /// <summary> Factory that creates data repository instances. </summary>
-        private IDataFactory DataFactory { get; }
+        private IDataFactory<DefaultHolidayAllowance> DataFactory { get; }
 
         /// <summary> The log4net Logger instance. </summary>
         private readonly ILog Logger = 
@@ -30,7 +30,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultHolidayAllowanceController"/> class.
         /// </summary>
-        public DefaultHolidayAllowanceController(IDataFactory dataFactory, IAuthorizationProvider authorization)
+        public DefaultHolidayAllowanceController(IDataFactory<DefaultHolidayAllowance> dataFactory, IAuthorizationProvider authorization)
         {            
             this.DataFactory = dataFactory;
             this.Authorization = authorization;
