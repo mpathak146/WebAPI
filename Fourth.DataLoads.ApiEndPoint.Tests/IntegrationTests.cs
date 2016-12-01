@@ -40,7 +40,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Tests
             var response = repository.GetDataAsync(426, 1000, 11);
             // ASSERT
             //check that the
-            Assert.IsNull(response);
+            Assert.IsNotNull(response);
         }
     }
 }

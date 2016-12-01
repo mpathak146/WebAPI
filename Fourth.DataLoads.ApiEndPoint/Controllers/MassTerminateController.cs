@@ -43,7 +43,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         {
             this.DataFactory = dataFactory;
             this.Authorization = authorization;
-            this._mapFactory = mapFactory;
+            this._mapFactory = mapFactory;            
         }
 
 
