@@ -88,7 +88,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             authorization.Setup(m => m.IsAuthorized(It.IsAny<string>())).Returns(true);
 
             repository.Setup(x => x.SetDataAsync(It.IsAny<UserContext>(),
-                It.IsAny<List<MassTerminationModelSerialized>>())).ReturnsAsync(true);
+                It.IsAny<List<MassTerminationModelSerialized>>())).ReturnsAsync(123);
 
             //Mock controller
             var controller =
@@ -226,7 +226,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(), 
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(true);
+                .ReturnsAsync(123);
            
             //Mock data factory
             var dataFactory =
@@ -257,7 +257,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(false);
+                .ReturnsAsync(123);
 
             //Mock data factory
             var dataFactory =

@@ -16,5 +16,7 @@
         /// </summary>
         /// <returns>A repository instance that applications can use to consume data.</returns>
         IRepository<T> GetMassTerminateRepository();
+
+        AzureSender AzureSender();
     }
 }

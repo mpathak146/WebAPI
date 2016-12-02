@@ -9,14 +9,10 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Data.Interfaces
 {
-    public interface IMassTerminateRepository:IRepository<MassTerminationModelSerialized>
-    {
-    }
-
     public interface IRepository<T>
     {
         Task<IEnumerable<ITableSchema>> GetTableSchema();
 
-        Task<bool> SetDataAsync(UserContext userContext, List<T> input);
+        Task<long> SetDataAsync(UserContext userContext, List<T> input);
     }
 }

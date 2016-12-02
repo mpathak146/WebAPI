@@ -1,34 +1,40 @@
 ﻿using System.Xml.Serialization;
 using System.IO;
-using Fourth.DataLoads.Data.Interface;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
+using System.Text;
 
 namespace Fourth.DataLoads.Data.Models
 {
     public static class ModelActions
     {
-        public static  string ToXml(this IModelMarker entity)
+        /// <summary>
+        /// Serializer for generic inputs marked as serialized
+        /// </summary>
+        /// <typeparam name="T">Type type to serialize that is marked as so.</typeparam>
+        /// <param name="input">The class instance to serialize.</param>
+        /// <returns>The serialized XML as a string</returns>
+        public static string ToXml<T>(this T input)
         {
-            XmlSerializer xsSubmit = new XmlSerializer(entity.GetType());
-            var xml = "";
-            using (var sww = new StringWriter())
+            string xml = string.Empty;
+            var serializer = new XmlSerializer(typeof(T));
+            XmlWriterSettings settings = new XmlWriterSettings
             {
-                using (XmlWriter writer = XmlWriter.Create(sww))
-                {
-                    xsSubmit.Serialize(writer, entity);
-                    xml = sww.ToString();
+                Encoding = new UnicodeEncoding(false, false), 
+                Indent = false,
+                OmitXmlDeclaration = false
+            };
 
+            using (StringWriter textWriter = new StringWriter())
+            {
+                using (XmlWriter xmlWriter = XmlWriter.Create(textWriter, settings))
+                {
+                    serializer.Serialize(xmlWriter, input);
                 }
+                xml = textWriter.ToString();
             }
+
             return xml;
-            //XmlSerializer xmlSerializer = new XmlSerializer(entity.GetType());
-            //BinaryFormatter Formatter = new BinaryFormatter();
-            //using (var stream = new MemoryStream())
-            //{
-            //    Formatter.Serialize(stream, entity);
-            //    return System.Text.Encoding.Default.GetString(stream.ToArray());
-            //}
         }
     }
 }

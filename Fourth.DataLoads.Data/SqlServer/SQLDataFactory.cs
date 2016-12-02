@@ -6,6 +6,7 @@
     using Interfaces;
     using System.Collections;
     using System.Collections.Generic;
+    using System;
 
     /// <summary>
     /// Creates MS Sql Server repository instances for consuming applications.
@@ -15,7 +16,7 @@
         /// <summary> The factory that creates database contexts. </summary>
         private readonly IDBContextFactory _contextFactory;
         private readonly IEnumerable<ITableSchema> _tableSchemas;
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlDataFactory"/> class.
         /// </summary>
@@ -44,6 +45,10 @@
         {
             return new MassTerminateRepository(this._contextFactory, _tableSchemas);
         }
+        public AzureSender AzureSender()
+        {
 
+            throw new NotImplementedException();
+        }
     }
 }

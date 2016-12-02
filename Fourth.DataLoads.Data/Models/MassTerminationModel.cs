@@ -1,14 +1,8 @@
 ﻿namespace Fourth.DataLoads.Data.Entities
 {
-    using Interface;
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Runtime.Serialization;
-    
-    public partial class MassTerminationModel:IModelMarker
+
+    public partial class MassTerminationModel
     {
         public long DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }
@@ -18,7 +12,7 @@
 
     }
     [Serializable]
-    public partial class MassTerminationModelSerialized : IModelMarker
+    public partial class MassTerminationModelSerialized 
     {
         public long DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }

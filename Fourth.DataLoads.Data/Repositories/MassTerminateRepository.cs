@@ -13,7 +13,6 @@ using System.Configuration;
 using Dapper;
 
 using Fourth.DataLoads.Data.Repositories;
-using Fourth.DataLoads.Data.Interface;
 
 namespace Fourth.DataLoads.Data.Entities
 {
@@ -49,9 +48,11 @@ namespace Fourth.DataLoads.Data.Entities
 
 
 
-        public async Task<bool> SetDataAsync(UserContext userContext, 
+        public async Task<long> SetDataAsync(UserContext userContext, 
             List<MassTerminationModelSerialized> input)
         {
+            DataLoadBatch dataloadBatchID = null;
+
             if (input == null)
             {
                 throw new ArgumentException("No legible data received through the body of upload, please check the data and upload right format.");
@@ -68,7 +69,8 @@ namespace Fourth.DataLoads.Data.Entities
                 {
                     try
                     {
-                        UpdateDataloadToContext(input, userContext, context);
+                        dataloadBatchID = 
+                            UpdateDataloadToContext(input, userContext, context);
                     }
                     catch (Exception e)
                     {
@@ -87,7 +89,9 @@ namespace Fourth.DataLoads.Data.Entities
                 try
                 {
                     Logger.InfoFormat("Dataload accepted and saving to the staging DB in progress");
+                    
                     await context.SaveChangesAsync();
+                    
                     Logger.InfoFormat("Dataload accepted and saved to the staging DB");
                 }
                 catch (DbUpdateException dbEx)
@@ -97,15 +101,15 @@ namespace Fourth.DataLoads.Data.Entities
                     throw new DbUpdateException(string.Format("Internal database exception with error {0}",
                         dbEx.InnerException.Message),dbEx);
                 }
-                return true;
+                return dataloadBatchID.DataLoadBatchId;
             }
         }
 
-        private void UpdateDataloadToContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
+        private DataLoadBatch UpdateDataloadToContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
         {
             try
             {
-                context.DataLoadBatch.Add(new DataLoadBatch
+                var batch = new DataLoadBatch
                 {
                     DataloadTypeRefID = (long)(DataLoadTypes.MassTermination),
                     DateCreated = DateTime.Now,
@@ -113,7 +117,9 @@ namespace Fourth.DataLoads.Data.Entities
                     Status = DataloadStatus.Requested.ToString(),
                     GroupID = int.Parse(userContext.OrganisationId),
                     UserName = userContext.UserId
-                });
+                };
+                context.DataLoadBatch.Add(batch);                
+                
                 context.MassTerminations.AddRange
                     (from m in input
                      where (IsValid(m))
@@ -130,9 +136,11 @@ namespace Fourth.DataLoads.Data.Entities
                      select new DataLoadErrors
                      {
                          DataLoadBatchRefId = m.DataLoadBatchId,
-                         ErrRecord = ((IModelMarker)m).ToXml(),
+                         ErrRecord = m.ToXml<MassTerminationModelSerialized>(),
                          ErrDescription = m.ErrValidation
                      });
+                return batch;
+
             }
             catch(Exception e)
             {

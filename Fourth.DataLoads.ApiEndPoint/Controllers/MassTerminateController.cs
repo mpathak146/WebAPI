@@ -14,6 +14,8 @@ using Fourth.DataLoads.Data.Entities;
 using AutoMapper;
 using Fourth.DataLoads.ApiEndPoint.Mappers;
 using Fourth.DataLoads.Data.Interfaces;
+using Fourth.DataLoads.Data.Repositories;
+
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
     public class MassTerminateController : BaseApiController
@@ -66,10 +68,17 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 try
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
-                    var result = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
-                    if (result)
+                    var insertedID = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
+                    if (insertedID!=0)
                     {
+                        //await AzureSender.Instance.SendAsync(null);
+                        //To Do
+                        /* This is where orchestration model will be initialized
+                         * insertedID and dataload type enum will be updated to model
+                         * and a call to the Azure Bus queue will be made to prepare request                         *
+                         */
                         return Ok();
+                        
                     }
                     else
                     {
