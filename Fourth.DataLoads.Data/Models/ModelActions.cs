@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Text;
+using Fourth.DataLoads.Data.Interfaces;
 
 namespace Fourth.DataLoads.Data.Models
 {
@@ -14,7 +15,7 @@ namespace Fourth.DataLoads.Data.Models
         /// <typeparam name="T">Type type to serialize that is marked as so.</typeparam>
         /// <param name="input">The class instance to serialize.</param>
         /// <returns>The serialized XML as a string</returns>
-        public static string ToXml<T>(this T input)
+        public static string ToXml<T>(this IMarker input)
         {
             string xml = string.Empty;
             var serializer = new XmlSerializer(typeof(T));

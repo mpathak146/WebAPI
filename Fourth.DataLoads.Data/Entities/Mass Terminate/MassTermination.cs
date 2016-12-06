@@ -7,13 +7,20 @@ namespace Fourth.DataLoads.Data.Entities
     using System.Data.Entity.Spatial;
     [Table("t_MassTermination")]
     public partial class MassTermination
-    {
-        public long Id { get; set; }
+    {        
+        [Column(Order = 0)]
+        public long MassTerminationId { get; set; }
+
+        [ForeignKey("DataLoadBatch"), Column(Order = 1)]
+        public long DataLoadJobRefId { get; set; }
+        [ForeignKey("DataLoadBatch"), Column(Order = 2)]
         public long DataLoadBatchRefId { get; set; }
+        [Column(Order = 3)]
         public string EmployeeNumber { get; set; }
+        [Column(Order = 4)]
         public DateTime TerminationDate { get; set; }
+        [Column(Order = 5)]
         public string TerminationReason { get; set; }
-        [ForeignKey("DataLoadBatchRefId")]
         public virtual DataLoadBatch DataLoadBatch { get; set; } 
     }
 }

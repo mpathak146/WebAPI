@@ -134,11 +134,12 @@
     <Compile Include="Entities\Common\DataloadBatch.cs" />
     <Compile Include="Entities\Common\DataLoadErrors.cs" />
     <Compile Include="Entities\Common\DataloadType.cs" />
-    <Compile Include="Migrations\201611281442248_INITIAL_SETUP.cs" />
-    <Compile Include="Migrations\201611281442248_INITIAL_SETUP.Designer.cs">
-      <DependentUpon>201611281442248_INITIAL_SETUP.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Interfaces\IMarker.cs" />
     <Compile Include="Interfaces\ITableSchema.cs" />
+    <Compile Include="Migrations\201612060939013_InitialSetup.cs" />
+    <Compile Include="Migrations\201612060939013_InitialSetup.Designer.cs">
+      <DependentUpon>201612060939013_InitialSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -175,8 +176,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611281442248_INITIAL_SETUP.resx">
-      <DependentUpon>201611281442248_INITIAL_SETUP.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612060939013_InitialSetup.resx">
+      <DependentUpon>201612060939013_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

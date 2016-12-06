@@ -46,7 +46,7 @@ namespace Fourth.DataLoads.Data
             modelBuilder.Entity<DataLoadType>().Property(t => t.DataloadTypeID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
-
+            
 
             //modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.MassesToTerminate)
             //    .WithOptionalDependent()

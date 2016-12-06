@@ -13,11 +13,9 @@
         [Key]
         [Column(Order = 2)]
         public int YearsWorked { get; set; }
-
         public int Allowance { get; set; }
         public System.DateTime LastModified { get; set; }
         public System.DateTime DateCreated { get; set; }
-
         public virtual JobTitleTable JobTitleTable { get; set; }
     }
 }

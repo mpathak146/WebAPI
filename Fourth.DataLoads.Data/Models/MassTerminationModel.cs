@@ -1,5 +1,6 @@
 ﻿namespace Fourth.DataLoads.Data.Entities
 {
+    using Interfaces;
     using System;
 
     public partial class MassTerminationModel
@@ -12,7 +13,7 @@
 
     }
     [Serializable]
-    public partial class MassTerminationModelSerialized 
+    public partial class MassTerminationModelSerialized : IMarker
     {
         public long DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }

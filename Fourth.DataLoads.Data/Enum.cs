@@ -8,18 +8,18 @@ namespace Fourth.DataLoads.Data
 {
     public enum DataLoadTypes
     {
-        MassTermination=1,
-        CasualHoliday=2,
-        HolidayDaysTaken=3,
-        HolidayHoursTaken=4,
-        PayrollStartDate=5,
-        SalaryIncrease=6
+        MASS_TERMINATION=1,
+        CASUAL_HOLIDAY=2,
+        HOLIDAY_DAYSTAKEN=3,
+        HOLIDAY_HOURSTAKEN=4,
+        PAYROLL_STARTDATE=5,
+        SALARY_INCREASE=6
     };
     public enum DataloadStatus
     {
-        Requested,
-        Processed,
-        PartiallyProcessed,
+        REQUESTED,
+        PROCESSED,
+        PARTIALLYPROCESSED,
     }
     
 }

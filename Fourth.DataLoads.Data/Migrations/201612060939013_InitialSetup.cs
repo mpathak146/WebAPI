@@ -3,15 +3,21 @@ namespace Fourth.DataLoads.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class INITIAL_SETUP : DbMigration
+    public partial class InitialSetup : DbMigration
     {
+        /// <summary>
+        /// Override done
+        /// </summary>
+        // 1.Manually changed cascade delete to false for all tables
+
         public override void Up()
         {
             CreateTable(
                 "dbo.t_DataLoadBatch",
                 c => new
                     {
-                        DataLoadBatchId = c.Long(nullable: false, identity: true),
+                        DataLoadJobId = c.Long(nullable: false),
+                        DataLoadBatchId = c.Long(nullable: false),
                         DataloadTypeRefID = c.Long(nullable: false),
                         GroupID = c.Int(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
@@ -19,8 +25,8 @@ namespace Fourth.DataLoads.Data.Migrations
                         Status = c.String(maxLength: 32),
                         UserName = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.DataLoadBatchId)
-                .ForeignKey("dbo.t_DataLoadType", t => t.DataloadTypeRefID, cascadeDelete: false)
+                .PrimaryKey(t => new { t.DataLoadJobId, t.DataLoadBatchId })
+                .ForeignKey("dbo.t_DataLoadType", t => t.DataloadTypeRefID, cascadeDelete: false) //Manually changed
                 .Index(t => t.DataloadTypeRefID);
             
             CreateTable(
@@ -28,13 +34,14 @@ namespace Fourth.DataLoads.Data.Migrations
                 c => new
                     {
                         DataLoadErrorsId = c.Long(nullable: false, identity: true),
+                        DataLoadJobRefId = c.Long(nullable: false),
+                        DataLoadBatchRefId = c.Long(nullable: false),
                         ErrRecord = c.String(storeType: "xml"),
                         ErrDescription = c.String(),
-                        DataLoadBatchRefId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.DataLoadErrorsId)
-                .ForeignKey("dbo.t_DataLoadBatch", t => t.DataLoadBatchRefId, cascadeDelete: false)
-                .Index(t => t.DataLoadBatchRefId);
+                .ForeignKey("dbo.t_DataLoadBatch", t => new { t.DataLoadJobRefId, t.DataLoadBatchRefId }, cascadeDelete: false) //Manually changed
+                .Index(t => new { t.DataLoadJobRefId, t.DataLoadBatchRefId });
             
             CreateTable(
                 "dbo.t_DataLoadType",
@@ -49,25 +56,26 @@ namespace Fourth.DataLoads.Data.Migrations
                 "dbo.t_MassTermination",
                 c => new
                     {
-                        Id = c.Long(nullable: false, identity: true),
+                        MassTerminationId = c.Long(nullable: false, identity: true),
+                        DataLoadJobRefId = c.Long(nullable: false),
                         DataLoadBatchRefId = c.Long(nullable: false),
                         EmployeeNumber = c.String(nullable: false, maxLength: 128),
                         TerminationDate = c.DateTime(nullable: false),
                         TerminationReason = c.String(nullable: false, maxLength: 512),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.t_DataLoadBatch", t => t.DataLoadBatchRefId, cascadeDelete: false)
-                .Index(t => t.DataLoadBatchRefId);
+                .PrimaryKey(t => t.MassTerminationId)
+                .ForeignKey("dbo.t_DataLoadBatch", t => new { t.DataLoadJobRefId, t.DataLoadBatchRefId }, cascadeDelete: false) //Manually changed
+                .Index(t => new { t.DataLoadJobRefId, t.DataLoadBatchRefId });
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.t_MassTermination", "DataLoadBatchRefId", "dbo.t_DataLoadBatch");
+            DropForeignKey("dbo.t_MassTermination", new[] { "DataLoadJobRefId", "DataLoadBatchRefId" }, "dbo.t_DataLoadBatch");
             DropForeignKey("dbo.t_DataLoadBatch", "DataloadTypeRefID", "dbo.t_DataLoadType");
-            DropForeignKey("dbo.t_DataLoadErrors", "DataLoadBatchRefId", "dbo.t_DataLoadBatch");
-            DropIndex("dbo.t_MassTermination", new[] { "DataLoadBatchRefId" });
-            DropIndex("dbo.t_DataLoadErrors", new[] { "DataLoadBatchRefId" });
+            DropForeignKey("dbo.t_DataLoadErrors", new[] { "DataLoadJobRefId", "DataLoadBatchRefId" }, "dbo.t_DataLoadBatch");
+            DropIndex("dbo.t_MassTermination", new[] { "DataLoadJobRefId", "DataLoadBatchRefId" });
+            DropIndex("dbo.t_DataLoadErrors", new[] { "DataLoadJobRefId", "DataLoadBatchRefId" });
             DropIndex("dbo.t_DataLoadBatch", new[] { "DataloadTypeRefID" });
             DropTable("dbo.t_MassTermination");
             DropTable("dbo.t_DataLoadType");

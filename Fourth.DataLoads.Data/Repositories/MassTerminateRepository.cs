@@ -51,7 +51,7 @@ namespace Fourth.DataLoads.Data.Entities
         public async Task<long> SetDataAsync(UserContext userContext, 
             List<MassTerminationModelSerialized> input)
         {
-            DataLoadBatch dataloadBatchID = null;
+            DataLoadBatch objDataloadBatch = null;
 
             if (input == null)
             {
@@ -69,7 +69,7 @@ namespace Fourth.DataLoads.Data.Entities
                 {
                     try
                     {
-                        dataloadBatchID = 
+                        objDataloadBatch = 
                             UpdateDataloadToContext(input, userContext, context);
                     }
                     catch (Exception e)
@@ -101,7 +101,7 @@ namespace Fourth.DataLoads.Data.Entities
                     throw new DbUpdateException(string.Format("Internal database exception with error {0}",
                         dbEx.InnerException.Message),dbEx);
                 }
-                return dataloadBatchID.DataLoadBatchId;
+                return objDataloadBatch.DataLoadBatchId;
             }
         }
 
@@ -111,18 +111,16 @@ namespace Fourth.DataLoads.Data.Entities
             {
                 var batch = new DataLoadBatch
                 {
-                    DataloadTypeRefID = (long)(DataLoadTypes.MassTermination),
+                    DataloadTypeRefID = (long)(DataLoadTypes.MASS_TERMINATION),
                     DateCreated = DateTime.Now,
                     DateProcessed = null,
-                    Status = DataloadStatus.Requested.ToString(),
+                    Status = DataloadStatus.REQUESTED.ToString(),
                     GroupID = int.Parse(userContext.OrganisationId),
                     UserName = userContext.UserId
                 };
                 context.DataLoadBatch.Add(batch);                
                 
-                context.MassTerminations.AddRange
-                    (from m in input
-                     where (IsValid(m))
+                context.MassTerminations.AddRange (from m in input where (IsValid(m))
                      select new MassTermination
                      {
                          DataLoadBatchRefId = m.DataLoadBatchId,
@@ -130,9 +128,7 @@ namespace Fourth.DataLoads.Data.Entities
                          TerminationDate = DateTime.Parse(m.TerminationDate),
                          TerminationReason = m.TerminationReason
                      });
-                context.DataLoadErrors.AddRange
-                    (from m in input
-                     where (!IsValid(m))
+                context.DataLoadErrors.AddRange(from m in input where (!IsValid(m))
                      select new DataLoadErrors
                      {
                          DataLoadBatchRefId = m.DataLoadBatchId,

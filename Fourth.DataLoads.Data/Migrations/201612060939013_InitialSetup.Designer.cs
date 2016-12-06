@@ -7,13 +7,13 @@ namespace Fourth.DataLoads.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class INITIAL_SETUP : IMigrationMetadata
+    public sealed partial class InitialSetup : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(INITIAL_SETUP));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialSetup));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611281442248_INITIAL_SETUP"; }
+            get { return "201612060939013_InitialSetup"; }
         }
         
         string IMigrationMetadata.Source
