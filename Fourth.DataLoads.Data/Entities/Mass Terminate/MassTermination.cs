@@ -12,15 +12,15 @@ namespace Fourth.DataLoads.Data.Entities
         public long MassTerminationId { get; set; }
 
         [ForeignKey("DataLoadBatch"), Column(Order = 1)]
-        public long DataLoadJobRefId { get; set; }
+        public Guid DataLoadJobRefId { get; set; }
         [ForeignKey("DataLoadBatch"), Column(Order = 2)]
-        public long DataLoadBatchRefId { get; set; }
+        public Guid DataLoadBatchRefId { get; set; }
         [Column(Order = 3)]
         public string EmployeeNumber { get; set; }
         [Column(Order = 4)]
         public DateTime TerminationDate { get; set; }
         [Column(Order = 5)]
         public string TerminationReason { get; set; }
-        public virtual DataLoadBatch DataLoadBatch { get; set; } 
+        public virtual DataLoad DataLoadBatch { get; set; } 
     }
 }

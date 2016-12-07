@@ -250,7 +250,7 @@
             throw new NotImplementedException();
         }
 
-        Task<long> IRepository<DefaultHolidayAllowance>.SetDataAsync(UserContext userContext, List<DefaultHolidayAllowance> input)
+        Task<Guid> IRepository<DefaultHolidayAllowance>.SetDataAsync(UserContext userContext, List<DefaultHolidayAllowance> input)
         {
             throw new NotImplementedException();
         }

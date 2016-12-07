@@ -13,6 +13,6 @@ namespace Fourth.DataLoads.Data.Interfaces
     {
         Task<IEnumerable<ITableSchema>> GetTableSchema();
 
-        Task<long> SetDataAsync(UserContext userContext, List<T> input);
+        Task<Guid> SetDataAsync(UserContext userContext, List<T> input);
     }
 }

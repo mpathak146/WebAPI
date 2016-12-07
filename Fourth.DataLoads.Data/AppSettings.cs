@@ -14,6 +14,24 @@ namespace Fourth.DataLoads.Data
                 return Setting<string>("PathConfig");
             }
         }
+        public static int BatchSize
+        {
+            get
+            {
+                int result;
+                if (int.TryParse(Setting<string>("BatchSize"), out result))
+                    return result;
+                else
+                    return 1000;
+            }
+        }
+        public static string DataloadContext
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString;
+            }
+        }
 
         private static T Setting<T>(string name)
         {

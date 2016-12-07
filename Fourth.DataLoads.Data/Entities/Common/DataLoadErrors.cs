@@ -11,13 +11,13 @@ namespace Fourth.DataLoads.Data.Entities
         [Column(Order = 0)]
         public long DataLoadErrorsId { get; set; }
         [ForeignKey("DataLoadBatch"), Column(Order = 1)]
-        public long DataLoadJobRefId { get; set; }
+        public Guid DataLoadJobRefId { get; set; }
         [ForeignKey("DataLoadBatch"), Column(Order = 2)]
-        public long DataLoadBatchRefId { get; set; }
+        public Guid DataLoadBatchRefId { get; set; }
         [Column(TypeName = "xml")]
         public string ErrRecord { get; set; }
         public string ErrDescription { get; set; }
-        public virtual DataLoadBatch DataLoadBatch { get; set; }
+        public virtual DataLoad DataLoadBatch { get; set; }
 
     }
 }

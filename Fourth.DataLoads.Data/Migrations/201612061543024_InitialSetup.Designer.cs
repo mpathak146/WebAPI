@@ -13,7 +13,7 @@ namespace Fourth.DataLoads.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201612060939013_InitialSetup"; }
+            get { return "201612061543024_InitialSetup"; }
         }
         
         string IMigrationMetadata.Source

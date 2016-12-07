@@ -69,7 +69,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
                     var insertedID = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
-                    if (insertedID!=0)
+                    if (insertedID.ToString()!=string.Empty)
                     {
                         //await AzureSender.Instance.SendAsync(null);
                         //To Do

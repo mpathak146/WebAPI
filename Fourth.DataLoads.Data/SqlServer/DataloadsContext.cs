@@ -23,7 +23,7 @@ namespace Fourth.DataLoads.Data
                 Migrations.Configuration>());
         }
         public virtual DbSet<MassTermination> MassTerminations {get; set;}
-        public virtual DbSet<DataLoadBatch> DataLoadBatch { get; set; }
+        public virtual DbSet<DataLoad> DataLoad { get; set; }
         public virtual DbSet<DataLoadType> DataLoadType { get; set; }
         public virtual DbSet<DataLoadErrors> DataLoadErrors { get; set; }
 
@@ -36,9 +36,9 @@ namespace Fourth.DataLoads.Data
             modelBuilder.Entity<MassTermination>().Property(m => m.EmployeeNumber).HasMaxLength(128).IsRequired();
             modelBuilder.Entity<MassTermination>().Property(m => m.TerminationReason).HasMaxLength(512).IsRequired();
 
-            modelBuilder.Entity<DataLoadBatch>().Property(d => d.Status).HasMaxLength(32);
-            modelBuilder.Entity<DataLoadBatch>().Property(d => d.UserName).HasMaxLength(128);
-            modelBuilder.Entity<DataLoadBatch>().Property(d => d.DateProcessed).IsOptional();
+            modelBuilder.Entity<DataLoad>().Property(d => d.Status).HasMaxLength(32);
+            modelBuilder.Entity<DataLoad>().Property(d => d.UserName).HasMaxLength(128);
+            modelBuilder.Entity<DataLoad>().Property(d => d.DateProcessed).IsOptional();
             
 
             modelBuilder.Entity<DataLoadErrors>().Property(e => e.DataLoadBatchRefId).IsRequired();

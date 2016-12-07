@@ -11,11 +11,11 @@
     {
         public DataLoadType()
         {
-            Batches = new List<DataLoadBatch>();
+            Batches = new List<DataLoad>();
         }
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public long DataloadTypeID { get; set; }
         public string DataloadType { get; set; }
-        internal virtual ICollection<DataLoadBatch> Batches { get; set; }
+        internal virtual ICollection<DataLoad> Batches { get; set; }
     }
 }

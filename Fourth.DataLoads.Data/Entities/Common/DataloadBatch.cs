@@ -6,19 +6,19 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("t_DataLoadBatch")]
-    public partial class DataLoadBatch
+    [Table("t_DataLoad")]
+    public partial class DataLoad
     {
-        public DataLoadBatch()
+        public DataLoad()
         {
             this.MassesToTerminate = new HashSet<MassTermination>();
         }
         [Key]
         [Column(Order = 0)]
-        public long DataLoadJobId { get; set; }
+        public Guid DataLoadJobId { get; set; }
         [Key]
         [Column(Order = 1)]
-        public long DataLoadBatchId { get; set; }
+        public Guid DataLoadBatchId { get; set; }
         [Column(Order = 2)]
         public long DataloadTypeRefID { get; set; }
         public DateTime DateCreated { get; set; }

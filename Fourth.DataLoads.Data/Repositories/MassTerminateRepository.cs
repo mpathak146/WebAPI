@@ -11,8 +11,8 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
-
 using Fourth.DataLoads.Data.Repositories;
+using EntityFramework.BulkInsert.Extensions;
 
 namespace Fourth.DataLoads.Data.Entities
 {
@@ -24,8 +24,7 @@ namespace Fourth.DataLoads.Data.Entities
 
         /// <summary> The factory responsible for creating data contexts. </summary>
         private readonly IDBContextFactory _contextfactory;
-        private static readonly string connectionString = 
-            ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString;
+        private static readonly string connectionString = AppSettings.DataloadContext;
         private IEnumerable<ITableSchema> _tableSchemas;
         public Dictionary<string, ITableSchema> TableSchemas
         {
@@ -48,10 +47,10 @@ namespace Fourth.DataLoads.Data.Entities
 
 
 
-        public async Task<long> SetDataAsync(UserContext userContext, 
+        public async Task<Guid> SetDataAsync(UserContext userContext, 
             List<MassTerminationModelSerialized> input)
         {
-            DataLoadBatch objDataloadBatch = null;
+            var jobGuid = Guid.NewGuid();
 
             if (input == null)
             {
@@ -65,78 +64,109 @@ namespace Fourth.DataLoads.Data.Entities
             Logger.InfoFormat("MassTermination schema loaded into memory");
             using (var context = this._contextfactory.GetContextAsync())
             {
-                if (input.Count > 0)
+                using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    try
+                    if (input.Count > 0)
                     {
-                        objDataloadBatch = 
-                            UpdateDataloadToContext(input, userContext, context);
+                        try
+                        {
+                            var batches = input.Batch(AppSettings.BatchSize);
+                            foreach (var batch in batches)
+                            {
+                                UpdateDataloadToContext(batch, userContext, context, jobGuid);
+                            }
+                            Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");
+
+                            dbContextTransaction.Commit();
+
+                            Logger.InfoFormat("MassTermination schema saved to entities, transaction committed to the database");
+
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.FatalFormat(string.Format("Internal database exception with error {0} and inner exception message {1}",
+                                e.Message, e.InnerException.Message));
+
+                            dbContextTransaction.Rollback();
+
+                            Logger.FatalFormat(string.Format("Transaction Rolledback on Internal database exception with error {0} and inner exception message {1}",
+                            e.Message, e.InnerException.Message));
+
+                            throw e;
+                        }
+
                     }
-                    catch (Exception e)
+                    else
                     {
-                        Logger.FatalFormat(string.Format("Internal database exception with error {0} and inner exception message {1}",
-                            e.Message,e.InnerException.Message));
-                        throw e;
+                        Logger.InfoFormat("No data is received through the body of upload, please check the data and upload.");
+                        throw new ArgumentException
+                            ("No data is received through the body of upload, please check the data and upload.");
                     }
 
+                    return jobGuid;
                 }
-                else
+            }
+        }
+
+        private void UpdateDataloadToContext(IEnumerable<MassTerminationModelSerialized> input, 
+            UserContext userContext, 
+            DataloadsContext context, 
+            Guid jobGuid)
+        {
+            try
+            {
+                var batchGuid = Guid.NewGuid();
+                var dataload = new DataLoad
                 {
-                    Logger.InfoFormat("No data is received through the body of upload, please check the data and upload.");
-                    throw new ArgumentException
-                        ("No data is received through the body of upload, please check the data and upload.");
-                }
+                    DataLoadJobId=jobGuid,
+                    DataLoadBatchId=batchGuid,
+                    DataloadTypeRefID = (long)(DataLoadTypes.MASS_TERMINATION),
+                    DateCreated = DateTime.Now,
+                    DateProcessed = null,
+                    Status = DataloadStatus.STAGING_DB_UPDATED.ToString(),
+                    GroupID = int.Parse(userContext.OrganisationId),
+                    UserName = userContext.UserId
+                };
+                context.DataLoad.Add(dataload);
+
+
+                context.BulkInsert<MassTermination>
+                    (from m in input
+                     where (IsValid(m))
+                     select new MassTermination
+                     {
+                            DataLoadJobRefId = jobGuid,
+                            DataLoadBatchRefId = batchGuid,
+                            EmployeeNumber = m.EmployeeNumber,
+                            TerminationDate = DateTime.Parse(m.TerminationDate),
+                            TerminationReason = m.TerminationReason
+                     });
+                context.BulkInsert<DataLoadErrors>
+                    (from m in input
+                     where (!IsValid(m))
+                     select new DataLoadErrors
+                     {
+                            DataLoadJobRefId = jobGuid,
+                            DataLoadBatchRefId = batchGuid,
+                            ErrRecord = m.ToXml<MassTerminationModelSerialized>(),
+                            ErrDescription = m.ErrValidation
+                     });
+
                 try
                 {
-                    Logger.InfoFormat("Dataload accepted and saving to the staging DB in progress");
-                    
-                    await context.SaveChangesAsync();
-                    
-                    Logger.InfoFormat("Dataload accepted and saved to the staging DB");
+                    Logger.InfoFormat("Dataload batch accepted and saving to the staging DB in progress");
+
+                    context.SaveChanges();
+
+                    Logger.InfoFormat("Dataload batch accepted and saved to the staging DB");
                 }
                 catch (DbUpdateException dbEx)
                 {
                     Logger.FatalFormat(string.Format("Internal database exception with error {0}",
                         dbEx.InnerException.Message));
                     throw new DbUpdateException(string.Format("Internal database exception with error {0}",
-                        dbEx.InnerException.Message),dbEx);
+                        dbEx.InnerException.Message), dbEx);
                 }
-                return objDataloadBatch.DataLoadBatchId;
-            }
-        }
-
-        private DataLoadBatch UpdateDataloadToContext(List<MassTerminationModelSerialized> input, UserContext userContext , DataloadsContext context)
-        {
-            try
-            {
-                var batch = new DataLoadBatch
-                {
-                    DataloadTypeRefID = (long)(DataLoadTypes.MASS_TERMINATION),
-                    DateCreated = DateTime.Now,
-                    DateProcessed = null,
-                    Status = DataloadStatus.REQUESTED.ToString(),
-                    GroupID = int.Parse(userContext.OrganisationId),
-                    UserName = userContext.UserId
-                };
-                context.DataLoadBatch.Add(batch);                
-                
-                context.MassTerminations.AddRange (from m in input where (IsValid(m))
-                     select new MassTermination
-                     {
-                         DataLoadBatchRefId = m.DataLoadBatchId,
-                         EmployeeNumber = m.EmployeeNumber,
-                         TerminationDate = DateTime.Parse(m.TerminationDate),
-                         TerminationReason = m.TerminationReason
-                     });
-                context.DataLoadErrors.AddRange(from m in input where (!IsValid(m))
-                     select new DataLoadErrors
-                     {
-                         DataLoadBatchRefId = m.DataLoadBatchId,
-                         ErrRecord = m.ToXml<MassTerminationModelSerialized>(),
-                         ErrDescription = m.ErrValidation
-                     });
-                return batch;
-
             }
             catch(Exception e)
             {

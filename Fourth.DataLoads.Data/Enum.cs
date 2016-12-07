@@ -17,8 +17,9 @@ namespace Fourth.DataLoads.Data
     };
     public enum DataloadStatus
     {
-        REQUESTED,
-        PROCESSED,
+        STAGING_DB_UPDATED,
+        REQUEST_RECEIVED,
+        BATCH_PROCESSED,
         PARTIALLYPROCESSED,
     }
     

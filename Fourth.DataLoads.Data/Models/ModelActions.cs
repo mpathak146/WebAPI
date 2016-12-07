@@ -4,6 +4,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Text;
 using Fourth.DataLoads.Data.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fourth.DataLoads.Data.Models
 {
@@ -36,6 +38,13 @@ namespace Fourth.DataLoads.Data.Models
             }
 
             return xml;
+        }
+        public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> items,
+                                                    int maxItems)
+        {
+            return items.Select((item, inx) => new { item, inx })
+                        .GroupBy(x => x.inx / maxItems)
+                        .Select(g => g.Select(x => x.item));
         }
     }
 }

@@ -5,7 +5,8 @@
 
     public partial class MassTerminationModel
     {
-        public long DataLoadBatchId { get; set; }
+        public Guid DataLoadJobId { get; set; }
+        public Guid DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }
         public string TerminationDate { get; set; }
         public string TerminationReason { get; set; }
@@ -15,7 +16,8 @@
     [Serializable]
     public partial class MassTerminationModelSerialized : IMarker
     {
-        public long DataLoadBatchId { get; set; }
+        public Guid DataLoadJobId { get; set; }
+        public Guid DataLoadBatchId { get; set; }
         public string EmployeeNumber { get; set; }
         public string TerminationDate { get; set; }
         public string TerminationReason { get; set; }

@@ -39,7 +39,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             IMappingFactory mapper = new MappingFactory();
 
             models.Add(new MassTerminationModel
-                { DataLoadBatchId = 1,
+                { DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "121",
                 ErrValidation = "",
                 TerminationDate = (DateTime.Now.ToString()),
@@ -47,7 +47,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = 2,
+                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "122",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Testing termination if it works"
@@ -55,7 +55,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = 3,
+                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "123",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Over qualified for the job"
@@ -88,7 +88,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             authorization.Setup(m => m.IsAuthorized(It.IsAny<string>())).Returns(true);
 
             repository.Setup(x => x.SetDataAsync(It.IsAny<UserContext>(),
-                It.IsAny<List<MassTerminationModelSerialized>>())).ReturnsAsync(123);
+                It.IsAny<List<MassTerminationModelSerialized>>())).ReturnsAsync(Guid.NewGuid());
 
             //Mock controller
             var controller =
@@ -226,7 +226,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(), 
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(123);
+                .ReturnsAsync(Guid.NewGuid());
            
             //Mock data factory
             var dataFactory =
@@ -257,7 +257,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(123);
+                .ReturnsAsync(Guid.NewGuid());
 
             //Mock data factory
             var dataFactory =
