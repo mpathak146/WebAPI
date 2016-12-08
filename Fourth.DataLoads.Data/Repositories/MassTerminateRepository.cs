@@ -85,12 +85,12 @@ namespace Fourth.DataLoads.Data.Entities
                         catch (Exception e)
                         {
                             Logger.FatalFormat(string.Format("Internal database exception with error {0} and inner exception message {1}",
-                                e.Message, e.InnerException.Message));
+                                e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
 
                             dbContextTransaction.Rollback();
 
                             Logger.FatalFormat(string.Format("Transaction Rolledback on Internal database exception with error {0} and inner exception message {1}",
-                            e.Message, e.InnerException.Message));
+                            e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
 
                             throw e;
                         }
@@ -163,9 +163,9 @@ namespace Fourth.DataLoads.Data.Entities
                 catch (DbUpdateException dbEx)
                 {
                     Logger.FatalFormat(string.Format("Internal database exception with error {0}",
-                        dbEx.InnerException.Message));
+                        dbEx.InnerException == null ? "null" : dbEx.InnerException.Message));
                     throw new DbUpdateException(string.Format("Internal database exception with error {0}",
-                        dbEx.InnerException.Message), dbEx);
+                        dbEx.InnerException == null ? "null" : dbEx.InnerException.Message), dbEx);
                 }
             }
             catch(Exception e)
@@ -190,11 +190,13 @@ namespace Fourth.DataLoads.Data.Entities
                 return false;
             }
             if (int.Parse(TableSchemas["TerminationReason"].CHARACTER_MAXIMUM_LENGTH)
-                    < mr.EmployeeNumber.Length)
+                    < mr.TerminationReason.Length)
             {
                 mr.ErrValidation = "Termination Reason has invalid value";
                 return false;
             }
+            if (mr.EmployeeNumber == "Manish")
+                throw new Exception();
             return true;
         }
 
@@ -221,7 +223,7 @@ namespace Fourth.DataLoads.Data.Entities
             {
                 Logger.FatalFormat("Error in getting Table Schema for Mass Terminate, " +
                     "Exception Message: {0}, Inner Exception Message: {1}", 
-                    e.Message, e.InnerException.Message);
+                    e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
                 throw e;                
             }
             return ts;
