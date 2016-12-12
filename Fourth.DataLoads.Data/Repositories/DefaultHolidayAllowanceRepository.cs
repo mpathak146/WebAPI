@@ -14,7 +14,7 @@
     /// <summary>
     /// A repository that returns supplier data from SQL Server
     /// </summary>
-    public class DefaultHolidayAllowanceRepository : IDefaultHolidayAllowanceRepository
+    public class DefaultHolidayAllowanceRepository 
     {
         /// <summary> The log4net Logger instance. </summary>
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -250,9 +250,6 @@
             throw new NotImplementedException();
         }
 
-        Task<Guid> IRepository<DefaultHolidayAllowance>.SetDataAsync(UserContext userContext, List<DefaultHolidayAllowance> input)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

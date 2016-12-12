@@ -1,6 +1,7 @@
 ﻿using Fourth.DataLoads.Data.Entities;
 using Fourth.DataLoads.Data.Models;
 using Fourth.DataLoads.Data.Repositories;
+using Google.ProtocolBuffers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace Fourth.DataLoads.Data.Interfaces
     {
         Task<IEnumerable<ITableSchema>> GetTableSchema();
 
-        Task<Guid> SetDataAsync(UserContext userContext, List<T> input);
+        Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, List<T> input);
+
+        bool IsValid(T genericType);
+
+        Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches);
+
     }
 }

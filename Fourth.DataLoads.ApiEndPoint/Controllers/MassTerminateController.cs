@@ -31,7 +31,6 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
 
         ///// <summary> The data repository that supplies the data. </summary>
 
-        private readonly IMapper _mapper;
         /// <summary> The authorization provider that checks the validity of requests. </summary>
         private IAuthorizationProvider Authorization { get; }
 
@@ -68,15 +67,11 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 try
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
-                    var insertedID = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
-                    if (insertedID.ToString()!=string.Empty)
+                    var batchesToSend = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
+                    if (batchesToSend.Count<DataloadBatch>()!=0)
                     {
-                        //await AzureSender.Instance.SendAsync(null);
-                        //To Do
-                        /* This is where orchestration model will be initialized
-                         * insertedID and dataload type enum will be updated to model
-                         * and a call to the Azure Bus queue will be made to prepare request                         *
-                         */
+                        await repository.PushDataAsync(batchesToSend);
+
                         return Ok();
                         
                     }

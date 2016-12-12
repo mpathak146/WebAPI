@@ -148,6 +148,7 @@
     <Compile Include="Migrations\201612061543024_InitialSetup.Designer.cs">
       <DependentUpon>201612061543024_InitialSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataloadBatch.cs" />
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Migrations\Configuration.cs" />

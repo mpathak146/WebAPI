@@ -7,7 +7,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using System;
-
     /// <summary>
     /// Creates MS Sql Server repository instances for consuming applications.
     /// </summary>
@@ -37,17 +36,13 @@
         }
 
         /// <inheritdoc />
-        public IDefaultHolidayAllowanceRepository GetDefaultHolidayAllowanceRepository()
-        {
-            return new DefaultHolidayAllowanceRepository(this._contextFactory);
-        }
+
         public IRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
         {
             return new MassTerminateRepository(this._contextFactory, _tableSchemas);
         }
-        public AzureSender AzureSender()
+        public IDefaultHolidayAllowanceRepository GetDefaultHolidayAllowanceRepository()
         {
-
             throw new NotImplementedException();
         }
     }

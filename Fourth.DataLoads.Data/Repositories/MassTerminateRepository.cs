@@ -13,6 +13,8 @@ using System.Configuration;
 using Dapper;
 using Fourth.DataLoads.Data.Repositories;
 using EntityFramework.BulkInsert.Extensions;
+using Google.ProtocolBuffers;
+using Fourth.Orchestration.Model.People;
 
 namespace Fourth.DataLoads.Data.Entities
 {
@@ -47,11 +49,11 @@ namespace Fourth.DataLoads.Data.Entities
 
 
 
-        public async Task<Guid> SetDataAsync(UserContext userContext, 
+        public async Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, 
             List<MassTerminationModelSerialized> input)
         {
             var jobGuid = Guid.NewGuid();
-
+            var batches = new List<DataloadBatch>();
             if (input == null)
             {
                 throw new ArgumentException("No legible data received through the body of upload, please check the data and upload right format.");
@@ -70,10 +72,11 @@ namespace Fourth.DataLoads.Data.Entities
                     {
                         try
                         {
-                            var batches = input.Batch(AppSettings.BatchSize);
-                            foreach (var batch in batches)
+                            var totbatches = input.Batch(AppSettings.BatchSize);
+                            foreach (var batch in totbatches)
                             {
-                                UpdateDataloadToContext(batch, userContext, context, jobGuid);
+                                var id=UpdateDataloadToContext(batch, userContext, context, jobGuid);
+                                batches.Add(new DataloadBatch { JobID = jobGuid, BatchID = id });
                             }
                             Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");
 
@@ -91,10 +94,8 @@ namespace Fourth.DataLoads.Data.Entities
 
                             Logger.FatalFormat(string.Format("Transaction Rolledback on Internal database exception with error {0} and inner exception message {1}",
                             e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
-
                             throw e;
                         }
-
                     }
                     else
                     {
@@ -102,13 +103,12 @@ namespace Fourth.DataLoads.Data.Entities
                         throw new ArgumentException
                             ("No data is received through the body of upload, please check the data and upload.");
                     }
-
-                    return jobGuid;
+                    return batches;
                 }
             }
         }
 
-        private void UpdateDataloadToContext(IEnumerable<MassTerminationModelSerialized> input, 
+        private Guid UpdateDataloadToContext(IEnumerable<MassTerminationModelSerialized> input, 
             UserContext userContext, 
             DataloadsContext context, 
             Guid jobGuid)
@@ -128,7 +128,6 @@ namespace Fourth.DataLoads.Data.Entities
                     UserName = userContext.UserId
                 };
                 context.DataLoad.Add(dataload);
-
 
                 context.BulkInsert<MassTermination>
                     (from m in input
@@ -152,6 +151,7 @@ namespace Fourth.DataLoads.Data.Entities
                             ErrDescription = m.ErrValidation
                      });
 
+
                 try
                 {
                     Logger.InfoFormat("Dataload batch accepted and saving to the staging DB in progress");
@@ -159,6 +159,8 @@ namespace Fourth.DataLoads.Data.Entities
                     context.SaveChanges();
 
                     Logger.InfoFormat("Dataload batch accepted and saved to the staging DB");
+
+                    return batchGuid;
                 }
                 catch (DbUpdateException dbEx)
                 {
@@ -175,16 +177,16 @@ namespace Fourth.DataLoads.Data.Entities
             }
         }
 
-         private bool IsValid(MassTerminationModelSerialized mr)
+        public bool IsValid(MassTerminationModelSerialized mr)
         {
             DateTime td;
             if (int.Parse(TableSchemas["EmployeeNumber"].CHARACTER_MAXIMUM_LENGTH)
                     < mr.EmployeeNumber.Length || string.IsNullOrWhiteSpace(mr.EmployeeNumber))
             {
-                mr.ErrValidation = "Employee Number has invalid value";          
+                mr.ErrValidation = "Employee Number has invalid value";
                 return false;
             }
-            if (!DateTime.TryParse(mr.TerminationDate.ToString(), out td)) 
+            if (!DateTime.TryParse(mr.TerminationDate.ToString(), out td))
             {
                 mr.ErrValidation = "Termination Date has invalid value";
                 return false;
@@ -195,8 +197,6 @@ namespace Fourth.DataLoads.Data.Entities
                 mr.ErrValidation = "Termination Reason has invalid value";
                 return false;
             }
-            if (mr.EmployeeNumber == "Manish")
-                throw new Exception();
             return true;
         }
 
@@ -227,6 +227,26 @@ namespace Fourth.DataLoads.Data.Entities
                 throw e;                
             }
             return ts;
+        }
+
+        public async Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches)
+        {
+            var builder = new Commands.CreateAccount.Builder();       
+
+            foreach (var batch in batches)
+            {
+                builder.SetInternalId("")
+                .SetSource(Commands.SourceSystem.PS_LIVE)
+                .SetEmailAddress("")
+                .SetFirstName("")
+                .SetLastName("")
+                .SetCustomerId("");
+                var message = builder.Build();
+
+                await AzureSender.Instance.SendAsync(message);
+            }
+            return true;
+
         }
     }
     

@@ -13,6 +13,7 @@ using Fourth.DataLoads.ApiEndPoint;
 using System.Web.Http;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using Fourth.DataLoads.Data.Models;
 
 namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 {
@@ -88,7 +89,9 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             authorization.Setup(m => m.IsAuthorized(It.IsAny<string>())).Returns(true);
 
             repository.Setup(x => x.SetDataAsync(It.IsAny<UserContext>(),
-                It.IsAny<List<MassTerminationModelSerialized>>())).ReturnsAsync(Guid.NewGuid());
+                It.IsAny<List<MassTerminationModelSerialized>>()))
+                .ReturnsAsync(new List<DataloadBatch>()
+                { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
 
             //Mock controller
             var controller =
@@ -226,8 +229,9 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(), 
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(Guid.NewGuid());
-           
+                .ReturnsAsync(new List<DataloadBatch>()
+                { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
+
             //Mock data factory
             var dataFactory =
                 new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
@@ -257,7 +261,8 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(Guid.NewGuid());
+                .ReturnsAsync(new List<DataloadBatch>()
+                { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
 
             //Mock data factory
             var dataFactory =
