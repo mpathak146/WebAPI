@@ -67,7 +67,8 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 try
                 {
                     var repository = this.DataFactory.GetMassTerminateRepository();
-                    var batchesToSend = await repository.SetDataAsync(base.GetUserContext(), serializedmodel);
+                    var batchesToSend = await repository
+                        .SetDataAsync(base.GetUserContext(), serializedmodel);
                     if (batchesToSend.Count<DataloadBatch>()!=0)
                     {
                         await repository.PushDataAsync(batchesToSend);

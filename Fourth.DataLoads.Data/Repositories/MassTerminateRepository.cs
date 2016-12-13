@@ -231,22 +231,41 @@ namespace Fourth.DataLoads.Data.Entities
 
         public async Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches)
         {
-            var builder = new Commands.CreateAccount.Builder();       
-
-            foreach (var batch in batches)
+            try
             {
-                builder.SetInternalId("")
-                .SetSource(Commands.SourceSystem.PS_LIVE)
-                .SetEmailAddress("")
-                .SetFirstName("")
-                .SetLastName("")
-                .SetCustomerId("");
-                var message = builder.Build();
+                Logger.DebugFormat(
+                   @"Call to CreateAccount: internalId=""{0}"", 
+                                             emailAddress=""{1}"", 
+                                             firstName=""{2}"", 
+                                             lastName=""{3}"", 
+                                             organisationId=""{4}""", 
+                   "",
+                   "",
+                   "",
+                   "",
+                   "");
 
-                await AzureSender.Instance.SendAsync(message);
+                var builder = new Commands.CreateAccount.Builder();
+
+                foreach (var batch in batches)
+                {
+                    builder.SetInternalId("")
+                    .SetSource(Commands.SourceSystem.PS_LIVE)
+                    .SetEmailAddress("")
+                    .SetFirstName("")
+                    .SetLastName("")
+                    .SetCustomerId("");
+                    var message = builder.Build();
+
+                    await AzureSender.Instance.SendAsync(message);
+                }
+                return true;
             }
-            return true;
-
+            catch (Exception ex)
+            {
+                Logger.Error("Error in PushDataAsync method.", ex);
+                return false;
+            }
         }
     }
     
