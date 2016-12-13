@@ -26,21 +26,6 @@ namespace Fourth.DataLoads.ApiEndPoint.Tests
             //check that the
 
             Assert.IsNotNull(response);
-        }
-
-        [TestMethod]
-        [TestCategory("IntegrationTests")]
-        public void GetDataByJobTitle_WithNoData_ReturnObject()
-        {
-            //ARRANEG
-            string connString = ConfigurationManager.ConnectionStrings["TRGManagementContext"].ConnectionString;
-            var contextFactory = new Data.SqlServer.SqlDataFactory(connString,null);
-            var repository = contextFactory.GetDefaultHolidayAllowanceRepository();//new Data.SqlServer.SqlDefaultHolidayAllowanceRepository(contextFactory);
-            // ACT
-            var response = repository.GetDataAsync(426, 1000, 11);
-            // ASSERT
-            //check that the
-            Assert.IsNotNull(response);
-        }
+        } 
     }
 }

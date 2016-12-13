@@ -64,9 +64,5 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             Serializedmodels = mapper.Mapper.Map<List<MassTerminationModelSerialized>>(models);
         }
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
     }
 }

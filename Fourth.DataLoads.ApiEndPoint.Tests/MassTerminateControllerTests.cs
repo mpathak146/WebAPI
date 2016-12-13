@@ -232,6 +232,10 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 .ReturnsAsync(new List<DataloadBatch>()
                 { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
 
+            repository.Setup(r => r.PushDataAsync(It.IsAny<IEnumerable<DataloadBatch>>()))
+                .ReturnsAsync(true);
+            
+
             //Mock data factory
             var dataFactory =
                 new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
@@ -261,8 +265,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))
-                .ReturnsAsync(new List<DataloadBatch>()
-                { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
+                .ReturnsAsync(new List<DataloadBatch>());
 
             //Mock data factory
             var dataFactory =
