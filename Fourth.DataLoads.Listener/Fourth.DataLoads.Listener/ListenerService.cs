@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Fourth.DataLoads.Data.Interfaces;
 using Fourth.DataLoads.Data.Entities;
+using Fourth.DataLoads.Listener.Handlers;
+using Fourth.DataLoads.Data.Models;
+using Fourth.Orchestration.Model.People;
 
 namespace Fourth.DataLoads.Listener
 {
@@ -23,22 +26,23 @@ namespace Fourth.DataLoads.Listener
         /// <summary> The messaging factory to use when creating bus and listener instances. </summary>
         private readonly IMessagingFactory _messageFactory;
 
-        /// <summary> The data factory to use when creating repositories. </summary>
-        private readonly IDataFactory<MassTerminationModel> _dataFactory;
+        private IDataFactory<MassTerminationModelSerialized> DataFactory { get; }
 
         /// <summary> The listener instance. </summary>
         private IMessageListener _messageListener;
 
         /// <summary> The message bus instance to use when sending messages. </summary>
         private IMessageBus _bus;
+        private IMassTerminationService<Commands.CreateAccount> _massTerminationService { get; }
+
 
         public ListenerService(IMessagingFactory messageFactory, 
-            IDataFactory<MassTerminationModel> dataFactory)
+            IMassTerminationService<Commands.CreateAccount> 
+            massTerminationService)
         {
-            // Need to change <T> of IDataFactory<MassTerminationModel> fixing it for compilation
             InitializeComponent();
+            _massTerminationService = massTerminationService;
             _messageFactory = messageFactory;
-            _dataFactory = dataFactory;
         }
 
         public void StartService(string[] args)
@@ -55,14 +59,13 @@ namespace Fourth.DataLoads.Listener
         {
             try
             {
-                Logger.Info("Starting MenuCycles message listener ...");
-                // Create the listener and bus instances used to send and receive messages.
+                Logger.Info("Starting message listener ...");
+                //// Create the listener and bus instances used to send and receive messages.
                 this._messageListener = this._messageFactory.CreateMessageListener(Constants.EndpointName);
                 this._bus = this._messageFactory.CreateMessageBus();
 
                 // Wire up the handlers here
-                //TO DO
-                //this._messageListener.RegisterHandler(new MyHandler(this._dataFactory));
+                RegisterHandlers();
 
                 // Start the listener
                 this._messageListener.StartListener();
@@ -71,6 +74,11 @@ namespace Fourth.DataLoads.Listener
             {
                 Logger.Fatal("Fourth Dataloads Service Message Listener failed to start due to an exception in ListenerService.OnStart.", ex);
             }
+        }
+
+        private void RegisterHandlers()
+        {
+            this._messageListener.RegisterHandler(new MassTerminationHandler(this._massTerminationService, this.DataFactory));
         }
 
         protected override void OnStop()

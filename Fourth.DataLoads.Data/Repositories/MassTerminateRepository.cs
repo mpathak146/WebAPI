@@ -267,6 +267,27 @@ namespace Fourth.DataLoads.Data.Entities
                 return false;
             }
         }
+
+
+        public List<MassTerminationModelSerialized> GetData(Guid batchID)
+        {
+            using (var context = this._contextfactory.GetContextAsync())
+            {
+                IEnumerable<MassTerminationModelSerialized>
+                    result = from mt in context.MassTerminations
+                             where mt.DataLoadBatchRefId == batchID
+                             select new MassTerminationModelSerialized
+                             {
+                                 DataLoadJobId = mt.DataLoadJobRefId,
+                                 DataLoadBatchId = mt.DataLoadBatchRefId,
+                                 EmployeeNumber = mt.EmployeeNumber,
+                                 TerminationDate = mt.TerminationDate.ToString(),
+                                 TerminationReason = mt.TerminationReason,
+                                 ErrValidation = "NA"
+                             };
+                return result.ToList<MassTerminationModelSerialized>();
+            }
+        }
     }
     
 }

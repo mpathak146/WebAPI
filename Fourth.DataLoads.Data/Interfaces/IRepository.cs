@@ -20,5 +20,6 @@ namespace Fourth.DataLoads.Data.Interfaces
 
         Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches);
 
+        List<T> GetData(Guid batchID);
     }
 }
