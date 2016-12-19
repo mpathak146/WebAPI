@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using System.Configuration;
 using Fourth.DataLoads.Data.Interfaces;
 using Fourth.DataLoads.Data.Entities;
+using Fourth.Orchestration.Model.People;
+using Fourth.DataLoads.Listener.Handlers;
+using Fourth.DataLoads.Listener.Services;
 namespace Fourth.DataLoads.Listener
 {
     class ContainerConfig
@@ -37,10 +40,18 @@ namespace Fourth.DataLoads.Listener
             builder.RegisterType<AzureMessagingFactory>().As<IMessagingFactory>().InstancePerLifetimeScope();
 
             // Set the data factory - feed in the connection string for the login database
-            builder.RegisterType<SqlDataFactory>()
-                .As<IDataFactory<MassTerminationModel>>()
+            // Add any other dependencies here, i.e. the repositories and context factory
+            builder
+                .RegisterType<SqlDataFactory>()
+                .As<IDataFactory>()
                 .InstancePerLifetimeScope()
-                .WithParameter("connectionString", ConfigurationManager.ConnectionStrings["LoginDatabase"].ConnectionString);
+                .WithParameter("connectionString",
+                ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString)
+                .WithParameter("tableSchemas", null);
+
+            //builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
+
+            builder.RegisterType<MassTerminationService>().As<IMassTerminationService<Commands.CreateAccount>>().InstancePerLifetimeScope();
 
             // Register the service class that sits at the top of the dependency chain
             builder.RegisterType<ListenerService>().As<IListenerService>().InstancePerLifetimeScope();

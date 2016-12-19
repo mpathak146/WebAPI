@@ -13,10 +13,10 @@ namespace Fourth.DataLoads.Listener.Services
     class MassTerminationService : IMassTerminationService<Commands.CreateAccount>
     {
         public async Task<bool> ProcessPayload(Commands.CreateAccount payload, 
-            IDataFactory<MassTerminationModelSerialized> dataFactory)
+            IDataFactory dataFactory)
         {
 
-            var result = dataFactory.GetMassTerminateRepository().GetData(Guid.NewGuid());
+            var result = dataFactory.GetMassTerminateRepository().GetData(Guid.Parse(payload.FirstName));
             if (result.Count != 0)
                 return true;
             return false;

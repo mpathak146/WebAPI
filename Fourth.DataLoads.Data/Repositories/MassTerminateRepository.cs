@@ -251,9 +251,9 @@ namespace Fourth.DataLoads.Data.Entities
                 {
                     builder.SetInternalId("")
                     .SetSource(Commands.SourceSystem.PS_LIVE)
-                    .SetEmailAddress("")
-                    .SetFirstName("")
-                    .SetLastName("")
+                    .SetEmailAddress("Email Address")
+                    .SetFirstName(batch.BatchID.ToString())
+                    .SetLastName(batch.JobID.ToString())
                     .SetCustomerId("");
                     var message = builder.Build();
 

@@ -60,7 +60,7 @@
                 // Add any other dependencies here, i.e. the repositories and context factory
                 builder
                     .RegisterType<SqlDataFactory>()
-                    .As<IDataFactory<MassTerminationModelSerialized>>()
+                    .As<IDataFactory>()
                     .InstancePerRequest()
                     .WithParameter("connectionString", 
                     ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString)

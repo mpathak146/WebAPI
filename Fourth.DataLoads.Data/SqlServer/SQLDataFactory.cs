@@ -10,8 +10,7 @@
     /// <summary>
     /// Creates MS Sql Server repository instances for consuming applications.
     /// </summary>
-    public class SqlDataFactory : IDataFactory<MassTerminationModelSerialized>
-    {
+    public class SqlDataFactory : IDataFactory    {
         /// <summary> The factory that creates database contexts. </summary>
         private readonly IDBContextFactory _contextFactory;
         private readonly IEnumerable<ITableSchema> _tableSchemas;

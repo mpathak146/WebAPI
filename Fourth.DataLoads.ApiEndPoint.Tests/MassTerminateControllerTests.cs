@@ -76,7 +76,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -111,7 +111,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -142,7 +142,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -171,7 +171,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -200,7 +200,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -238,7 +238,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 
@@ -269,7 +269,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock data factory
             var dataFactory =
-                new Mock<IDataFactory<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
 

@@ -22,7 +22,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
     {
         string controllerAction = string.Empty;
         /// <summary> Factory that creates data repository instances. </summary>
-        private IDataFactory<MassTerminationModelSerialized> DataFactory { get; }
+        private IDataFactory DataFactory { get; }
 
         /// <summary> The log4net Logger instance. </summary>
         private readonly ILog Logger =
@@ -39,7 +39,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="MassTerminateController"/> class.
         /// </summary>
-        public MassTerminateController(IDataFactory<MassTerminationModelSerialized> dataFactory, 
+        public MassTerminateController(IDataFactory dataFactory, 
             IAuthorizationProvider authorization, IMappingFactory mapFactory)
         {
             this.DataFactory = dataFactory;

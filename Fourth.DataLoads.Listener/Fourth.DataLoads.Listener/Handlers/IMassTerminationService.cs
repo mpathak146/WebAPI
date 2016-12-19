@@ -15,6 +15,6 @@ namespace Fourth.DataLoads.Listener.Handlers
                                     where TMessage : IMessage
     {
         Task<bool> ProcessPayload(TMessage payload, 
-            IDataFactory<MassTerminationModelSerialized> dataFactory);
+            IDataFactory dataFactory);
     }
 }

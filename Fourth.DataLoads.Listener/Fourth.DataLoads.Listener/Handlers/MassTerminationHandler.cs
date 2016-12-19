@@ -22,14 +22,14 @@
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         IMassTerminationService<Commands.CreateAccount> MassTerminationService { get; }
-        IDataFactory<MassTerminationModelSerialized> DataFactory { get; }
+        IDataFactory DataFactory { get; }
 
         IRepository<MassTerminationModelSerialized> _massTerminateRepository;
         /// <summary>
         /// Default constructor
         /// </summary>
         public MassTerminationHandler (IMassTerminationService<Commands.CreateAccount> massTerminationService
-            , IDataFactory<MassTerminationModelSerialized> dataFactory)
+            , IDataFactory dataFactory)
         {
             MassTerminationService = massTerminationService;
             this.DataFactory = dataFactory;

@@ -25,24 +25,22 @@ namespace Fourth.DataLoads.Listener
 
         /// <summary> The messaging factory to use when creating bus and listener instances. </summary>
         private readonly IMessagingFactory _messageFactory;
-
-        private IDataFactory<MassTerminationModelSerialized> DataFactory { get; }
-
         /// <summary> The listener instance. </summary>
         private IMessageListener _messageListener;
-
         /// <summary> The message bus instance to use when sending messages. </summary>
         private IMessageBus _bus;
         private IMassTerminationService<Commands.CreateAccount> _massTerminationService { get; }
+        private IDataFactory _dataFactory { get; }
 
 
         public ListenerService(IMessagingFactory messageFactory, 
-            IMassTerminationService<Commands.CreateAccount> 
-            massTerminationService)
+            IMassTerminationService<Commands.CreateAccount> massTerminationService,
+            IDataFactory datafactory)
         {
             InitializeComponent();
             _massTerminationService = massTerminationService;
             _messageFactory = messageFactory;
+            _dataFactory = datafactory;
         }
 
         public void StartService(string[] args)
@@ -78,7 +76,7 @@ namespace Fourth.DataLoads.Listener
 
         private void RegisterHandlers()
         {
-            this._messageListener.RegisterHandler(new MassTerminationHandler(this._massTerminationService, this.DataFactory));
+            this._messageListener.RegisterHandler(new MassTerminationHandler(this._massTerminationService, _dataFactory));
         }
 
         protected override void OnStop()
