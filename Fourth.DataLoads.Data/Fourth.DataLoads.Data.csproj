@@ -156,7 +156,7 @@
     <Compile Include="Models\ModelActions.cs" />
     <Compile Include="Repositories\UserContext.cs" />
     <Compile Include="SqlServer\AzureSender.cs" />
-    <Compile Include="SqlServer\DataloadsContext.cs" />
+    <Compile Include="SqlServer\StagingDBContext.cs" />
     <Compile Include="Entities\DefaultHolidayAllowance\JobTitleTable.cs" />
     <Compile Include="Entities\Mass Terminate\MassTermination.cs" />
     <Compile Include="Repositories\MassTerminateRepository.cs" />

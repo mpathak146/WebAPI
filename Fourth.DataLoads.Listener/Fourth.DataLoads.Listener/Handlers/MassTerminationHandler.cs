@@ -58,15 +58,22 @@
                 return MessageHandlerResult.Success;
 
             }
-
-
-            catch (DataException ex)
+            catch (SqlException ex)
             {
-                // Entity Framework database connectivity error .... retry the message
-                Logger.Error(string.Format("Commands.MassTermination handler failed due to a Data exception. A status of Retry will be returned and the message will not be processed. Payload: {0}", payloadArgs), ex);
-                return MessageHandlerResult.Retry;
+                // Is this a transient SQL error?
+                if (ex.Number == (int)SqlErrorCodes.Deadlock || ex.Number == (int)SqlErrorCodes.GeneralNetworkError || ex.Number == (int)SqlErrorCodes.Timeout)
+                {
+                    Logger.Warn(
+                        $"Transient SQL exception - the message will be retried. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
+                    return MessageHandlerResult.Retry;
+                }
+                else
+                {
+                    Logger.Error(
+                        $"Fatal SQL exception - the message will not be processed. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
+                    return MessageHandlerResult.Fatal;
+                }
             }
-
             catch (Exception ex)
             {
                 // Something went wrong so we need to fail the message

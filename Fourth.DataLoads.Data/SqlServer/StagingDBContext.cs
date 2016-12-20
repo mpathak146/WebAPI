@@ -6,20 +6,20 @@ namespace Fourth.DataLoads.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class DataloadsContext : DbContext
+    public partial class StagingDBContext : DbContext
     {
         public string connectionString;
-        public DataloadsContext(string connectionString)
+        public StagingDBContext(string connectionString)
             : base(connectionString!=null?connectionString:"DataloadsContext")
         {   
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataloadsContext, 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StagingDBContext, 
                 Migrations.Configuration>());
             this.connectionString = connectionString;
         }
-        public DataloadsContext()
+        public StagingDBContext()
             : base("DataloadsContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataloadsContext, 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StagingDBContext, 
                 Migrations.Configuration>());
         }
         public virtual DbSet<MassTermination> MassTerminations {get; set;}

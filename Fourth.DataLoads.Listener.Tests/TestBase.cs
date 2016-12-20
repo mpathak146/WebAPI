@@ -1,0 +1,16 @@
+﻿using Fourth.DataLoads.Listener.Handlers;
+using Fourth.Orchestration.Model.People;
+using Moq;
+
+namespace Fourth.DataLoads.Listener.Tests
+{
+    public abstract class TestBase
+    {
+        protected Mock<IMassTerminationService<Commands.CreateAccount>> MassTerminateService { get; }
+                       
+        protected TestBase()
+        {
+            this.MassTerminateService = new Mock<IMassTerminationService<Commands.CreateAccount>>();
+        }
+    }
+}

@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Validation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Listener", "Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj", "{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F2437445-B166-434B-A341-98AA1C45B4C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Listener.Tests", "Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj", "{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{038974A4-2F8C-4637-96B7-2B1966C3703F} = {038974A4-2F8C-4637-96B7-2B1966C3703F}
+		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6} = {81BCCDB6-F863-472C-9C5C-FE93B3177CB6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +47,16 @@ Global
 		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E3D52BD-7F10-4E39-A87E-0672FD76E103} = {F2437445-B166-434B-A341-98AA1C45B4C1}
+		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A} = {F2437445-B166-434B-A341-98AA1C45B4C1}
 	EndGlobalSection
 EndGlobal

@@ -64,7 +64,7 @@ namespace Fourth.DataLoads.Data.Entities
                 _tableSchemas = await GetTableSchema();
 
             Logger.InfoFormat("MassTermination schema loaded into memory");
-            using (var context = this._contextfactory.GetContextAsync())
+            using (var context = this._contextfactory.GetStagingDBContext())
             {
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
@@ -110,7 +110,7 @@ namespace Fourth.DataLoads.Data.Entities
 
         private Guid UpdateDataloadToContext(IEnumerable<MassTerminationModelSerialized> input, 
             UserContext userContext, 
-            DataloadsContext context, 
+            StagingDBContext context, 
             Guid jobGuid)
         {
             try
@@ -271,7 +271,7 @@ namespace Fourth.DataLoads.Data.Entities
 
         public List<MassTerminationModelSerialized> GetData(Guid batchID)
         {
-            using (var context = this._contextfactory.GetContextAsync())
+            using (var context = this._contextfactory.GetStagingDBContext())
             {
                 IEnumerable<MassTerminationModelSerialized>
                     result = from mt in context.MassTerminations

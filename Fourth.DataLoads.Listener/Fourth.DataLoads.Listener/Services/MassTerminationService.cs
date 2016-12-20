@@ -17,6 +17,8 @@ namespace Fourth.DataLoads.Listener.Services
         {
 
             var result = dataFactory.GetMassTerminateRepository().GetData(Guid.Parse(payload.FirstName));
+            
+
             if (result.Count != 0)
                 return true;
             return false;

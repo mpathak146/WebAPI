@@ -6,14 +6,14 @@ namespace Fourth.DataLoads.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Fourth.DataLoads.Data.DataloadsContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Fourth.DataLoads.Data.StagingDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Fourth.DataLoads.Data.DataloadsContext context)
+        protected override void Seed(Fourth.DataLoads.Data.StagingDBContext context)
         {
             context.DataLoadType.AddOrUpdate(
                 Enum.GetValues(typeof(DataLoadTypes))

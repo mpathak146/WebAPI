@@ -32,21 +32,21 @@
         }
 
         /// <inheritdoc />
-        public async Task<PortalDBContext> GetContextAsync(int groupId)
+        public async Task<PortalDBContext> GetPortalDBContextAsync(int groupId)
         {
-            return new PortalDBContext(await GetConnectionForGroupAsync(groupId));
+            return new PortalDBContext(await GetConnectionString(groupId));
         }
 
-        public DataloadsContext GetContextAsync()
+        public StagingDBContext GetStagingDBContext()
         {
-            return new DataloadsContext(_ConnectionString);
+            return new StagingDBContext(_ConnectionString);
         }
         /// <summary>
         /// Gets the connection details for a particular group id (aka organisation).
         /// </summary>
         /// <param name="groupId">The customer identifier.</param>
         /// <returns>A connection string to the customer database.</returns>
-        private async Task<string> GetConnectionForGroupAsync(long groupId)
+        private async Task<string> GetConnectionString(long groupId)
         {
             //string output = string.Empty;
             string file = AppSettings.PathConfig;
@@ -66,12 +66,13 @@
                                    SchemaName = dsn.Attribute("SchemaName").Value
                                };
                     var g_dsn = dsns.SingleOrDefault();
-                    if (g_dsn!=null)
-                    _ConnectionString = string.Format(CONNECTION_STRING_FORMAT, g_dsn.DataSource,
-                        g_dsn.SchemaName, g_dsn.UserName, g_dsn.Password);
+                    if (g_dsn != null)
+                        _ConnectionString = string.Format(CONNECTION_STRING_FORMAT, g_dsn.DataSource,
+                            g_dsn.SchemaName, g_dsn.UserName, g_dsn.Password);
 
                 }
             return _ConnectionString;
         }
     }
+
 }

@@ -36,7 +36,7 @@
 
         public async Task<IEnumerable<DefaultHolidayAllowance>> GetDataAsync(int groupID)
         {
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 context.Configuration.AutoDetectChangesEnabled = false;
 
@@ -58,7 +58,7 @@
 
         public async Task<IEnumerable<DefaultHolidayAllowance>> GetDataAsync(int groupID, int jobtitleId)
         {
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 context.Configuration.AutoDetectChangesEnabled = false;
 
@@ -82,7 +82,7 @@
         public async Task<IEnumerable<DefaultHolidayAllowance>> GetDataAsync(int groupID, int jobtitleId, int yearsworked)
         {
             
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 context.Configuration.AutoDetectChangesEnabled = false;
 
@@ -105,7 +105,7 @@
 
         public async Task<IEnumerable<DefaultHolidayAllowance>> GetDataAsync(int groupID, int jobtitleId, int yearsworked, int allowance)
         {
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 context.Configuration.AutoDetectChangesEnabled = false;
 
@@ -130,7 +130,7 @@
 
         public async Task<int> GetDefaultHolidayAllowanceJobTitleIDAsync(int groupID, string jobTitleName)
         {
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 var jt = await (from job in context.JobTitles
                                 where job.Name == jobTitleName
@@ -150,7 +150,7 @@
                 throw new ArgumentException("Parameter \"input\" is required.");
             }
 
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 foreach (var record in input)
                 {
@@ -211,7 +211,7 @@
         ///  <inheritdoc />
         public async Task<bool> DeleteDataAsync(int groupID, int jobtitleID)
         {
-            using (var context = await this._contextfactory.GetContextAsync(groupID))
+            using (var context = await this._contextfactory.GetPortalDBContextAsync(groupID))
             {
                 //Do the search
                 var searchResult = await GetDataAsync(groupID, jobtitleID);

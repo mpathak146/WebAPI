@@ -14,14 +14,14 @@ namespace Fourth.DataLoads.Data.Interfaces
         /// </summary>
         /// <param name="groupID">The groupID (AKA organisationID) to return a context for - i.e. the People System customer.</param>
         /// <returns>A database context.</returns>
-        Task<PortalDBContext> GetContextAsync(int groupID);
+        Task<PortalDBContext> GetPortalDBContextAsync(int groupID);
 
         /// <summary>
         /// Creates a new database context that can be used for a single transaction.
         /// </summary>
         /// <param name="groupID">The groupID (AKA organisationID) to return a context for - i.e. the People System customer.</param>
         /// <returns>A database context.</returns>
-        DataloadsContext GetContextAsync();
+        StagingDBContext GetStagingDBContext();
 
     }
 }
