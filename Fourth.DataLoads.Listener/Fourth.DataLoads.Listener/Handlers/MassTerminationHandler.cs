@@ -24,7 +24,6 @@
         IMassTerminationService<Commands.CreateAccount> MassTerminationService { get; }
         IDataFactory DataFactory { get; }
 
-        IRepository<MassTerminationModelSerialized> _massTerminateRepository;
         /// <summary>
         /// Default constructor
         /// </summary>

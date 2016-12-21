@@ -24,22 +24,22 @@ namespace Fourth.DataLoads.Listener
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary> The messaging factory to use when creating bus and listener instances. </summary>
-        private readonly IMessagingFactory _messageFactory;
+        private readonly IMessagingFactory _messagingFactory;
         /// <summary> The listener instance. </summary>
         private IMessageListener _messageListener;
         /// <summary> The message bus instance to use when sending messages. </summary>
-        private IMessageBus _bus;
+        private IMessageBus _messageBus;
         private IMassTerminationService<Commands.CreateAccount> _massTerminationService { get; }
         private IDataFactory _dataFactory { get; }
 
 
-        public ListenerService(IMessagingFactory messageFactory, 
+        public ListenerService(IMessagingFactory messagingFactory, 
             IMassTerminationService<Commands.CreateAccount> massTerminationService,
             IDataFactory datafactory)
         {
             InitializeComponent();
             _massTerminationService = massTerminationService;
-            _messageFactory = messageFactory;
+            _messagingFactory = messagingFactory;
             _dataFactory = datafactory;
         }
 
@@ -59,8 +59,8 @@ namespace Fourth.DataLoads.Listener
             {
                 Logger.Info("Starting message listener ...");
                 //// Create the listener and bus instances used to send and receive messages.
-                this._messageListener = this._messageFactory.CreateMessageListener(Constants.EndpointName);
-                this._bus = this._messageFactory.CreateMessageBus();
+                this._messageListener = this._messagingFactory.CreateMessageListener(Constants.EndpointName);
+                this._messageBus = this._messagingFactory.CreateMessageBus();
 
                 // Wire up the handlers here
                 RegisterHandlers();
