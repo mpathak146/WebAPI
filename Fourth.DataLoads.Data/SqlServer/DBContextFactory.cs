@@ -26,10 +26,6 @@
         ///// <summary>
         ///// Initializes a new instance of the <see cref="PSLivePortalDBContextFactoryAsync"/> class.
         ///// </summary>
-        public DBContextFactory(string connectionString)
-        {
-            this._ConnectionString = connectionString;
-        }
 
         /// <inheritdoc />
         public async Task<PortalDBContext> GetPortalDBContextAsync(int groupId)
@@ -39,6 +35,7 @@
 
         public StagingDBContext GetStagingDBContext()
         {
+            _ConnectionString = ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString;
             return new StagingDBContext(_ConnectionString);
         }
         /// <summary>

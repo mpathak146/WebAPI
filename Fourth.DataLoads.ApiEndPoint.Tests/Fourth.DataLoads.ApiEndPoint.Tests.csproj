@@ -93,8 +93,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DefaultHolidayAllowanceTests.cs" />
-    <Compile Include="IntegrationTests.cs" />
     <Compile Include="MassTerminateControllerTests.cs" />
     <Compile Include="MassTerminateRepositoryTest.cs" />
   </ItemGroup>

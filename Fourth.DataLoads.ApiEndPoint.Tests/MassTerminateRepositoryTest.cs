@@ -39,16 +39,13 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "121",
-                ErrValidation = "",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Training required"
             });
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "122",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Testing termination if it works"
@@ -56,7 +53,6 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "123",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Over qualified for the job"

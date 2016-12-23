@@ -4,6 +4,7 @@ using Fourth.DataLoads.Listener.Handlers;
 using Fourth.Orchestration.Model.People;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace Fourth.DataLoads.Listener.Services
         {
 
             var result = dataFactory.GetMassTerminateRepository().GetData(Guid.Parse(payload.FirstName));
+
+            FileStream fs = File.Open("c:\test.txt", FileMode.OpenOrCreate);
+            
             
 
             if (result.Count != 0)

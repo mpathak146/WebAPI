@@ -248,7 +248,7 @@
     <Compile Include="Authorization\RequestHeaderAuthorizionProvider.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\DefaultHolidayAllowanceController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MassTerminateController.cs" />
     <Compile Include="Errors\ErrorModel.cs" />
     <Compile Include="Errors\ErrorResult.cs" />
@@ -269,6 +269,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

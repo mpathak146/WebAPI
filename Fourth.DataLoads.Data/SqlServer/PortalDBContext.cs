@@ -21,10 +21,6 @@
         }
 
         // Add the entities we are using in here
-        public virtual DbSet<DefaultHolidayAllowanceTable> DefaultHolidayAllowances { get; set; }
-
-        public virtual DbSet<JobTitleTable> JobTitles { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

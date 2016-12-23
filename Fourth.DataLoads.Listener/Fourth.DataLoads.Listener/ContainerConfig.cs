@@ -44,10 +44,9 @@ namespace Fourth.DataLoads.Listener
             builder
                 .RegisterType<SqlDataFactory>()
                 .As<IDataFactory>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString",
-                ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString)
-                .WithParameter("tableSchemas", null);
+                .InstancePerLifetimeScope();
+                //.WithParameter("connectionString",
+                //ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
 
             //builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
 

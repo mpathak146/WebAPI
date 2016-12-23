@@ -61,10 +61,9 @@
                 builder
                     .RegisterType<SqlDataFactory>()
                     .As<IDataFactory>()
-                    .InstancePerRequest()
-                    .WithParameter("connectionString", 
-                    ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString)
-                    .WithParameter("tableSchemas", null);
+                    .InstancePerRequest();
+                    //.WithParameter("connectionString", 
+                    //ConfigurationManager.ConnectionStrings["DataloadsContext"].ConnectionString);
 
                 builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
 

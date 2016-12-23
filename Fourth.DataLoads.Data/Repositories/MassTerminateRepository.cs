@@ -18,7 +18,8 @@ using Fourth.Orchestration.Model.People;
 
 namespace Fourth.DataLoads.Data.Entities
 {
-    class MassTerminateRepository : IRepository<MassTerminationModelSerialized>
+   
+    class MassTerminateRepository : IAPIRepository<MassTerminationModelSerialized>
     {
         /// <summary> The log4net Logger instance. </summary>
         private static readonly ILog Logger =
@@ -36,15 +37,12 @@ namespace Fourth.DataLoads.Data.Entities
         }
 
         /// <summary>
-        /// Creation of MassterminateRepo
+        /// Creation of Massterminate Repository using DBContextFactory that sets appropriate ConnectionString
         /// </summary>
         /// <param name="factory"></param>
-        public MassTerminateRepository(IDBContextFactory factory,
-            IEnumerable<ITableSchema> tableSchema)
+        public MassTerminateRepository(IDBContextFactory factory)
         {
-            this._contextfactory = factory;
-            if(tableSchema!=null)
-                this._tableSchemas = tableSchema;
+            this._contextfactory = factory;            
         }
 
 
@@ -229,44 +227,44 @@ namespace Fourth.DataLoads.Data.Entities
             return ts;
         }
 
-        public async Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches)
-        {
-            try
-            {
-                Logger.DebugFormat(
-                   @"Call to CreateAccount: internalId=""{0}"", 
-                                             emailAddress=""{1}"", 
-                                             firstName=""{2}"", 
-                                             lastName=""{3}"", 
-                                             organisationId=""{4}""", 
-                   "",
-                   "",
-                   "",
-                   "",
-                   "");
+        //public async Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches)
+        //{
+        //    try
+        //    {
+        //        Logger.DebugFormat(
+        //           @"Call to CreateAccount: internalId=""{0}"", 
+        //                                     emailAddress=""{1}"", 
+        //                                     firstName=""{2}"", 
+        //                                     lastName=""{3}"", 
+        //                                     organisationId=""{4}""", 
+        //           "",
+        //           "",
+        //           "",
+        //           "",
+        //           "");
 
-                var builder = new Commands.CreateAccount.Builder();
+        //        var builder = new Commands.CreateAccount.Builder();
 
-                foreach (var batch in batches)
-                {
-                    builder.SetInternalId("")
-                    .SetSource(Commands.SourceSystem.PS_LIVE)
-                    .SetEmailAddress("Email Address")
-                    .SetFirstName(batch.BatchID.ToString())
-                    .SetLastName(batch.JobID.ToString())
-                    .SetCustomerId("");
-                    var message = builder.Build();
+        //        foreach (var batch in batches)
+        //        {
+        //            builder.SetInternalId("")
+        //            .SetSource(Commands.SourceSystem.PS_LIVE)
+        //            .SetEmailAddress("Email Address")
+        //            .SetFirstName(batch.BatchID.ToString())
+        //            .SetLastName(batch.JobID.ToString())
+        //            .SetCustomerId("");
+        //            var message = builder.Build();
 
-                    await AzureSender.Instance.SendAsync(message);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error in PushDataAsync method.", ex);
-                return false;
-            }
-        }
+        //            await AzureSender.Instance.SendAsync(message);
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Error("Error in PushDataAsync method.", ex);
+        //        return false;
+        //    }
+        //}
 
 
         public List<MassTerminationModelSerialized> GetData(Guid batchID)
@@ -287,6 +285,11 @@ namespace Fourth.DataLoads.Data.Entities
                              };
                 return result.ToList<MassTerminationModelSerialized>();
             }
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
     

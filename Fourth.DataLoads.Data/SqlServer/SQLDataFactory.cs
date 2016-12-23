@@ -13,16 +13,14 @@
     public class SqlDataFactory : IDataFactory    {
         /// <summary> The factory that creates database contexts. </summary>
         private readonly IDBContextFactory _contextFactory;
-        private readonly IEnumerable<ITableSchema> _tableSchemas;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlDataFactory"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string for the TRGManagement database. </param>
-        public SqlDataFactory(string connectionString, IEnumerable<ITableSchema> tableSchemas)
+        public SqlDataFactory()
         {
-            this._contextFactory = new DBContextFactory(connectionString);
-            this._tableSchemas = tableSchemas;
+            this._contextFactory = new DBContextFactory();
         }
 
         /// <summary>
@@ -36,13 +34,18 @@
 
         /// <inheritdoc />
 
-        public IRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
+        public IAPIRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
         {
-            return new MassTerminateRepository(this._contextFactory, _tableSchemas);
+            return new MassTerminateRepository(this._contextFactory);
         }
-        public IDefaultHolidayAllowanceRepository GetDefaultHolidayAllowanceRepository()
+
+        public IPortalRepository GetPortalRepository()
         {
-            throw new NotImplementedException();
+            return new PortalRepository(this._contextFactory);
+        }
+        public IQueueRepository GetQueueRepository()
+        {
+            return new QueueRepository();
         }
     }
 }

@@ -40,15 +40,13 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             IMappingFactory mapper = new MappingFactory();
 
             models.Add(new MassTerminationModel
-                { DataLoadBatchId = Guid.NewGuid(),
+                {
                 EmployeeNumber = "121",
-                ErrValidation = "",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Training required" });
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "122",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Testing termination if it works"
@@ -56,7 +54,6 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             models.Add(new MassTerminationModel
             {
-                DataLoadBatchId = Guid.NewGuid(),
                 EmployeeNumber = "123",
                 TerminationDate = (DateTime.Now.ToString()),
                 TerminationReason = "Over qualified for the job"
@@ -71,7 +68,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -106,7 +103,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -137,7 +134,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -166,7 +163,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -195,7 +192,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -226,13 +223,14 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+            var qRepo = new Mock<IQueueRepository>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(), 
                 It.IsAny<List<MassTerminationModelSerialized>>()))
                 .ReturnsAsync(new List<DataloadBatch>()
                 { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
 
-            repository.Setup(r => r.PushDataAsync(It.IsAny<IEnumerable<DataloadBatch>>()))
+            qRepo.Setup(r => r.PushDataAsync(It.IsAny<IEnumerable<DataloadBatch>>()))
                 .ReturnsAsync(true);
             
 
@@ -241,6 +239,8 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
+            dataFactory.Setup(d => d.GetQueueRepository()).Returns(qRepo.Object);
+
 
             //Mapping factory
             IMappingFactory mapFactory = new MappingFactory();
@@ -262,7 +262,8 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+            var qRepo = new Mock<IQueueRepository>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))
                 .ReturnsAsync(new List<DataloadBatch>());
@@ -272,6 +273,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 new Mock<IDataFactory>(MockBehavior.Strict);
 
             dataFactory.Setup(d => d.GetMassTerminateRepository()).Returns(repository.Object);
+            dataFactory.Setup(d => d.GetQueueRepository()).Returns(qRepo.Object);
 
             //Mapping factory
             IMappingFactory mapFactory = new MappingFactory();
