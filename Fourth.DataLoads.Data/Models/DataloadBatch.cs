@@ -10,5 +10,7 @@ namespace Fourth.DataLoads.Data.Models
     {
         public Guid JobID { get; set; }
         public Guid BatchID { get; set; }
+        public string User { get; set; }
+        public string OrganizationID { get; set; }
     }
 }

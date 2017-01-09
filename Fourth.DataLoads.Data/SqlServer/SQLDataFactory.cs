@@ -34,7 +34,7 @@
 
         /// <inheritdoc />
 
-        public IAPIRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
+        public IStagingRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
         {
             return new MassTerminateRepository(this._contextFactory);
         }

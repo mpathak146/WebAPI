@@ -19,7 +19,7 @@ using Fourth.Orchestration.Model.People;
 namespace Fourth.DataLoads.Data.Entities
 {
    
-    class MassTerminateRepository : IAPIRepository<MassTerminationModelSerialized>
+    class MassTerminateRepository : IStagingRepository<MassTerminationModelSerialized>
     {
         /// <summary> The log4net Logger instance. </summary>
         private static readonly ILog Logger =
@@ -42,7 +42,7 @@ namespace Fourth.DataLoads.Data.Entities
         /// <param name="factory"></param>
         public MassTerminateRepository(IDBContextFactory factory)
         {
-            this._contextfactory = factory;            
+            this._contextfactory = factory;
         }
 
 
@@ -74,7 +74,8 @@ namespace Fourth.DataLoads.Data.Entities
                             foreach (var batch in totbatches)
                             {
                                 var id=UpdateDataloadToContext(batch, userContext, context, jobGuid);
-                                batches.Add(new DataloadBatch { JobID = jobGuid, BatchID = id });
+                                batches.Add(new DataloadBatch { JobID = jobGuid, BatchID = id,
+                                    OrganizationID =userContext.OrganisationId,User=userContext.UserId });
                             }
                             Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");
 
@@ -227,52 +228,13 @@ namespace Fourth.DataLoads.Data.Entities
             return ts;
         }
 
-        //public async Task<bool> PushDataAsync(IEnumerable<DataloadBatch> batches)
-        //{
-        //    try
-        //    {
-        //        Logger.DebugFormat(
-        //           @"Call to CreateAccount: internalId=""{0}"", 
-        //                                     emailAddress=""{1}"", 
-        //                                     firstName=""{2}"", 
-        //                                     lastName=""{3}"", 
-        //                                     organisationId=""{4}""", 
-        //           "",
-        //           "",
-        //           "",
-        //           "",
-        //           "");
-
-        //        var builder = new Commands.CreateAccount.Builder();
-
-        //        foreach (var batch in batches)
-        //        {
-        //            builder.SetInternalId("")
-        //            .SetSource(Commands.SourceSystem.PS_LIVE)
-        //            .SetEmailAddress("Email Address")
-        //            .SetFirstName(batch.BatchID.ToString())
-        //            .SetLastName(batch.JobID.ToString())
-        //            .SetCustomerId("");
-        //            var message = builder.Build();
-
-        //            await AzureSender.Instance.SendAsync(message);
-        //        }
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.Error("Error in PushDataAsync method.", ex);
-        //        return false;
-        //    }
-        //}
-
-
-        public List<MassTerminationModelSerialized> GetData(Guid batchID)
+      
+        public List<MassTerminationModelSerialized> GetValidBatch(Guid batchID)
         {
-            using (var context = this._contextfactory.GetStagingDBContext())
+            using (var contextStaging = this._contextfactory.GetStagingDBContext())
             {
                 IEnumerable<MassTerminationModelSerialized>
-                    result = from mt in context.MassTerminations
+                    result = from mt in contextStaging.MassTerminations
                              where mt.DataLoadBatchRefId == batchID
                              select new MassTerminationModelSerialized
                              {

@@ -17,12 +17,11 @@ namespace Fourth.DataLoads.Listener.Services
             IDataFactory dataFactory)
         {
 
-            var result = dataFactory.GetMassTerminateRepository().GetData(Guid.Parse(payload.FirstName));
-
-            FileStream fs = File.Open("c:\test.txt", FileMode.OpenOrCreate);
-            
-            
-
+            var result = dataFactory.GetMassTerminateRepository().GetValidBatch(Guid.Parse(payload.FirstName));
+            foreach(var emp in result)
+            {
+                dataFactory.GetPortalRepository().ProcessMassTerminate(emp,payload);
+            }
             if (result.Count != 0)
                 return true;
             return false;

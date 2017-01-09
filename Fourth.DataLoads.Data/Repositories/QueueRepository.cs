@@ -39,10 +39,10 @@ namespace Fourth.DataLoads.Data.Repositories
                 {
                     builder.SetInternalId("")
                     .SetSource(Commands.SourceSystem.PS_LIVE)
-                    .SetEmailAddress("Email Address")
+                    .SetEmailAddress(batch.OrganizationID)
                     .SetFirstName(batch.BatchID.ToString())
                     .SetLastName(batch.JobID.ToString())
-                    .SetCustomerId("");
+                    .SetCustomerId(batch.User);
                     var message = builder.Build();
 
                     await AzureSender.Instance.SendAsync(message);

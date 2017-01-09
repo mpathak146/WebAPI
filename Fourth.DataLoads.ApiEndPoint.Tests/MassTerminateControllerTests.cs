@@ -68,7 +68,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -103,7 +103,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -134,7 +134,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -163,7 +163,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -192,7 +192,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
 
 
             //Mock data factory
@@ -223,7 +223,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             var qRepo = new Mock<IQueueRepository>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(), 
                 It.IsAny<List<MassTerminationModelSerialized>>()))
@@ -262,7 +262,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock the repository
             var repository =
-                new Mock<IAPIRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
             var qRepo = new Mock<IQueueRepository>(MockBehavior.Strict);
             repository.Setup(r => r.SetDataAsync(It.IsAny<UserContext>(),
                 It.IsAny<List<MassTerminationModelSerialized>>()))

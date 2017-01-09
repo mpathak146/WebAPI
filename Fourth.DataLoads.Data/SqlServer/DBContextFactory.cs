@@ -21,7 +21,7 @@
         /// <summary>
         /// The connection string to use in database connections.
         /// </summary>
-        private string _ConnectionString;
+        public string _ConnectionString { get; set; }
 
         ///// <summary>
         ///// Initializes a new instance of the <see cref="PSLivePortalDBContextFactoryAsync"/> class.
@@ -30,7 +30,8 @@
         /// <inheritdoc />
         public async Task<PortalDBContext> GetPortalDBContextAsync(int groupId)
         {
-            return new PortalDBContext(await GetConnectionString(groupId));
+            _ConnectionString = await GetConnectionString(groupId);
+            return new PortalDBContext(_ConnectionString);
         }
 
         public StagingDBContext GetStagingDBContext()

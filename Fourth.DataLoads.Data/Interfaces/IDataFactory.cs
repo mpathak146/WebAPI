@@ -10,7 +10,7 @@
         /// Creates an instance of the Mass Terminate repository.
         /// </summary>
         /// <returns>A repository instance that applications can use to consume data.</returns>
-        IAPIRepository<MassTerminationModelSerialized> GetMassTerminateRepository();
+        IStagingRepository<MassTerminationModelSerialized> GetMassTerminateRepository();
         IPortalRepository GetPortalRepository();
         IQueueRepository GetQueueRepository();
     }

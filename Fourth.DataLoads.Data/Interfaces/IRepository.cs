@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Data.Interfaces
 {
-    public interface IAPIRepository<T>
+    public interface IStagingRepository<T>
     {
         Task<IEnumerable<ITableSchema>> GetTableSchema();
         Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, List<T> input);
         bool IsValid(T genericType);       
-        List<T> GetData(Guid batchID);
+        List<T> GetValidBatch(Guid batchID);
     }
 }
