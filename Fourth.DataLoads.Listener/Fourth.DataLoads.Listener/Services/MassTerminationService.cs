@@ -22,6 +22,7 @@ namespace Fourth.DataLoads.Listener.Services
             {
                 dataFactory.GetPortalRepository().ProcessMassTerminate(emp,payload);
             }
+            dataFactory.GetPortalRepository().RecordStagingErrors(payload);
             if (result.Count != 0)
                 return true;
             return false;

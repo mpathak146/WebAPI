@@ -160,6 +160,7 @@
     <Compile Include="SqlServer\AzureSender.cs" />
     <Compile Include="Repositories\PortalRepository.cs" />
     <Compile Include="Interfaces\IQueueRepository.cs" />
+    <Compile Include="Entities\Portal\MassTerminationPortal.cs" />
     <Compile Include="SqlServer\StagingDBContext.cs" />
     <Compile Include="Entities\Mass Terminate\MassTermination.cs" />
     <Compile Include="Repositories\MassTerminateRepository.cs" />
@@ -188,6 +189,7 @@
       <DependentUpon>201612061543024_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

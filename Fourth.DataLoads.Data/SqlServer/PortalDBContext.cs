@@ -1,7 +1,9 @@
-﻿namespace Fourth.DataLoads.Data
+﻿using System.Data.Entity;
+using Fourth.DataLoads.Data.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Fourth.DataLoads.Data
 {
-    using Entities;
-    using System.Data.Entity;
 
     /// <summary>
     /// Manages connections to the People System database.
@@ -19,10 +21,12 @@
             // Stop EF from creating or updating the underlying database
             Database.SetInitializer<DbContext>(null);
         }
+        public virtual DbSet<MassTerminationPortal> MassTerminationsPortal { get; set; }
 
         // Add the entities we are using in here
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
