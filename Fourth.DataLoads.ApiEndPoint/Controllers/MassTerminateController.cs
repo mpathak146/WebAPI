@@ -85,8 +85,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 {
                     Logger.ErrorFormat("Mass Terminate failed on getting the repository at {0}, with error message {1}",
                         controllerAction, e.Message);
-                    throw new HttpResponseException(HttpStatusCode.InternalServerError);
-                    
+                    throw new HttpResponseException(HttpStatusCode.InternalServerError);                    
                 }
             }
             else

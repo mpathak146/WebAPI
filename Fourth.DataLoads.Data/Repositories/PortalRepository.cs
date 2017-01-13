@@ -85,18 +85,15 @@ namespace Fourth.DataLoads.Data.SqlServer
         {
             int groupID = int.Parse(payload.EmailAddress);
             Logger.InfoFormat("Validating a given employee number");
-
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
             {
                 using (var stagingContext = _contextFactory.GetStagingDBContext())
                 {
-                    var errors = 
-                                 
-                                 (from err in stagingContext.DataLoadErrors
-                                 where (err.DataLoadBatchRefId.ToString() == payload.FirstName)
-                                 select err)
+                    var errors = (from err in stagingContext.DataLoadErrors
+                                  where (err.DataLoadBatchRefId.ToString() == payload.FirstName)
+                                  select err)
                                  .AsEnumerable()
-                                 .Select(x=>new 
+                                 .Select(x => new
                                  {
                                      MassTerminationId = "",
                                      DataLoadJobRefId = x.DataLoadJobRefId,
@@ -108,29 +105,24 @@ namespace Fourth.DataLoads.Data.SqlServer
                                      ErrorStatus = 2,
                                      ErrorDescription = x.ErrDescription
                                  });
-
-
+                    using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
                     {
-                        using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlConnection))
                         {
-                            using (SqlBulkCopy bulkCopy =
-                               new SqlBulkCopy(sqlConnection))
+                            bulkCopy.DestinationTableName = "dbo.t_MassTermination";
+                            try
                             {
-                                bulkCopy.DestinationTableName = "dbo.t_MassTermination";
-                                try
-                                {
-                                    sqlConnection.Open();
-                                    var bulk = ConvertToDataTable(errors.ToList());
-                                    bulkCopy.WriteToServer(bulk);
-                                }
-                                catch (Exception e)
-                                {
-                                    Logger.FatalFormat("Error doing bulk upload into t_MassTermination with message {0}", e.Message);
-                                }
-                                finally
-                                {
-                                    sqlConnection.Close();
-                                }
+                                sqlConnection.Open();
+                                var bulk = ConvertToDataTable(errors.ToList());
+                                bulkCopy.WriteToServer(bulk);
+                            }
+                            catch (Exception e)
+                            {
+                                Logger.FatalFormat("Error doing bulk upload into t_MassTermination with message {0}", e.Message);
+                            }
+                            finally
+                            {
+                                sqlConnection.Close();
                             }
                         }
                     }
@@ -164,9 +156,56 @@ namespace Fourth.DataLoads.Data.SqlServer
             return table;
         }
 
-        public bool RecordDataloadBatch(MassTerminationModelSerialized employee, Commands.CreateAccount payload)
+        public bool RecordDataloadBatch(Commands.CreateAccount payload)
         {
-            throw new NotImplementedException();
+            int groupID = int.Parse(payload.EmailAddress);
+            using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
+            {
+                var command = "dbo.sprc_DL_InsertPayload";
+
+                using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        var cmd = sqlConnection.CreateCommand();
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandText = command;
+                        cmd.Parameters.Add(new SqlParameter("@BatchID", payload.FirstName));
+                        cmd.Parameters.Add(new SqlParameter("@JobID", payload.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@DataloadTypeID", DataLoadTypes.MASS_TERMINATION));
+                        cmd.Parameters.Add(new SqlParameter("@DateUploaded", DateTime.Now));
+                        cmd.Parameters.Add(new SqlParameter("@UploadedBy", payload.CustomerId));
+                        var result = cmd.ExecuteScalar();
+
+                        if (result.GetType() != typeof(DBNull))
+                        {
+                            if ((int?)result == 1)
+                            {
+                                Logger.InfoFormat("No Error reported for BatchNumber: {0} ",
+                                    new object[] { payload.FirstName });
+                                return true;
+                            }
+                            else
+                            {
+                                Logger.ErrorFormat("Error reported for inside the proc {0} BatchNumber: {1} ",
+                                    new object[] { command, payload.FirstName });
+                                return false;
+                            }
+                        }
+                        return false;
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.FatalFormat("Error in processing payload insert, " +
+                        "Exception Message: {0}, Inner Exception Message: {1}",
+                        e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
+                        return false;
+                    }
+
+                }
+
+            }
         }
     }
 }

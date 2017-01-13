@@ -8,6 +8,6 @@ namespace Fourth.DataLoads.Data.Interfaces
         bool ProcessMassTerminate(MassTerminationModelSerialized employee, Commands.CreateAccount payload);
         void RecordStagingErrors(Commands.CreateAccount payload);
 
-        bool RecordDataloadBatch(MassTerminationModelSerialized employee, Commands.CreateAccount payload);
+        bool RecordDataloadBatch(Commands.CreateAccount payload);
     }
 }
