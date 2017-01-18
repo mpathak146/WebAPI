@@ -90,7 +90,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
                 .ReturnsAsync(new List<DataloadBatch>()
                 { new DataloadBatch { BatchID = Guid.NewGuid(), JobID = Guid.NewGuid() } });
 
-            //Mock controller
+            //Create Controller
             var controller =
                 new MassTerminateController(dataFactory.Object, authorization.Object, mapFactory);
 
@@ -102,8 +102,8 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
         {
 
             //Mock the repository
-            var repository =
-                new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict);
+                var repository =
+                        new Mock<IStagingRepository<MassTerminationModelSerialized>>(MockBehavior.Strict); 
 
 
             //Mock data factory

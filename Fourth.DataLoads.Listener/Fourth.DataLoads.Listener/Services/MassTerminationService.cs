@@ -24,7 +24,7 @@ namespace Fourth.DataLoads.Listener.Services
             string batchID = payload.FirstName;
             try
             {
-                if (dataFactory.GetPortalRepository().RecordDataloadBatch(payload))
+                if (dataFactory.GetPortalRepository().DumpDataloadBatchToPortal(payload))
                 {
                     Logger.InfoFormat("payload batch recorded to portal, BatchID: {0}", batchID);
                     result = dataFactory.GetMassTerminateRepository().GetValidBatch(Guid.Parse(batchID));
@@ -34,7 +34,7 @@ namespace Fourth.DataLoads.Listener.Services
                         dataFactory.GetPortalRepository().ProcessMassTerminate(emp, payload);
                         Logger.InfoFormat("Processed mass termination for Employee Number: {0}", batchID);
                     }
-                    dataFactory.GetPortalRepository().RecordStagingErrors(payload);
+                    dataFactory.GetPortalRepository().DumpStagingErrorsToPortal(payload);
                     Logger.InfoFormat("All staging errors are copied to the portal db for Batch {0}", batchID);
 
                 }

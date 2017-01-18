@@ -142,6 +142,7 @@
     <Compile Include="Entities\Common\DataloadBatch.cs" />
     <Compile Include="Entities\Common\DataLoadErrors.cs" />
     <Compile Include="Entities\Common\DataloadType.cs" />
+    <Compile Include="Interfaces\ErrorModel.cs" />
     <Compile Include="Interfaces\IMarker.cs" />
     <Compile Include="Interfaces\IPortalRepository.cs" />
     <Compile Include="Interfaces\ITableSchema.cs" />
@@ -150,6 +151,7 @@
       <DependentUpon>201612061543024_InitialSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\DataloadBatch.cs" />
+    <Compile Include="Models\DataLoadUploads.cs" />
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Migrations\Configuration.cs" />

@@ -12,6 +12,7 @@ using System.Data;
 using System.ComponentModel;
 using System.Xml.Linq;
 using System.Xml;
+using Fourth.DataLoads.Data.Models;
 
 namespace Fourth.DataLoads.Data.SqlServer
 {
@@ -81,7 +82,7 @@ namespace Fourth.DataLoads.Data.SqlServer
             }
             return true;
         }
-        public void RecordStagingErrors(Commands.CreateAccount payload)
+        public void DumpStagingErrorsToPortal(Commands.CreateAccount payload)
         {
             int groupID = int.Parse(payload.EmailAddress);
             Logger.InfoFormat("Validating a given employee number");
@@ -109,7 +110,7 @@ namespace Fourth.DataLoads.Data.SqlServer
                     {
                         using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlConnection))
                         {
-                            bulkCopy.DestinationTableName = "dbo.t_MassTermination";
+                            bulkCopy.DestinationTableName = "dbo.t_DL_MassTermination";
                             try
                             {
                                 sqlConnection.Open();
@@ -156,7 +157,7 @@ namespace Fourth.DataLoads.Data.SqlServer
             return table;
         }
 
-        public bool RecordDataloadBatch(Commands.CreateAccount payload)
+        public bool DumpDataloadBatchToPortal(Commands.CreateAccount payload)
         {
             int groupID = int.Parse(payload.EmailAddress);
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
@@ -202,9 +203,120 @@ namespace Fourth.DataLoads.Data.SqlServer
                         e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
                         return false;
                     }
+                }
+            }
+        }
 
+        public async Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads
+            (int groupID, string dateFrom, DataLoadTypes dataloadTypes)
+        {
+            List<DataLoadUploads> uploads = new List<DataLoadUploads>();
+
+            using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
+            {
+                string command;
+                if (dateFrom != string.Empty)
+                {
+                    command = string.Format(@"SELECT DL.DataLoadJobRefId, DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy, DL.DateUploaded 
+                        FROM t_DL_DataLoad DL left join t_DL_DataloadType dlt ON dl.DataloadTypeID = dlt.DataloadTypeID
+                        WHERE DL.DateUploaded > '{0}' 
+                        GROUP BY DL.DataLoadJobRefId, DL.DateUploaded,DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy
+                        HAVING DL.DateUploaded = (SELECT MAX(D.DateUploaded) FROM t_DL_DataLoad D 
+                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)", dateFrom);
+                }
+                else
+                {
+                    command = string.Format(@"SELECT DL.DataLoadJobRefId, DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy, DL.DateUploaded 
+                        FROM t_DL_DataLoad DL left join t_DL_DataloadType dlt ON dl.DataloadTypeID = dlt.DataloadTypeID
+                        GROUP BY DL.DataLoadJobRefId, DL.DateUploaded,DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy
+                        HAVING DL.DateUploaded = (SELECT MAX(D.DateUploaded) FROM t_DL_DataLoad D 
+                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)", dateFrom);
                 }
 
+                using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        var cmd = sqlConnection.CreateCommand();
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.CommandText = command;
+                        var result = await cmd.ExecuteReaderAsync();
+                        if (result.GetType() != typeof(DBNull))
+                        {
+                            while(result.Read()!=false)
+                            {
+                                uploads.Add(new DataLoadUploads()
+                                {
+                                    jobID=result.GetString(0),
+                                    DataloadType = result.GetString(2),
+                                    UploadedBy = result.GetString(3),
+                                    DateUploaded = DateTime.Parse(result.GetValue(4).ToString())
+                                });
+                            }
+
+                        }
+                        return uploads.AsEnumerable();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.FatalFormat("Error in retrieval for Dataload records, " +
+                        "Exception Message: {0}, Inner Exception Message: {1}",
+                        e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public async Task<IEnumerable<ErrorModel>> GetDataLoadErrors
+            (int groupID, string jobID)
+        {
+            List<ErrorModel> uploads = new List<ErrorModel>();
+
+            using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
+            {
+                string command=string.Empty;                
+                    command = string.Format(@"
+                            select ClientID,EmployeeNumber, ErrorStatus,ErrorDescription 
+                            from t_DL_Dataload d left join t_DL_MassTermination m on d.DataloadJobRefId=m.DataloadJobRefId
+                            where m.DataloadJobRefId='{0}' 
+                            and (m.ErrorStatus=1 or m.ErrorStatus=2)", jobID);
+                
+
+                using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        var cmd = sqlConnection.CreateCommand();
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.CommandText = command;
+                        var result = await cmd.ExecuteReaderAsync();
+                        if (result.GetType() != typeof(DBNull))
+                        {
+                            while (result.Read() != false)
+                            {
+                                uploads.Add(new ErrorModel()
+                                {
+                                    ClientID = result.GetInt32(0),
+                                    EmployeeNumber = result.GetString(1),
+                                    ErrorStatus = result.GetInt32(2),
+                                    ErrorDescription = result.GetString(3)
+                                });
+                            }
+
+                        }
+                        return uploads.AsEnumerable();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.FatalFormat("Error in retrieval for Dataload records, " +
+                        "Exception Message: {0}, Inner Exception Message: {1}",
+                        e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
+                        return null;
+                    }
+                }
             }
         }
     }
