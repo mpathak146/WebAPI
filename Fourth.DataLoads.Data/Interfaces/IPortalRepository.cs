@@ -12,7 +12,7 @@ namespace Fourth.DataLoads.Data.Interfaces
         bool ProcessMassTerminate(MassTerminationModelSerialized employee, Commands.CreateAccount payload);
         void DumpStagingErrorsToPortal(Commands.CreateAccount payload);
         bool DumpDataloadBatchToPortal(Commands.CreateAccount payload);
-        Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads(int groupID, string dateFrom, DataLoadTypes dataloadTypes);
+        Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads(int groupID, string dateFrom);
         Task<IEnumerable<ErrorModel>> GetDataLoadErrors(int groupID, string jobID);
     }
 }

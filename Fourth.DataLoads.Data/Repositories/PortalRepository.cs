@@ -208,7 +208,7 @@ namespace Fourth.DataLoads.Data.SqlServer
         }
 
         public async Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads
-            (int groupID, string dateFrom, DataLoadTypes dataloadTypes)
+            (int groupID, string dateFrom)
         {
             List<DataLoadUploads> uploads = new List<DataLoadUploads>();
 

@@ -51,7 +51,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 if (this.Authorization.IsAuthorized(groupID))
                 {
                     dataloads = await DataFactory.GetPortalRepository().GetDataLoadUploads
-                        (ID ,(dateFrom!=null) ? dateFrom : "", Data.DataLoadTypes.All);
+                        (ID ,(dateFrom!=null) ? dateFrom : "");
                     return Ok(dataloads.ToList());
                 }
                 else
