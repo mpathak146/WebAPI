@@ -15,6 +15,7 @@ using Fourth.DataLoads.Data.Repositories;
 using EntityFramework.BulkInsert.Extensions;
 using Google.ProtocolBuffers;
 using Fourth.Orchestration.Model.People;
+using System.Data.Sql;
 
 namespace Fourth.DataLoads.Data.Entities
 {
@@ -62,48 +63,61 @@ namespace Fourth.DataLoads.Data.Entities
                 _tableSchemas = await GetTableSchema();
 
             Logger.InfoFormat("MassTermination schema loaded into memory");
-            using (var context = this._contextfactory.GetStagingDBContext())
+            try
             {
-                using (var dbContextTransaction = context.Database.BeginTransaction())
+                using (var context = this._contextfactory.GetStagingDBContext())
                 {
-                    if (input.Count > 0)
+                    using (var dbContextTransaction = context.Database.BeginTransaction())
                     {
-                        try
+                        if (input.Count > 0)
                         {
-                            var totbatches = input.Batch(AppSettings.BatchSize);
-                            foreach (var batch in totbatches)
+                            try
                             {
-                                var id=UpdateDataloadToContext(batch, userContext, context, jobGuid);
-                                batches.Add(new DataloadBatch { JobID = jobGuid, BatchID = id,
-                                    OrganizationID =userContext.OrganisationId,User=userContext.UserId });
+                                var totbatches = input.Batch(AppSettings.BatchSize);
+                                foreach (var batch in totbatches)
+                                {
+                                    var id = UpdateDataloadToContext(batch, userContext, context, jobGuid);
+                                    batches.Add(new DataloadBatch
+                                    {
+                                        JobID = jobGuid,
+                                        BatchID = id,
+                                        OrganizationID = userContext.OrganisationId,
+                                        User = userContext.UserId
+                                    });
+                                }
+                                Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");
+
+                                dbContextTransaction.Commit();
+
+                                Logger.InfoFormat("MassTermination schema saved to entities, transaction committed to the database");
+
                             }
-                            Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");
+                            catch (Exception e)
+                            {
+                                Logger.FatalFormat(string.Format("Internal database exception with error {0} and inner exception message {1}",
+                                    e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
 
-                            dbContextTransaction.Commit();
+                                dbContextTransaction.Rollback();
 
-                            Logger.InfoFormat("MassTermination schema saved to entities, transaction committed to the database");
-
-                        }
-                        catch (Exception e)
-                        {
-                            Logger.FatalFormat(string.Format("Internal database exception with error {0} and inner exception message {1}",
+                                Logger.FatalFormat(string.Format("Transaction Rolledback on Internal database exception with error {0} and inner exception message {1}",
                                 e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
-
-                            dbContextTransaction.Rollback();
-
-                            Logger.FatalFormat(string.Format("Transaction Rolledback on Internal database exception with error {0} and inner exception message {1}",
-                            e.Message, e.InnerException == null ? "null" : e.InnerException.Message));
-                            throw e;
+                                throw e;
+                            }
                         }
+                        else
+                        {
+                            Logger.InfoFormat("No data is received through the body of upload, please check the data and upload.");
+                            throw new ArgumentException
+                                ("No data is received through the body of upload, please check the data and upload.");
+                        }
+                        return batches;
                     }
-                    else
-                    {
-                        Logger.InfoFormat("No data is received through the body of upload, please check the data and upload.");
-                        throw new ArgumentException
-                            ("No data is received through the body of upload, please check the data and upload.");
-                    }
-                    return batches;
                 }
+            }
+            catch(Exception e)
+            {
+                Logger.ErrorFormat("Error inside MassTerminate Repository, function SetDataAsync(UserContext, input) with message: {0}", e.Message);
+                throw e;
             }
         }
 

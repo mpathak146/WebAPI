@@ -30,6 +30,9 @@
         {
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
             this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
+
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
+
             // 
             // serviceProcessInstaller1
             // 
@@ -37,8 +40,12 @@
             this.serviceProcessInstaller1.Username = null;
             // 
             // serviceInstaller1
-            // 
-            this.serviceInstaller1.ServiceName = "DataLoads Service";
+            //
+            this.serviceInstaller1.Description = "Listens to incoming commands for the Dataload Listener Service.";
+            this.serviceInstaller1.DisplayName = "Dataload message listener";
+            this.serviceInstaller1.ServiceName = "DataloadService";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+
             // 
             // ProjectInstaller
             // 
