@@ -35,7 +35,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
             this.Authorization = authorization;
         }
         [HttpGet]
-        [Route("Dataload/Groups/{groupID}/Dataloads")]
+        [Route("Dataload/Groups/{groupID}/Jobs")]
         public async Task<IHttpActionResult> GetDataAsync(string groupID, string dateFrom=null)
         {
             controllerAction = "MassTerminate: By User: for groupID:" + groupID;
@@ -63,13 +63,13 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
             catch (Exception e)
             {
                 Logger.ErrorFormat("Failed to retrieve dataload information from the database, error: {0}", e.Message);
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
 
 
         [HttpGet]
-        [Route("Dataload/Groups/{groupID}/Dataloads/{jobID}/Errors")]
+        [Route("Dataload/Groups/{groupID}/Jobs/{jobID}")]
         public async Task<IHttpActionResult> GetErrorDataAsync(string groupID, string jobID)
         {
             controllerAction = "MassTerminate: By User: for groupID:" + groupID;

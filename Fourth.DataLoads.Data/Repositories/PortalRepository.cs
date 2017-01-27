@@ -248,7 +248,7 @@ namespace Fourth.DataLoads.Data.SqlServer
                             {
                                 uploads.Add(new DataLoadUploads()
                                 {
-                                    jobID=result.GetString(0),
+                                    jobID= result.GetValue(0).ToString(),
                                     DataloadType = result.GetString(2),
                                     UploadedBy = result.GetString(3),
                                     DateUploaded = DateTime.Parse(result.GetValue(4).ToString())
@@ -281,7 +281,7 @@ namespace Fourth.DataLoads.Data.SqlServer
                             select ClientID,EmployeeNumber, ErrorStatus,ErrorDescription 
                             from t_DL_Dataload d left join t_DL_MassTermination m on d.DataloadJobRefId=m.DataloadJobRefId
                             where m.DataloadJobRefId='{0}' 
-                            and (m.ErrorStatus=1 or m.ErrorStatus=2)", jobID);
+                            ", jobID);
                 
 
                 using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
@@ -302,7 +302,8 @@ namespace Fourth.DataLoads.Data.SqlServer
                                     ClientID = result.GetInt32(0),
                                     EmployeeNumber = result.GetString(1),
                                     ErrorStatus = result.GetInt32(2),
-                                    ErrorDescription = result.GetString(3)
+                                    ErrorDescription = (result.GetValue(3) != null) ?
+                                        result.GetValue(3).ToString() : ""
                                 });
                             }
 
