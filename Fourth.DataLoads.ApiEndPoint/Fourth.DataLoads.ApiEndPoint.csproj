@@ -251,7 +251,6 @@
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\MassTerminateController.cs" />
-    <Compile Include="Controllers\Params.cs" />
     <Compile Include="Errors\ErrorModel.cs" />
     <Compile Include="Errors\ErrorResult.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
