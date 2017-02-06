@@ -208,7 +208,7 @@ namespace Fourth.DataLoads.Data.SqlServer
         }
 
         public async Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads
-            (int groupID, string dateFrom)
+            (int groupID, string dateFrom, int dataloadType)
         {
             List<DataLoadUploads> uploads = new List<DataLoadUploads>();
 
@@ -219,7 +219,7 @@ namespace Fourth.DataLoads.Data.SqlServer
                 {
                     command = string.Format(@"SELECT DL.DataLoadJobRefId, DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy, DL.DateUploaded 
                         FROM t_DL_DataLoad DL left join t_DL_DataloadType dlt ON dl.DataloadTypeID = dlt.DataloadTypeID
-                        WHERE DL.DateUploaded > '{0}' 
+                        WHERE DL.DateUploaded > '{0}' and dlt.DataloadTypeID={1} 
                         GROUP BY DL.DataLoadJobRefId, DL.DateUploaded,DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy
                         HAVING DL.DateUploaded = (SELECT MAX(D.DateUploaded) FROM t_DL_DataLoad D 
                         WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)", dateFrom);

@@ -36,7 +36,8 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         }
         [HttpGet]
         [Route("Dataload/Groups/{groupID}/Jobs")]
-        public async Task<IHttpActionResult> GetDataAsync(string groupID, string dateFrom=null)
+        public async Task<IHttpActionResult> GetDataAsync(string groupID, 
+            string dateFrom=null, int dataloadType=0)
         {
             controllerAction = "MassTerminate: By User: for groupID:" + groupID;
             Logger.Info(controllerAction);
@@ -51,7 +52,7 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 if (this.Authorization.IsAuthorized(groupID))
                 {
                     dataloads = await DataFactory.GetPortalRepository().GetDataLoadUploads
-                        (ID ,(dateFrom!=null) ? dateFrom : "");
+                        (ID ,(dateFrom!=null) ? dateFrom : "", dataloadType);
                     return Ok(dataloads.ToList());
                 }
                 else
