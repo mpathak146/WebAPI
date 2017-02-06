@@ -96,7 +96,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             var controller = new AuditController(datafactory.Object, authorization.Object);
 
             authorization.Setup(m => m.IsAuthorized("11")).Returns(true);
-            repository.Setup(x => x.GetDataLoadUploads(11, ""))
+            repository.Setup(x => x.GetDataLoadUploads(11, "",1))
                 .ReturnsAsync(dataloads);
 
             Task<IHttpActionResult> actionResult = controller.GetDataAsync("11", "");
