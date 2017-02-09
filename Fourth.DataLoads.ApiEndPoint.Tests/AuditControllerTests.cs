@@ -99,7 +99,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             repository.Setup(x => x.GetDataLoadUploads(11, "",1))
                 .ReturnsAsync(dataloads);
 
-            Task<IHttpActionResult> actionResult = controller.GetDataAsync("11", "");
+            Task<IHttpActionResult> actionResult = controller.GetDataAsync("11", "", 1);
             
             Assert.AreEqual(((OkNegotiatedContentResult<List<DataLoadUploads>>)actionResult.Result).Content.Capacity, 1);
         }

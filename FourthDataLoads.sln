@@ -21,6 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.Listener.T
 		{81BCCDB6-F863-472C-9C5C-FE93B3177CB6} = {81BCCDB6-F863-472C-9C5C-FE93B3177CB6}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD0C4DB-0F0D-4313-9D7C-89BBF1D220D6}"
+	ProjectSection(SolutionItems) = preProject
+		BuildVersion.props = BuildVersion.props
+		FourthDataloads.msbuild = FourthDataloads.msbuild
+		.Nuget\Nuget.exe = .Nuget\Nuget.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

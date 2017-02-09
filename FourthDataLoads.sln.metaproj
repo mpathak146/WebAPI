@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects" DefaultTargets="Build">
+  <PropertyGroup>
+    <MSBuildToolsPath32>C:\Program Files (x86)\MSBuild\14.0\bin\</MSBuildToolsPath32>
+    <MSBuildToolsRoot>C:\Program Files (x86)\MSBuild\</MSBuildToolsRoot>
+    <MSBuildFrameworkToolsPath>C:\windows\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath>
+    <MSBuildFrameworkToolsPath32>C:\windows\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath32>
+    <MSBuildFrameworkToolsRoot>C:\windows\Microsoft.NET\Framework\</MSBuildFrameworkToolsRoot>
+    <MSBuildRuntimeVersion>4.0.30319</MSBuildRuntimeVersion>
+    <FrameworkSDKRoot>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\</FrameworkSDKRoot>
+    <SDK35ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\</SDK35ToolsPath>
+    <SDK40ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\</SDK40ToolsPath>
+    <VCTargetsPath>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\</VCTargetsPath>
+    <VCTargetsPath10>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\</VCTargetsPath10>
+    <VCTargetsPath11>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\</VCTargetsPath11>
+    <VCTargetsPath12>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\</VCTargetsPath12>
+    <VCTargetsPath14>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\</VCTargetsPath14>
+    <WindowsSDK80Path />
+    <Platform>Any CPU</Platform>
+    <AspNetConfiguration>Release</AspNetConfiguration>
+    <SolutionDir>C:\Dev\DataloadService\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>FourthDataLoads.sln</SolutionFileName>
+    <SolutionName>FourthDataLoads</SolutionName>
+    <SolutionPath>C:\Dev\DataloadService\FourthDataLoads.sln</SolutionPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9F8566DB-216C-4D69-BE34-7A0F3D0C7F4E}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{2E3D52BD-7F10-4E39-A87E-0672FD76E103}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EE6422BA-25CD-4946-A925-22B516A6ADE6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU<ProjectDependency Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" /><ProjectDependency Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" /></ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9F8566DB-216C-4D69-BE34-7A0F3D0C7F4E}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{2E3D52BD-7F10-4E39-A87E-0672FD76E103}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EE6422BA-25CD-4946-A925-22B516A6ADE6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU<ProjectDependency Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" /><ProjectDependency Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" /></ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9F8566DB-216C-4D69-BE34-7A0F3D0C7F4E}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{2E3D52BD-7F10-4E39-A87E-0672FD76E103}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EE6422BA-25CD-4946-A925-22B516A6ADE6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}" AbsolutePath="C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU<ProjectDependency Project="{038974A4-2F8C-4637-96B7-2B1966C3703F}" /><ProjectDependency Project="{81BCCDB6-F863-472C-9C5C-FE93B3177CB6}" /></ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj.metaproj">
+      <ToolsVersion>14.0</ToolsVersion>
+      <SkipNonexistentProjects>Build</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=Any CPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="ValidateSolutionConfiguration">
+    <Error Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' != 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Warning Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' == 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Message Condition="'$(CurrentSolutionConfigurationContents)' != ''" Text="Building solution configuration &quot;$(Configuration)|$(Platform)&quot;." />
+  </Target>
+  <Target Name="ValidateToolsVersions">
+    <Error Condition="'$(MSBuildToolsVersion)' == '2.0' and ('$(ProjectToolsVersion)' != '2.0' and '$(ProjectToolsVersion)' != '')" Text="The tools version &quot;$(MSBuildToolsVersion)&quot; of the solution does not support building projects with a different tools version." Code="MSB4149" HelpKeyword="MSBuild.SolutionToolsVersionDoesNotSupportProjectToolsVersion" />
+  </Target>
+  <Target Name="ValidateProjects" />
+  <Target Name="GetSolutionConfigurationContents" Outputs="$(SolutionConfigurationContents)" />
+  <Target Name="Build" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectReference-&gt;Reverse())" Targets="Clean" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="Rebuild" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Publish">
+    <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_ApiEndPoint" Outputs="@(Fourth_DataLoads_ApiEndPointBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ApiEndPointBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_ApiEndPoint:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_ApiEndPoint:Rebuild" Outputs="@(Fourth_DataLoads_ApiEndPointBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ApiEndPointBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_ApiEndPoint:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_ApiEndPoint_Tests" Outputs="@(Tests_Fourth_DataLoads_ApiEndPoint_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Tests_Fourth_DataLoads_ApiEndPoint_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_ApiEndPoint_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_ApiEndPoint_Tests:Rebuild" Outputs="@(Tests_Fourth_DataLoads_ApiEndPoint_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Tests_Fourth_DataLoads_ApiEndPoint_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_ApiEndPoint_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.ApiEndPoint.Tests\Fourth.DataLoads.ApiEndPoint.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Data" Outputs="@(Fourth_DataLoads_DataBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_DataBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Data:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Data:Rebuild" Outputs="@(Fourth_DataLoads_DataBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_DataBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Data:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Validation" Outputs="@(Fourth_DataLoads_ValidationBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ValidationBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Validation:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Validation:Rebuild" Outputs="@(Fourth_DataLoads_ValidationBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ValidationBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Validation:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.PeopleSystem.Validation\Fourth.DataLoads.Validation.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Listener" Outputs="@(Fourth_DataLoads_ListenerBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ListenerBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Listener:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Fourth_DataLoads_Listener:Rebuild" Outputs="@(Fourth_DataLoads_ListenerBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Fourth_DataLoads_ListenerBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Fourth_DataLoads_Listener:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_Listener_Tests" Outputs="@(Tests_Fourth_DataLoads_Listener_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj.metaproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="14.0" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="Tests_Fourth_DataLoads_Listener_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_Listener_Tests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj.metaproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="14.0" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_Listener_Tests:Rebuild" Outputs="@(Tests_Fourth_DataLoads_Listener_TestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj.metaproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="14.0" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="Tests_Fourth_DataLoads_Listener_TestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Tests\Fourth_DataLoads_Listener_Tests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'C:\Dev\DataloadService\Fourth.DataLoads.Listener.Tests\Fourth.DataLoads.Listener.Tests.csproj.metaproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="14.0" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+</Project>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/Fourth.DataLoads.ApiEndPoint_deploy" />
+  <setParameter name="DataloadsContext-Web.config Connection String" value="Data Source=10.10.10.235\QA;Initial Catalog=Dataloads;persist security info=True;user id=dataloads;password=$taging;MultipleActiveResultSets=True;App=EntityFramework" />
+</parameters>

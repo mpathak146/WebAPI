@@ -1,0 +1,50 @@
+﻿<Project DefaultTargets="CITest" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <TestResultsDirectory>$(MSBuildThisFileDirectory)TestResults\</TestResultsDirectory>
+    <PublishResultsDirectory>$(MSBuildThisFileDirectory)PublishResults\</PublishResultsDirectory>
+  </PropertyGroup>
+
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
+
+  <Target Name="Clean">
+    <MSBuild Projects="FourthDataLoads.sln" Targets="Clean" Properties="Configuration=$(Configuration)"/>
+    <RemoveDir Directories="$(TestResultsDirectory)"/>
+    <RemoveDir Directories="$(PublishResultsDirectory)"/>
+  </Target>
+
+  <Target Name="RestorePackages">
+    <Exec Command="$(MsBuildThisFileDirectory).nuget\nuget.exe restore"/>
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="RestorePackages">
+    <MSBuild Projects="FourthDataLoads.sln" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=false"/>
+    <MSBuild Projects="Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=false;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.ApiEndPoint.zip;IgnoreDeployManagedRuntimeVersion=true"/>
+    <MSBuild Projects="Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=false;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.Listener.zip;IgnoreDeployManagedRuntimeVersion=true"/>
+  </Target>
+  
+  <Target Name="RunUnitTests" DependsOnTargets="Build" >
+    <ItemGroup>
+      <UnitTestDLLs Include="**\bin\$(Configuration)\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll" />
+    </ItemGroup>
+
+    <MakeDir Directories="$(TestResultsDirectory)"/>
+    <Message Text='Manish: &quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(UnitTestDLLs.FullPath)'/>
+
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(UnitTestDLLs.FullPath)"
+          IgnoreExitCode="false"
+          WorkingDirectory="$(TestResultsDirectory)" />
+  </Target>
+  <Target Name="RunMessageListenerTests" DependsOnTargets="Build" >
+    <ItemGroup>
+      <MessageListenerTestDLLs Include="**\bin\$(Configuration)\Fourth.DataLoads.Listener.Tests.dll" />
+    </ItemGroup>
+
+    <MakeDir Directories="$(TestResultsDirectory)"/>
+
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(MessageListenerTestDLLs.FullPath)"
+          IgnoreExitCode="false"
+          WorkingDirectory="$(TestResultsDirectory)" />
+
+  </Target>
+</Project>

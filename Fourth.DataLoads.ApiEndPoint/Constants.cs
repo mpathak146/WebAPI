@@ -8,7 +8,7 @@ namespace Fourth.DataLoads.ApiEndPoint
     public static class Constants
     {
         private const string headerOrg = "x-fourth-org";
-        private const string headerUser = "x-fourth-userid";
+        private const string headerUserId = "x-fourth-userid";
 
         public static string HeaderOrg
         {
@@ -21,7 +21,7 @@ namespace Fourth.DataLoads.ApiEndPoint
         {
             get
             {
-                return headerUser;
+                return headerUserId;
             }
         }
     }
