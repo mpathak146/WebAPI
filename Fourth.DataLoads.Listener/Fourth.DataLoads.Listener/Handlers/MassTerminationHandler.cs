@@ -21,8 +21,8 @@
         /// <summary> The class Logger instance. </summary>
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        IMassTerminationService<Commands.CreateAccount> MassTerminationService { get; }
-        IDataFactory DataFactory { get; }
+        IMassTerminationService<Commands.CreateAccount> MassTerminationService;
+        IDataFactory DataFactory;
 
         /// <summary>
         /// Default constructor
