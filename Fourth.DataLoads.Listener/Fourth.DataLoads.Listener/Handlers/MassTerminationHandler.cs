@@ -62,14 +62,14 @@
                 // Is this a transient SQL error?
                 if (ex.Number == (int)SqlErrorCodes.Deadlock || ex.Number == (int)SqlErrorCodes.GeneralNetworkError || ex.Number == (int)SqlErrorCodes.Timeout)
                 {
-                    Logger.Warn(
-                        $"Transient SQL exception - the message will be retried. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
+                    Logger.WarnFormat(
+                        "Transient SQL exception - the message will be retried. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
                     return MessageHandlerResult.Retry;
                 }
                 else
                 {
-                    Logger.Error(
-                        $"Fatal SQL exception - the message will not be processed. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
+                    Logger.ErrorFormat(
+                        "Fatal SQL exception - the message will not be processed. Sql error # {ex.Number}. TrackingId: \"{payloadArgs}\"", ex);
                     return MessageHandlerResult.Fatal;
                 }
             }
