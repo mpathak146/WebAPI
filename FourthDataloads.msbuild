@@ -27,6 +27,7 @@
     <ItemGroup>
       <UnitTestDLLs Include="**\bin\$(Configuration)\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll" />
     </ItemGroup>
+    
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
     <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(UnitTestDLLs.FullPath)"
