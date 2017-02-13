@@ -40,9 +40,6 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fourth.DataLoads.Data">
-      <HintPath>..\Fourth.DataLoads.Data\bin\Debug\Fourth.DataLoads.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Fourth.DataLoads.Listener">
       <HintPath>..\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\bin\Debug\Fourth.DataLoads.Listener.exe</HintPath>
     </Reference>
@@ -145,6 +142,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj">
+      <Project>{038974a4-2f8c-4637-96b7-2b1966c3703f}</Project>
+      <Name>Fourth.DataLoads.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
