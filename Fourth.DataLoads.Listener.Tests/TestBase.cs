@@ -6,11 +6,18 @@ namespace Fourth.DataLoads.Listener.Tests
 {
     public abstract class TestBase
     {
-        protected Mock<IMassTerminationService<Commands.CreateAccount>> MassTerminateService { get; }
+        private Mock<IMassTerminationService<Commands.CreateAccount>> massterminationService;
+        protected Mock<IMassTerminationService<Commands.CreateAccount>> MassTerminateService
+        {
+            get
+            {
+                return massterminationService;
+            }
+        }
                        
         protected TestBase()
         {
-            this.MassTerminateService = new Mock<IMassTerminationService<Commands.CreateAccount>>();
+            massterminationService = new Mock<IMassTerminationService<Commands.CreateAccount>>();
         }
     }
 }
