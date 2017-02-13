@@ -1,9 +1,7 @@
-﻿namespace Fourth.DataLoads.Data.Interfaces
-{
-    using Entities;
-    using Fourth.DataLoads.Data.Repositories;
-    using Interfaces;
+﻿using Fourth.DataLoads.Data.Entities;
 
+namespace Fourth.DataLoads.Data.Interfaces
+{
     public interface IDataFactory
     {
         /// <summary>

@@ -6,8 +6,7 @@ using Fourth.DataLoads.Data.Interfaces;
 using System.Threading.Tasks;
 using Fourth.DataLoads.Listener.Handlers;
 using Fourth.Orchestration.Messaging;
-using System.Data.SqlClient;
-using System.Runtime.Serialization;
+
 
 namespace Fourth.DataLoads.Listener.Tests
 {

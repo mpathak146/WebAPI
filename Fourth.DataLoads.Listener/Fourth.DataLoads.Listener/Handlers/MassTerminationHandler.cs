@@ -1,16 +1,14 @@
-﻿namespace Fourth.DataLoads.Listener.Handlers
+﻿using System;
+using System.Threading.Tasks;
+using log4net;
+using System.Data.SqlClient;
+using Fourth.Orchestration.Messaging;
+using Fourth.Orchestration.Model.People;
+using Fourth.DataLoads.Data.Interfaces;
+
+namespace Fourth.DataLoads.Listener.Handlers
 {
-    using System;
-    using System.Threading.Tasks;
-    using Orchestration.Messaging;
-    using Orchestration.Model.People;
-    using log4net;
-    using System.Data.SqlClient;
-    using System.Data;
-    using Data.Models;
-    using Data.Repositories;
-    using Data.Interfaces;
-    using Data.Entities;
+
 
     /// <summary>
     /// Handles commands of type 'DataloadRequest' that the service has received through 
