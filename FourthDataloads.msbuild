@@ -5,8 +5,8 @@
     <PublishResultsDirectory>$(MSBuildThisFileDirectory)PublishResults\</PublishResultsDirectory>
   </PropertyGroup>
 
-  <Target Name="CITest" DependsOnTargets="Clean;Build"/>
-  <!--Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/-->
+  
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
   
 
   <Target Name="Clean">
@@ -32,7 +32,7 @@
     
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)" />
   </Target>
@@ -43,7 +43,7 @@
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
 
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:&quot;%(MessageListenerTestDLLs.FullPath)&quot;"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer:&quot;%(MessageListenerTestDLLs.FullPath)&quot;"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)"/>
 
