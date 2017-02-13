@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   
-  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
+  <!--Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/-->
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunxUnitTests"/>
   
 
   <Target Name="Clean">
@@ -25,6 +26,10 @@
     <MSBuild Projects="Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.ApiEndPoint.zip;IgnoreDeployManagedRuntimeVersion=true"/>
   </Target>
   
+   <Target Name="RunxUnitTests" DependsOnTargets="Build" >
+    <xunit Assemblies="**\bin\$(Configuration)\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll" NUnit="results.nunit.xml" />
+  </Target>
+    
   <Target Name="RunUnitTests" DependsOnTargets="Build" >
     <ItemGroup>
       <UnitTestDLLs Include="**\bin\$(Configuration)\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll" />
@@ -32,7 +37,7 @@
     
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe &quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)" />
   </Target>
@@ -43,7 +48,7 @@
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
 
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer:&quot;%(MessageListenerTestDLLs.FullPath)&quot;"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe &quot; /testcontainer:&quot;%(MessageListenerTestDLLs.FullPath)&quot;"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)"/>
 
