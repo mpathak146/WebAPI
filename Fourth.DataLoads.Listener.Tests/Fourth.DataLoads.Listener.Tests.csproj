@@ -40,9 +40,6 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fourth.DataLoads.Listener">
-      <HintPath>..\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\bin\Debug\Fourth.DataLoads.Listener.exe</HintPath>
-    </Reference>
     <Reference Include="Fourth.Orchestration, Version=1.1.48.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fourth.Orchestration.1.1.48\lib\net45\Fourth.Orchestration.dll</HintPath>
       <Private>True</Private>
@@ -147,6 +144,10 @@
     <ProjectReference Include="..\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj">
       <Project>{038974a4-2f8c-4637-96b7-2b1966c3703f}</Project>
       <Name>Fourth.DataLoads.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj">
+      <Project>{81bccdb6-f863-472c-9c5c-fe93b3177cb6}</Project>
+      <Name>Fourth.DataLoads.Listener</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
