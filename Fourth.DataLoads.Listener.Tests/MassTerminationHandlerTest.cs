@@ -19,7 +19,7 @@ namespace Fourth.DataLoads.Listener.Tests
         }
 
         [TestMethod]
-        public async Task OnException_MassTerminationHandler_ShouldReturn_Fatal()
+        public void OnException_MassTerminationHandler_ShouldReturn_Fatal()
         {
             this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(), 
                 It.IsAny<IDataFactory>())).Throws(new Exception());
@@ -28,24 +28,24 @@ namespace Fourth.DataLoads.Listener.Tests
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
-            Assert.IsTrue(result == MessageHandlerResult.Fatal);
+            var result = handler.HandleAsync(message, "TrackingId");
+            Assert.IsTrue(result.Result == MessageHandlerResult.Fatal);
         }
 
         [TestMethod]
-        public async Task OnVerifiablePayload_MassTerminationHandler_Should_Process()
+        public void OnVerifiablePayload_MassTerminationHandler_Should_Process()
         {
             Commands.CreateAccount message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
+            var result = handler.HandleAsync(message, "TrackingId");
 
             this.MassTerminateService.Verify(m => m.ProcessPayload(It.IsAny<Commands.CreateAccount>(), It.IsAny<IDataFactory>()));
         }
 
         [TestMethod]
-        public async Task OnsqlException_MassTerminationHandler_ShouldReturn_Fatal()
+        public void OnsqlException_MassTerminationHandler_ShouldReturn_Fatal()
         {
             var sqlException = new ExceptionHelper().WithErrorCode(50000)
                 .WithErrorMessage("Database exception occured...")
@@ -58,12 +58,12 @@ namespace Fourth.DataLoads.Listener.Tests
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
-            Assert.IsTrue(result == MessageHandlerResult.Fatal);
+            var result = handler.HandleAsync(message, "TrackingId");
+            Assert.IsTrue(result.Result == MessageHandlerResult.Fatal);
         }
 
         [TestMethod]
-        public async Task OnsqlExceptionWithDeadlockCode_MassTerminationHandler_Should_Retry()
+        public void OnsqlExceptionWithDeadlockCode_MassTerminationHandler_Should_Retry()
         {
             var sqlException = new ExceptionHelper().WithErrorCode((int)SqlErrorCodes.Deadlock)
             .WithErrorMessage("Database exception occured...")
@@ -76,12 +76,12 @@ namespace Fourth.DataLoads.Listener.Tests
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
-            Assert.IsTrue(result == MessageHandlerResult.Retry);
+            var result = handler.HandleAsync(message, "TrackingId");
+            Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
         }
 
         [TestMethod]
-        public async Task OnsqlExceptionWithGeneralNetworkErrorCode_MassTerminationHandler_Should_Retry()
+        public void OnsqlExceptionWithGeneralNetworkErrorCode_MassTerminationHandler_Should_Retry()
         {
  
             var sqlException = new ExceptionHelper().WithErrorCode((int)SqlErrorCodes.GeneralNetworkError)
@@ -95,12 +95,12 @@ namespace Fourth.DataLoads.Listener.Tests
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
-            Assert.IsTrue(result == MessageHandlerResult.Retry);
+            var result = handler.HandleAsync(message, "TrackingId");
+            Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
         }
 
         [TestMethod]
-        public async Task OnsqlExceptionWithTimeoutCode_MassTerminationHandler_Should_Retry()
+        public void OnsqlExceptionWithTimeoutCode_MassTerminationHandler_Should_Retry()
         {
 
 
@@ -115,8 +115,8 @@ namespace Fourth.DataLoads.Listener.Tests
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
-            var result = await handler.HandleAsync(message, "TrackingId");
-            Assert.IsTrue(result == MessageHandlerResult.Retry);
+            var result = handler.HandleAsync(message, "TrackingId");
+            Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
         }
 
         private static Commands.CreateAccount GetPayload()

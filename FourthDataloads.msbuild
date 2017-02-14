@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   
-  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests"/>
-  <!--Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/-->
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
   
 
   
