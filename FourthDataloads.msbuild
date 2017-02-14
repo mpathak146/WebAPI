@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   
-  <!--Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/-->
-  <Target Name="CITest" DependsOnTargets="Clean;Build;RunxUnitTests"/>
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
+
   
 
   <Target Name="Clean">
@@ -26,9 +26,7 @@
     <MSBuild Projects="Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.ApiEndPoint.zip;IgnoreDeployManagedRuntimeVersion=true"/>
   </Target>
   
-   <Target Name="RunxUnitTests" DependsOnTargets="Build" >
-    <xunit Assemblies="**\bin\$(Configuration)\Fourth.PSLiveDataLoads.ApiEndPoint.Tests.dll" NUnit="results.nunit.xml" />
-  </Target>
+
     
   <Target Name="RunUnitTests" DependsOnTargets="Build" >
     <ItemGroup>
