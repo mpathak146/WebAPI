@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(UnitTestDLLs.FullPath)"          
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(UnitTestDLLs.FullPath)"          
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)" />
   </Target>
@@ -45,7 +45,7 @@
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
 
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(MessageListenerTestDLLs.FullPath)"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer:%(MessageListenerTestDLLs.FullPath)"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)"/>
 
