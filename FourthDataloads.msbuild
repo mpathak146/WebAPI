@@ -35,7 +35,7 @@
     
 
     <MakeDir Directories="$(TestResultsDirectory)"/>
-    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MS1Test.exe&quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\MSTest.exe&quot; /testcontainer: &quot;%(UnitTestDLLs.FullPath)&quot;"
           IgnoreExitCode="false"
           WorkingDirectory="$(TestResultsDirectory)" />
   </Target>
