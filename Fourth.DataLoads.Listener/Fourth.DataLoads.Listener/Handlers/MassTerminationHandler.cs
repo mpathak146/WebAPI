@@ -14,18 +14,18 @@ namespace Fourth.DataLoads.Listener.Handlers
     /// Handles commands of type 'DataloadRequest' that the service has received through 
     /// Orchestration API    
     /// </summary>
-    public class MassTerminationHandler : IMessageHandler<Commands.CreateAccount>
+    public class MassTerminationHandler : IMessageHandler<Commands.DataloadRequest>
     {
         /// <summary> The class Logger instance. </summary>
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        IMassTerminationService<Commands.CreateAccount> MassTerminationService;
+        IMassTerminationService<Commands.DataloadRequest> MassTerminationService;
         IDataFactory DataFactory;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MassTerminationHandler (IMassTerminationService<Commands.CreateAccount> massTerminationService
+        public MassTerminationHandler (IMassTerminationService<Commands.DataloadRequest> massTerminationService
             , IDataFactory dataFactory)
         {
             MassTerminationService = massTerminationService;
@@ -37,7 +37,7 @@ namespace Fourth.DataLoads.Listener.Handlers
         /// </summary>
         /// <param name="payload">The incoming command payload</param>
         /// <returns>Message result</returns>
-        public async Task<MessageHandlerResult> HandleAsync(Commands.CreateAccount payload, string trackingId)
+        public async Task<MessageHandlerResult> HandleAsync(Commands.DataloadRequest payload, string trackingId)
         {
             // Formatted payload arguments used in logging.
             string payloadArgs = string.Empty;
@@ -46,12 +46,12 @@ namespace Fourth.DataLoads.Listener.Handlers
             {
 
                 // Log the incoming payload
-                Logger.DebugFormat("{0} received: TrackingId: \"{1}\"; {2}", typeof(Commands.CreateAccount).Name, trackingId, payload.ToString().Replace("\n", "; "));
+                Logger.DebugFormat("{0} received: TrackingId: \"{1}\"; {2}", typeof(Commands.DataloadRequest).Name, trackingId, payload.ToString().Replace("\n", "; "));
 
                 var result = await this.MassTerminationService.ProcessPayload(payload, this.DataFactory);
 
                 // Report success 
-                Logger.InfoFormat("Successfully imported record to Id \"{0}\" for Organisation Id \"{1}\"", result, payload.CustomerId);
+                Logger.InfoFormat("Successfully imported record to Id \"{0}\" for Organisation Id \"{1}\"", result, payload.OrganisationId);
                 return MessageHandlerResult.Success;
 
             }

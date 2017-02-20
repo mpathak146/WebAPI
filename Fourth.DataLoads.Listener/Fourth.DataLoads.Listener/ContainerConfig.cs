@@ -51,7 +51,7 @@ namespace Fourth.DataLoads.Listener
 
             //builder.RegisterType<MappingFactory>().As<IMappingFactory>().InstancePerLifetimeScope();
 
-            builder.RegisterType<MassTerminationService>().As<IMassTerminationService<Commands.CreateAccount>>().InstancePerLifetimeScope();
+            builder.RegisterType<MassTerminationService>().As<IMassTerminationService<Commands.DataloadRequest>>().InstancePerLifetimeScope();
 
             // Register the service class that sits at the top of the dependency chain
             builder.RegisterType<ListenerService>().As<IListenerService>().InstancePerLifetimeScope();

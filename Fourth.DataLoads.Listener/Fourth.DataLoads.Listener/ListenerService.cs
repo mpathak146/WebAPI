@@ -29,12 +29,12 @@ namespace Fourth.DataLoads.Listener
         private IMessageListener _messageListener;
         /// <summary> The message bus instance to use when sending messages. </summary>
         private IMessageBus _messageBus;
-        private IMassTerminationService<Commands.CreateAccount> _massTerminationService;
+        private IMassTerminationService<Commands.DataloadRequest> _massTerminationService;
         private IDataFactory _dataFactory;
 
 
         public ListenerService(IMessagingFactory messagingFactory, 
-            IMassTerminationService<Commands.CreateAccount> massTerminationService,
+            IMassTerminationService<Commands.DataloadRequest> massTerminationService,
             IDataFactory datafactory)
         {
             InitializeComponent();

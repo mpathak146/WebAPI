@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   
-  <Target Name="CITest" DependsOnTargets="Clean;BuildApi;Build;RunUnitTests;RunMessageListenerTests"/>
+  <Target Name="CITest" DependsOnTargets="Clean;Build;RunUnitTests;RunMessageListenerTests"/>
   
 
   
@@ -23,13 +23,10 @@
 
   <Target Name="Build" DependsOnTargets="RestorePackages">
     <MSBuild Projects="FourthDataLoads.sln" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true"/>
-    <MSBuild Projects="Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.Listener.zip;IgnoreDeployManagedRuntimeVersion=true"/>
-  </Target>
-  
-  <Target Name="BuildApi" DependsOnTargets="RestorePackages">
-    <MSBuild Projects="FourthDataLoads.sln" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true"/>
+    <MSBuild Projects="Fourth.DataLoads.Listener\Fourth.DataLoads.Listener\Fourth.DataLoads.Listener.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.Listener.zip;IgnoreDeployManagedRuntimeVersion=true"  />
     <MSBuild Projects="Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj" BuildInParallel="$(BuildInParallel)" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);RestorePackages=true;DeployOnBuild=true;DeployTarget=Package;CreatePackageOnPublish=True;DesktopBuildPackageLocation=..\WebPackage\Fourth.DataLoads.ApiEndPoint.zip;IgnoreDeployManagedRuntimeVersion=true"/>
   </Target>
+  
 
     
   <Target Name="RunUnitTests" DependsOnTargets="Build" >

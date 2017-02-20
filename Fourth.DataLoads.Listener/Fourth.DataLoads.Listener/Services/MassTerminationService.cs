@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Listener.Services
 {
-    class MassTerminationService : IMassTerminationService<Commands.CreateAccount>
+    class MassTerminationService : IMassTerminationService<Commands.DataloadRequest>
     {
         private readonly ILog Logger =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public async Task<bool> ProcessPayload(Commands.CreateAccount payload, 
+        public async Task<bool> ProcessPayload(Commands.DataloadRequest payload, 
             IDataFactory dataFactory)
         {
             Logger.Info("Entering ProcessPayload in MassTerminationService");
 
             List<MassTerminationModelSerialized> result=null;
-            string batchID = payload.FirstName;
+            string batchID = payload.BatchID;
             try
             {
                 if (dataFactory.GetPortalRepository().DumpDataloadBatchToPortal(payload))
@@ -44,7 +44,7 @@ namespace Fourth.DataLoads.Listener.Services
             catch (Exception e)
             {
                 Logger.FatalFormat("Issue with the batch insert for BatchID: {0}, with Exception Message {1}", 
-                    payload.FirstName,e.Message);
+                    payload.BatchID,e.Message);
                 return false;
             }
 

@@ -21,31 +21,30 @@ namespace Fourth.DataLoads.Data.Repositories
 
             try
             {
-                Logger.DebugFormat(
-                   @"Call to CreateAccount: internalId=""{0}"", 
-                                             emailAddress=""{1}"", 
-                                             firstName=""{2}"", 
-                                             lastName=""{3}"", 
-                                             organisationId=""{4}""",
-                   "",
-                   "",
-                   "",
-                   "",
-                   "");
-
-                var builder = new Commands.CreateAccount.Builder();
+                var builder = new Commands.DataloadRequest.Builder();
 
                 foreach (var batch in batches)
                 {
-                    builder.SetInternalId("")
+                    builder
                     .SetSource(Commands.SourceSystem.PS_LIVE)
-                    .SetEmailAddress(batch.OrganizationID)
-                    .SetFirstName(batch.BatchID.ToString())
-                    .SetLastName(batch.JobID.ToString())
-                    .SetCustomerId(batch.User);
+                    .SetOrganisationId(batch.OrganizationID)
+                    .SetBatchID(batch.BatchID.ToString())
+                    .SetJobID(batch.JobID.ToString())
+                    .SetRequestedBy(batch.User)
+                    .SetDataload(Commands.DataLoadTypes.MASS_TERMINATION);
                     var message = builder.Build();
 
                     await AzureSender.Instance.SendAsync(message);
+                    Logger.DebugFormat(
+                       @"Call to DataloadRequest: OrganizationID=""{0}"", 
+                                                                 JobID=""{1}"", 
+                                                                 BatchID=""{2}"", 
+                                                                 RequestedBy=""{3}""",
+
+                       batch.OrganizationID,
+                       batch.JobID,
+                       batch.BatchID,
+                       batch.User);
                 }
                 return true;
             }

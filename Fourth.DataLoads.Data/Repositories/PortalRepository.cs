@@ -29,9 +29,9 @@ namespace Fourth.DataLoads.Data.SqlServer
         {
             this._contextFactory = _contextFactory;
         }
-        public bool ProcessMassTerminate(MassTerminationModelSerialized employee, Commands.CreateAccount payload)
+        public bool ProcessMassTerminate(MassTerminationModelSerialized employee, Commands.DataloadRequest payload)
         {
-            int groupID = int.Parse(payload.EmailAddress);
+            int groupID = int.Parse(payload.OrganisationId);
             Logger.InfoFormat("Validating a given employee number");
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
             {
@@ -82,16 +82,16 @@ namespace Fourth.DataLoads.Data.SqlServer
             }
             return true;
         }
-        public void DumpStagingErrorsToPortal(Commands.CreateAccount payload)
+        public void DumpStagingErrorsToPortal(Commands.DataloadRequest payload)
         {
-            int groupID = int.Parse(payload.EmailAddress);
+            int groupID = int.Parse(payload.OrganisationId);
             Logger.InfoFormat("Validating a given employee number");
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
             {
                 using (var stagingContext = _contextFactory.GetStagingDBContext())
                 {
                     var errors = (from err in stagingContext.DataLoadErrors
-                                  where (err.DataLoadBatchRefId.ToString() == payload.FirstName)
+                                  where (err.DataLoadBatchRefId.ToString() == payload.BatchID)
                                   select err)
                                  .AsEnumerable()
                                  .Select(x => new
@@ -157,9 +157,9 @@ namespace Fourth.DataLoads.Data.SqlServer
             return table;
         }
 
-        public bool DumpDataloadBatchToPortal(Commands.CreateAccount payload)
+        public bool DumpDataloadBatchToPortal(Commands.DataloadRequest payload)
         {
-            int groupID = int.Parse(payload.EmailAddress);
+            int groupID = int.Parse(payload.OrganisationId);
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
             {
                 var command = "dbo.sprc_DL_InsertPayload";
@@ -172,11 +172,11 @@ namespace Fourth.DataLoads.Data.SqlServer
                         var cmd = sqlConnection.CreateCommand();
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.CommandText = command;
-                        cmd.Parameters.Add(new SqlParameter("@BatchID", payload.FirstName));
-                        cmd.Parameters.Add(new SqlParameter("@JobID", payload.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@BatchID", payload.BatchID));
+                        cmd.Parameters.Add(new SqlParameter("@JobID", payload.JobID));
                         cmd.Parameters.Add(new SqlParameter("@DataloadTypeID", DataLoadTypes.MASS_TERMINATION));
                         cmd.Parameters.Add(new SqlParameter("@DateUploaded", DateTime.Now));
-                        cmd.Parameters.Add(new SqlParameter("@UploadedBy", payload.CustomerId));
+                        cmd.Parameters.Add(new SqlParameter("@UploadedBy", payload.RequestedBy));
                         var result = cmd.ExecuteScalar();
 
                         if (result.GetType() != typeof(DBNull))
@@ -184,13 +184,13 @@ namespace Fourth.DataLoads.Data.SqlServer
                             if ((int?)result == 1)
                             {
                                 Logger.InfoFormat("No Error reported for BatchNumber: {0} ",
-                                    new object[] { payload.FirstName });
+                                    new object[] { payload.BatchID });
                                 return true;
                             }
                             else
                             {
                                 Logger.ErrorFormat("Error reported for inside the proc {0} BatchNumber: {1} ",
-                                    new object[] { command, payload.FirstName });
+                                    new object[] { command, payload.BatchID });
                                 return false;
                             }
                         }

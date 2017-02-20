@@ -15,16 +15,16 @@ namespace Fourth.DataLoads.Listener.Tests
     {
         public MassTerminationHandlerTest()
         {
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(), It.IsAny<IDataFactory>())).ReturnsAsync(true).Verifiable();
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(), It.IsAny<IDataFactory>())).ReturnsAsync(true).Verifiable();
         }
 
         [TestMethod]
         public void OnException_MassTerminationHandler_ShouldReturn_Fatal()
         {
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(), 
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(), 
                 It.IsAny<IDataFactory>())).Throws(new Exception());
 
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
@@ -35,13 +35,13 @@ namespace Fourth.DataLoads.Listener.Tests
         [TestMethod]
         public void OnVerifiablePayload_MassTerminationHandler_Should_Process()
         {
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
 
-            this.MassTerminateService.Verify(m => m.ProcessPayload(It.IsAny<Commands.CreateAccount>(), It.IsAny<IDataFactory>()));
+            this.MassTerminateService.Verify(m => m.ProcessPayload(It.IsAny<Commands.DataloadRequest>(), It.IsAny<IDataFactory>()));
         }
 
         [TestMethod]
@@ -51,10 +51,10 @@ namespace Fourth.DataLoads.Listener.Tests
                 .WithErrorMessage("Database exception occured...")
                 .Build();
 
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(), 
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(), 
                 It.IsAny<IDataFactory>())).Throws(sqlException);
 
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
@@ -69,10 +69,10 @@ namespace Fourth.DataLoads.Listener.Tests
             .WithErrorMessage("Database exception occured...")
             .Build();
 
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(),
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(),
                 It.IsAny<IDataFactory>())).Throws(sqlException);
 
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
@@ -88,10 +88,10 @@ namespace Fourth.DataLoads.Listener.Tests
             .WithErrorMessage("Database exception occured...")
             .Build();
 
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(),
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(),
                 It.IsAny<IDataFactory>())).Throws(sqlException);
 
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
@@ -108,10 +108,10 @@ namespace Fourth.DataLoads.Listener.Tests
             .WithErrorMessage("Database exception occured...")
             .Build();
 
-            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.CreateAccount>(),
+            this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(),
                 It.IsAny<IDataFactory>())).Throws(sqlException);
 
-            Commands.CreateAccount message = GetPayload();
+            Commands.DataloadRequest message = GetPayload();
 
             var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
@@ -119,17 +119,17 @@ namespace Fourth.DataLoads.Listener.Tests
             Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
         }
 
-        private static Commands.CreateAccount GetPayload()
+        private static Commands.DataloadRequest GetPayload()
         {
-            var builder = new Commands.CreateAccount.Builder();
+            var builder = new Commands.DataloadRequest.Builder();
 
             var message = builder
-                        .SetEmailAddress("jc@fourth.com")
-                        .SetFirstName(Guid.NewGuid().ToString())
-                        .SetLastName(Guid.NewGuid().ToString())
-                        .SetInternalId("1234")
+                        .SetBatchID(Guid.NewGuid().ToString())
+                        .SetJobID(Guid.NewGuid().ToString())
                         .SetSource(Commands.SourceSystem.PS_LIVE)
-                        .SetCustomerId("426")
+                        .SetOrganisationId("426")
+                        .SetRequestedBy("Projects")
+                        .SetDataload(Commands.DataLoadTypes.MASS_TERMINATION)
                         .Build();
             return message;
         }
