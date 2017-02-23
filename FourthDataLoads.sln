@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.ApiEndPoint", "Fourth.DataLoads.ApiEndPoint\Fourth.DataLoads.ApiEndPoint.csproj", "{9F8566DB-216C-4D69-BE34-7A0F3D0C7F4E}"
 EndProject
@@ -27,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		FourthDataloads.msbuild = FourthDataloads.msbuild
 		.Nuget\Nuget.exe = .Nuget\Nuget.exe
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.ApiAutomatedTests", "DataloadAPIAutomatedTests\Fourth.DataLoads.ApiAutomatedTests.csproj", "{82F4E022-E3F5-4A40-8BF8-33A896239AA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutomatedTests", "AutomatedTests", "{BF021AD8-B9C1-4DE9-A4FB-04AB0E1C63A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +61,10 @@ Global
 		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +72,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2E3D52BD-7F10-4E39-A87E-0672FD76E103} = {F2437445-B166-434B-A341-98AA1C45B4C1}
 		{AA38B9EB-8981-479A-ABEF-C59BFFE4ED1A} = {F2437445-B166-434B-A341-98AA1C45B4C1}
+		{82F4E022-E3F5-4A40-8BF8-33A896239AA6} = {BF021AD8-B9C1-4DE9-A4FB-04AB0E1C63A9}
 	EndGlobalSection
 EndGlobal
