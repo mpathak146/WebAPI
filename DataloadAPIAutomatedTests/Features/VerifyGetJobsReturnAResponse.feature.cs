@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DataloadAPIAutomatedTests
+namespace DataloadAPIAutomatedTests.Features
 {
     using TechTalk.SpecFlow;
     

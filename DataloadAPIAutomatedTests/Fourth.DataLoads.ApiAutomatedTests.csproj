@@ -54,8 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VerifyGetJobsReturnAProperResponseSteps.cs" />
-    <Compile Include="VerifyGetJobsReturnAResponse.feature.cs">
+    <Compile Include="Steps\VerifyGetSpecificJobReturnResponseSteps.cs" />
+    <Compile Include="Steps\VerifyGetJobsReturnAProperResponseSteps.cs" />
+    <Compile Include="Features\VerifyGetSpecificJobReturnResponse.feature.cs">
+      <DependentUpon>VerifyGetSpecificJobReturnResponse.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\VerifyGetJobsReturnAResponse.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VerifyGetJobsReturnAResponse.feature</DependentUpon>
@@ -66,7 +72,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="VerifyGetJobsReturnAResponse.feature">
+    <None Include="Features\VerifyGetSpecificJobReturnResponse.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerifyGetSpecificJobReturnResponse.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\VerifyGetJobsReturnAResponse.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerifyGetJobsReturnAResponse.feature.cs</LastGenOutput>
     </None>
