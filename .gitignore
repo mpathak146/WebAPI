@@ -249,3 +249,4 @@ MenuServiceAPI*.zip
 #File generated for each build
 GitVersion.txt
 /.MenuService.boltdata
+DataUtils.cs
