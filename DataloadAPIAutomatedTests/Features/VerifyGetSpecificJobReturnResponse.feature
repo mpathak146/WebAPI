@@ -13,6 +13,6 @@ Scenario Outline: Get Processed Jobs from Jobs end point
 	
 	Examples: 
 	| GroupID | JobID                                | CustomerID |
-	| 76      | 9bc05034-95de-4e42-9c43-c19d1486d643 | WT324       |
+	| 76      | 9bc05034-95de-4e42-9c43-c19d1486d643 | WT324      |
 	
 	
