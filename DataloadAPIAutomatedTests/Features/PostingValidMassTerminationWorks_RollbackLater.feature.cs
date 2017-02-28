@@ -86,9 +86,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And(string.Format("I setup POST {0} request with {1} and {2}", endpoint, groupID, userID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I setup valid data to post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I setup valid <MassTerminate> data to post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("I Post Mass Termination Request to", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I Post Mass Termination Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.Then("I should get the response status is ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

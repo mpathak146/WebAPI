@@ -70,7 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbFunctionscs.cs" />
+    <Compile Include="DbFunctions.cs" />
     <Compile Include="Features\PostingMassTerminationRequestAcceptsRequest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

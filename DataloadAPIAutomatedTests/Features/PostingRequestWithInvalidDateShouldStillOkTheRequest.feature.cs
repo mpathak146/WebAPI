@@ -89,7 +89,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.And(string.Format("I setup invalid {0} data to post", massTerminate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("I Post Mass Termination Request to", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I Post Mass Termination Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.Then("I should get the response status is ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

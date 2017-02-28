@@ -44,14 +44,15 @@ namespace DataloadAPIAutomatedTests.Steps
         }
 
 
-        [When(@"I Post Mass Termination Request to")]
-        public void WhenIPostMassTerminationRequestTo()
+        [When(@"I Post Mass Termination Request")]
+        public void WhenIPostMassTerminationRequest()
         {
             var client = ScenarioContext.Current.Get<RestClient>("Client");
             IRestResponse response =
                 client.Execute(ScenarioContext.Current.Get<RestRequest>("Request"));
             ScenarioContext.Current.Add("Response", response);
         }
+
 
         [Then(@"I should get the response status is ok")]
         public void ThenIShouldGetTheResponseStatusIsOk()
