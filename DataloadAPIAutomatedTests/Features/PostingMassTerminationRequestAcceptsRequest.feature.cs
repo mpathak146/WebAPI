@@ -67,8 +67,8 @@ namespace DataloadAPIAutomatedTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Post To Mass Terminate")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", new string[0])]
-        public virtual void PostToMassTerminate(string groupID, string userID, string endpoint, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "2015-10-10", new string[0])]
+        public virtual void PostToMassTerminate(string groupID, string userID, string endpoint, string massTerminate, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -82,11 +82,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("I can access the Dataload API as an authenticated user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("I have the headers setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have the client initialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.And(string.Format("I setup POST {0} request with {1} and {2}", endpoint, groupID, userID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I setup valid data to post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I setup valid {0} data to post", massTerminate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.When("I Post Mass Termination Request to", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13

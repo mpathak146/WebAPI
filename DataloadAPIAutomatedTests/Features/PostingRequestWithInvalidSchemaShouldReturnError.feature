@@ -6,7 +6,7 @@
 @mytag
 Scenario Outline: Post To Mass Terminate With Invalid Schema
 	Given I can access the Dataload API as an authenticated user
-	And I have the headers setup 
+	And I have the client initialized
 	And I setup POST <Endpoint> request with <GroupID> and <UserID>
 	And I setup invalid schema to post
 	When I Post Mass Termination Request to 

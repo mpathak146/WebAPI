@@ -21,9 +21,9 @@ namespace DataloadAPIAutomatedTests
         }
 
         [Then(@"I Should get a customerID ""(.*)""")]
-        public void ThenIShouldGetACustomerID(string p0)
+        public void ThenIShouldGetACustomerID(string customerID)
         {
-            Assert.True(ScenarioContext.Current.Get<RestResponse>("Response").Content.Contains(p0));
+            Assert.True(ScenarioContext.Current.Get<RestResponse>("Response").Content.Contains(customerID));
         }
 
     }

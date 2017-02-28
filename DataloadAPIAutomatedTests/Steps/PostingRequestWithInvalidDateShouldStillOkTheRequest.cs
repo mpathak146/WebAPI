@@ -11,11 +11,12 @@ namespace DataloadAPIAutomatedTests.Steps
     public sealed class PostingRequestWithInvalidDateShouldStillOkTheRequest
     {
         // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
-        [Given(@"I setup invalid data to post")]
-        public void GivenISetupInvalidDataToPost()
+
+        [Given(@"I setup invalid ""(.*)"" data to post")]
+        public void GivenISetupInvalidDataToPost(string date)
         {
             var request = ScenarioContext.Current.Get<RestRequest>("Request");
-            string json = "[  {\"EmployeeNumber\": \"ckl12\",\"TerminationDate\": \"InvalidDate\",\"TerminationReason\": \"Dismissed\"}]";
+            string json = string.Format("[  {\"EmployeeNumber\": \"ckl12\",\"TerminationDate\": " + date + ",\"TerminationReason\": \"Dismissed\"}]");
             request.AddParameter("application/json", json, ParameterType.RequestBody);
         }
 

@@ -18,22 +18,21 @@ namespace DataloadAPIAutomatedTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PostingRequestWithInvalidDateShouldStillOkTheRequest")]
-    public partial class PostingRequestWithInvalidDateShouldStillOkTheRequestFeature
+    [NUnit.Framework.DescriptionAttribute("PostingValidMassTerminationWorks_RollbackLater")]
+    public partial class PostingValidMassTerminationWorks_RollbackLaterFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "PostingRequestWithInvalidDateShouldStillOkTheRequest.feature"
+#line 1 "PostingValidMassTerminationWorks_RollbackLater.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PostingRequestWithInvalidDateShouldStillOkTheRequest", "\tIn order to ensure a response from MassTerminationRequest when invalid data is s" +
-                    "upplied\r\n\tAs an Informatica user/system\r\n\tI want to post an invalid date request" +
-                    " and check if I receive a response", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PostingValidMassTerminationWorks_RollbackLater", "\tIn order to ensure MassTermination Works\r\n\tAs an Informatica user/system\r\n\tI wan" +
+                    "t to post a valid request and verify if it terminates\t", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,10 +65,10 @@ namespace DataloadAPIAutomatedTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Post To Mass Terminate With InvalidDate")]
+        [NUnit.Framework.DescriptionAttribute("Post To Mass Terminate")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "", new string[0])]
-        public virtual void PostToMassTerminateWithInvalidDate(string groupID, string userID, string endpoint, string massTerminate, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", new string[0])]
+        public virtual void PostToMassTerminate(string groupID, string userID, string endpoint, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -77,7 +76,7 @@ namespace DataloadAPIAutomatedTests.Features
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post To Mass Terminate With InvalidDate", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post To Mass Terminate", @__tags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -87,7 +86,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And(string.Format("I setup POST {0} request with {1} and {2}", endpoint, groupID, userID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And(string.Format("I setup invalid {0} data to post", massTerminate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I setup valid data to post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.When("I Post Mass Termination Request to", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
