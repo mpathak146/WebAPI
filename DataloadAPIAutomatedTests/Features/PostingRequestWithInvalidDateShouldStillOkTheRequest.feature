@@ -14,4 +14,4 @@ Scenario Outline: Post To Mass Terminate With InvalidDate
 
 	Examples: 
 	| GroupID | UserID        | Endpoint                           | MassTerminate	|
-	| "76"    | "Informatica" | "Dataload/Groups/76/MassTerminate" |				|
+	| "76"    | "Informatica" | "Dataload/Groups/76/MassTerminate" |"InvalidDate"	|

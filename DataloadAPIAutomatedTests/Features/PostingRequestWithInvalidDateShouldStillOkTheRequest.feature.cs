@@ -68,7 +68,7 @@ namespace DataloadAPIAutomatedTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Post To Mass Terminate With InvalidDate")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "\"InvalidDate\"", new string[0])]
         public virtual void PostToMassTerminateWithInvalidDate(string groupID, string userID, string endpoint, string massTerminate, string[] exampleTags)
         {
             string[] @__tags = new string[] {
