@@ -145,6 +145,7 @@
     <Compile Include="Interfaces\ErrorModel.cs" />
     <Compile Include="Interfaces\IMarker.cs" />
     <Compile Include="Interfaces\IPortalRepository.cs" />
+    <Compile Include="Interfaces\IPortalVerificationRepository.cs" />
     <Compile Include="Interfaces\ITableSchema.cs" />
     <Compile Include="Migrations\201612061543024_InitialSetup.cs" />
     <Compile Include="Migrations\201612061543024_InitialSetup.Designer.cs">
@@ -157,6 +158,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MassTerminationModel.cs" />
     <Compile Include="Models\ModelActions.cs" />
+    <Compile Include="Repositories\PortalVerificationRepository.cs" />
     <Compile Include="Repositories\QueueRepository.cs" />
     <Compile Include="Repositories\UserContext.cs" />
     <Compile Include="SqlServer\AzureSender.cs" />

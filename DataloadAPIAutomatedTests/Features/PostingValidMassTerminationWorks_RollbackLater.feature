@@ -10,7 +10,9 @@ Scenario Outline: Post To Mass Terminate and rollback
 	And I setup POST <Endpoint> request with <GroupID> and <UserID>
 	And I setup valid <MassTerminate> data to post
 	When I Post Mass Termination Request
-	Then I should get the response status is ok 
+	And I pause for sometime
+	And I verify the user is indeed terminated
+	Then I should rollback my changes to previous state
 
 	Examples: 
 	| GroupID | UserID			| Endpoint								| MassTerminate	|

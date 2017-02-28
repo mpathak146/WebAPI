@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataloadAPIAutomatedTests</RootNamespace>
     <AssemblyName>DataloadAPIAutomatedTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,8 +39,8 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -95,6 +96,7 @@
     <Compile Include="Steps\PostingMassTerminationRequestAcceptsRequestSteps.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidDateShouldStillOkTheRequest.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidSchemaShouldReturnError.cs" />
+    <Compile Include="Steps\PostingValidMassTerminationWorks_RollbackLaterSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobReturnResponseSteps.cs" />
     <Compile Include="Steps\VerifyGetJobsReturnAProperResponseSteps.cs" />
     <Compile Include="Features\VerifyGetSpecificJobReturnResponse.feature.cs">
@@ -155,6 +157,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fourth.DataLoads.Data\Fourth.DataLoads.Data.csproj">
+      <Project>{038974a4-2f8c-4637-96b7-2b1966c3703f}</Project>
+      <Name>Fourth.DataLoads.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

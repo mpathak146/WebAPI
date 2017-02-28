@@ -43,6 +43,12 @@
         {
             return new PortalRepository(this._contextFactory);
         }
+
+        public IPortalVerificationRepository GetPortalVerificationRepository()
+        {
+            return new PortalVerificationRepository();
+        }
+
         public IQueueRepository GetQueueRepository()
         {
             return new QueueRepository();

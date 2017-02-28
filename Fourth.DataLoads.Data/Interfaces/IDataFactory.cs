@@ -11,5 +11,7 @@ namespace Fourth.DataLoads.Data.Interfaces
         IStagingRepository<MassTerminationModelSerialized> GetMassTerminateRepository();
         IPortalRepository GetPortalRepository();
         IQueueRepository GetQueueRepository();
+
+        IPortalVerificationRepository GetPortalVerificationRepository();
     }
 }
