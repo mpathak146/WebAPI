@@ -96,6 +96,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Features\VerifyGetSpecificJobSuccessOnValidButIncorrectGuid.feature.cs">
+      <DependentUpon>VerifyGetSpecificJobSuccessOnValidButIncorrectGuid.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\VerifyGetSpecificJobResponseFailOnWrongJobID.feature.cs">
       <DependentUpon>VerifyGetSpecificJobResponseFailOnWrongJobID.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -107,6 +112,7 @@
     <Compile Include="Steps\PostingRequestWithInvalidDateShouldStillOkTheRequest.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidSchemaShouldReturnError.cs" />
     <Compile Include="Steps\PostingValidMassTerminationWorks_RollbackLaterSteps.cs" />
+    <Compile Include="Steps\VerifyGetSpecificJobSuccessOnValidButIncorrectGuidSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobResponseFailOnWrongJobIDSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobLooksForCorrectResponseSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobReturnResponseSteps.cs" />
@@ -145,6 +151,10 @@
     <None Include="Features\VerifyGetSpecificJobLooksForCorrectResponse.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerifyGetSpecificJobLooksForCorrectResponse.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\VerifyGetSpecificJobSuccessOnValidButIncorrectGuid.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerifyGetSpecificJobSuccessOnValidButIncorrectGuid.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\VerifyGetSpecificJobResponseFailOnWrongJobID.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
