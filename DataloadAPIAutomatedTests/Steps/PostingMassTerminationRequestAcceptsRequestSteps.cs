@@ -10,8 +10,6 @@ namespace DataloadAPIAutomatedTests.Steps
     [Binding]
     public class PostingMassTerminationRequestAcceptsRequestSteps
     {
-
-
         [Given(@"I setup valid (.*) data to post")]
         public void GivenISetupValidDataToPost(string date)
         {

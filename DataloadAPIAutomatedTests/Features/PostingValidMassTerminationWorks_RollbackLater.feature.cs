@@ -67,8 +67,8 @@ namespace DataloadAPIAutomatedTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Post To Mass Terminate and rollback")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "2015-10-10", new string[0])]
-        public virtual void PostToMassTerminateAndRollback(string groupID, string userID, string endpoint, string massTerminate, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassTerminate\"", "575", new string[0])]
+        public virtual void PostToMassTerminateAndRollback(string groupID, string userID, string endpoint, string employeeNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -86,15 +86,17 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And(string.Format("I setup POST {0} request with {1} and {2}", endpoint, groupID, userID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And(string.Format("I setup valid {0} data to post", massTerminate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I setup employee with {0} data to post", employeeNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.When("I Post Mass Termination Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.And("I pause for sometime", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("I verify the user is indeed terminated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I verify the user {0} of Group {1} is indeed terminated", employeeNumber, groupID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Then("I should rollback my changes to previous state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The employee must be verified terminated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.But(string.Format("Rollback {0} on {1} to previous state", employeeNumber, groupID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             this.ScenarioCleanup();
         }
