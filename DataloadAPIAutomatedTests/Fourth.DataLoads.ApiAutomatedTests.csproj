@@ -91,12 +91,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PostingValidMassTerminationWorks_RollbackLater.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\VerifyGetSpecificJobLooksForCorrectResponse.feature.cs">
+      <DependentUpon>VerifyGetSpecificJobLooksForCorrectResponse.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\VerifyGetSpecificJobResponseFailOnWrongJobID.feature.cs">
+      <DependentUpon>VerifyGetSpecificJobResponseFailOnWrongJobID.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CommonSteps.cs" />
     <Compile Include="Steps\PostingMassTerminationRequestAcceptsRequestSteps.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidDateShouldStillOkTheRequest.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidSchemaShouldReturnError.cs" />
     <Compile Include="Steps\PostingValidMassTerminationWorks_RollbackLaterSteps.cs" />
+    <Compile Include="Steps\VerifyGetSpecificJobResponseFailOnWrongJobIDSteps.cs" />
+    <Compile Include="Steps\VerifyGetSpecificJobLooksForCorrectResponseSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobReturnResponseSteps.cs" />
     <Compile Include="Steps\VerifyGetJobsReturnAProperResponseSteps.cs" />
     <Compile Include="Features\VerifyGetSpecificJobReturnResponse.feature.cs">
@@ -129,6 +141,14 @@
     <None Include="Features\PostingValidMassTerminationWorks_RollbackLater.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PostingValidMassTerminationWorks_RollbackLater.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\VerifyGetSpecificJobLooksForCorrectResponse.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerifyGetSpecificJobLooksForCorrectResponse.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\VerifyGetSpecificJobResponseFailOnWrongJobID.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerifyGetSpecificJobResponseFailOnWrongJobID.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Features\VerifyGetSpecificJobReturnResponse.feature">
