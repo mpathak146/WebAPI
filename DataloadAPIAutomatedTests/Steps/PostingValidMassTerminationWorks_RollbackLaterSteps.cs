@@ -16,7 +16,7 @@ namespace DataloadAPIAutomatedTests.Steps
         [When(@"I pause for sometime")]
         public void WhenIPauseForSometime()
         {
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
         }
         [Given(@"I setup employee with (.*) data to post")]
         public void GivenISetupEmployeeWithDataToPost(string data)
@@ -40,11 +40,6 @@ namespace DataloadAPIAutomatedTests.Steps
                 false);
         }
 
-        [Then(@"Rollback all changes")]
-        public void ThenRollbackAllChanges()
-        {
-
-        }
         [Then(@"Rollback (.*) on ""(.*)"" to previous state")]
         public void ThenRollbackOnToPreviousState(string employeeNumber, string groupID)
         {
