@@ -101,6 +101,7 @@
     <Compile Include="MassTerminateRepositoryTest.cs" />
     <Compile Include="AuditControllerTests.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="MassRehireControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

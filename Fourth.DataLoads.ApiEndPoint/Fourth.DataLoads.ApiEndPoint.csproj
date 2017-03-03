@@ -251,6 +251,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\MassRehireController.cs" />
     <Compile Include="Controllers\MassTerminateController.cs" />
     <Compile Include="Errors\ErrorModel.cs" />
     <Compile Include="Errors\ErrorResult.cs" />
