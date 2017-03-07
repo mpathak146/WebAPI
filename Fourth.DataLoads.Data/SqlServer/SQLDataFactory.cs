@@ -7,6 +7,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System;
+
     /// <summary>
     /// Creates MS Sql Server repository instances for consuming applications.
     /// </summary>
@@ -37,6 +38,10 @@
         public IStagingRepository<MassTerminationModelSerialized> GetMassTerminateRepository()
         {
             return new MassTerminateRepository(this._contextFactory);
+        }
+        public IStagingRepository<Fourth.PSLiveDataLoads.ApiEndPoint.MassRehireModelSerialized> GetMassRehireRepository()
+        {
+            return new MassRehireRepository(this._contextFactory);
         }
 
         public IPortalRepository GetPortalRepository()

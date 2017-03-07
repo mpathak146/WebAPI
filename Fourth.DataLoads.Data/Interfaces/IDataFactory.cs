@@ -1,5 +1,5 @@
 ﻿using Fourth.DataLoads.Data.Entities;
-
+using Fourth.PSLiveDataLoads.ApiEndPoint;
 namespace Fourth.DataLoads.Data.Interfaces
 {
     public interface IDataFactory
@@ -13,5 +13,6 @@ namespace Fourth.DataLoads.Data.Interfaces
         IQueueRepository GetQueueRepository();
 
         IPortalVerificationRepository GetPortalVerificationRepository();
+        IStagingRepository<MassRehireModelSerialized> GetMassRehireRepository();
     }
 }
