@@ -39,7 +39,7 @@
         {
             return new MassTerminateRepository(this._contextFactory);
         }
-        public IStagingRepository<Fourth.PSLiveDataLoads.ApiEndPoint.MassRehireModelSerialized> GetMassRehireRepository()
+        public IStagingRepository<MassRehireModelSerialized> GetMassRehireRepository()
         {
             return new MassRehireRepository(this._contextFactory);
         }

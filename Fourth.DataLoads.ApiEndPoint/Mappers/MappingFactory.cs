@@ -19,7 +19,11 @@ namespace Fourth.DataLoads.ApiEndPoint.Mappers
                     Data.Entities.MassTerminationModel>();
                 cfg.CreateMap<Data.Entities.MassTerminationModel,
                     Data.Entities.MassTerminationModelSerialized>();
-                
+                cfg.CreateMap<Data.Entities.MassRehireModelSerialized,
+                    Data.Entities.MassRehireModel>();
+                cfg.CreateMap<Data.Entities.MassRehireModel,
+                    Data.Entities.MassRehireModelSerialized>();
+
                 //Create more maps as needed
             });
 

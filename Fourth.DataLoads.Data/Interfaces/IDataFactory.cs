@@ -1,5 +1,4 @@
 ﻿using Fourth.DataLoads.Data.Entities;
-using Fourth.PSLiveDataLoads.ApiEndPoint;
 namespace Fourth.DataLoads.Data.Interfaces
 {
     public interface IDataFactory

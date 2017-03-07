@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Fourth.DataLoads.Data.Interfaces;
 using Fourth.DataLoads.Data.Models;
 using Fourth.DataLoads.Data.Repositories;
-using Fourth.PSLiveDataLoads.ApiEndPoint;
+using Fourth.DataLoads.Data.Entities;
 
 namespace Fourth.DataLoads.Data.SqlServer
 {
