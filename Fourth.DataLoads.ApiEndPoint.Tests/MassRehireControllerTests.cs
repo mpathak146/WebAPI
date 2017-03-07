@@ -25,7 +25,9 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             = new List<MassRehireModelSerialized>();
         private Mock<IDataFactory> dataFactory;
         private Mock<IAuthorizationProvider> authorization;
-        private IMappingFactory mappingFactory;        
+        private IMappingFactory mappingFactory;
+        const string ValidGroupID = "426";
+
         [TestInitialize]
         public void InitializeMassRehireController()
         {
@@ -50,7 +52,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
 
             //Mock Auth
             authorization = new Mock<IAuthorizationProvider>(MockBehavior.Strict);
-            authorization.Setup(s => s.IsAuthorized(It.IsIn<string>(new List<string>() { "426" }))).Returns(true);
+            authorization.Setup(s => s.IsAuthorized(It.IsIn<string>(new List<string>() { ValidGroupID }))).Returns(true);
 
             //Mock Mapper
             mappingFactory = new MappingFactory();
@@ -78,7 +80,7 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             var controller = new MassRehireController(dataFactory.Object, authorization.Object, mappingFactory);
 
             // Act
-            Task<IHttpActionResult> actionResult = controller.SetDataAsync("123", models);
+            Task<IHttpActionResult> actionResult = controller.SetDataAsync(ValidGroupID, models);
             
             //Assert
             Assert.IsInstanceOfType(actionResult.Result, typeof(OkResult));
@@ -112,9 +114,21 @@ namespace Fourth.PSLiveDataLoads.ApiEndPoint.Tests
             //Arrange
             var controller = new MassRehireController(dataFactory.Object, authorization.Object, mappingFactory);
             //Act
-            Task<IHttpActionResult> result = controller.SetDataAsync("466", null);
+            Task<IHttpActionResult> result = controller.SetDataAsync(ValidGroupID, null);
             //Assert
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestResult));
+        }
+        [TestMethod]
+        public void MakingUnauthorised_RequestToMassRehire_ReturnsUnauthorisedStatus()
+        {
+            //Arrange
+            authorization.Setup(a => a.IsAuthorized(ValidGroupID)).Returns(false);
+
+            var controller = new MassRehireController(dataFactory.Object, authorization.Object, mappingFactory);
+            //Act
+            var actionResult = controller.SetDataAsync(ValidGroupID, models);
+            //Assert
+            Assert.IsInstanceOfType(actionResult.Result, typeof(UnauthorizedResult));
         }
     }
 }
