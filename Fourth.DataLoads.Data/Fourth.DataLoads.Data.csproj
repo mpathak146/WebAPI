@@ -153,7 +153,7 @@
     </Compile>
     <Compile Include="Models\DataloadBatch.cs" />
     <Compile Include="Models\DataLoadUploads.cs" />
-    <Compile Include="Models\MassRehireModelSerialized.cs" />
+    <Compile Include="Models\MassRehireModel.cs" />
     <Compile Include="Models\TableSchema.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Migrations\Configuration.cs" />
