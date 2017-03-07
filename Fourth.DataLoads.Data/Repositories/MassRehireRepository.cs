@@ -5,6 +5,7 @@ using Fourth.DataLoads.Data.Interfaces;
 using Fourth.DataLoads.Data.Models;
 using Fourth.DataLoads.Data.Repositories;
 using Fourth.DataLoads.Data.Entities;
+using System.Collections;
 
 namespace Fourth.DataLoads.Data.SqlServer
 {
@@ -32,9 +33,10 @@ namespace Fourth.DataLoads.Data.SqlServer
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, List<MassRehireModelSerialized> input)
+        public async Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, List<MassRehireModelSerialized> input)
         {
-            throw new NotImplementedException();
+            var batchesToSent = new List<DataloadBatch>();
+            return batchesToSent;
         }
     }
 }
