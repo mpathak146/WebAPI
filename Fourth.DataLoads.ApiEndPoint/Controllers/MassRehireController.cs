@@ -9,16 +9,20 @@ using Fourth.DataLoads.ApiEndPoint.Authorization;
 using Fourth.DataLoads.Data.Interfaces;
 using Fourth.DataLoads.ApiEndPoint.Mappers;
 using Fourth.DataLoads.Data.Entities;
+using log4net;
+using Fourth.DataLoads.Data.Models;
 
 namespace Fourth.DataLoads.ApiEndPoint.Controllers
 {
-    public class MassRehireController : ApiController
+    public class MassRehireController : BaseApiController
     {
         private IDataFactory dataFactory;
         private IAuthorizationProvider authorizationProvider;
         private readonly IMappingFactory _mapFactory;
         private string controllerAction;
-
+        /// <summary> The log4net Logger instance. </summary>
+        private readonly ILog Logger =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public MassRehireController(IDataFactory factory, 
             IAuthorizationProvider authorization,
             IMappingFactory mapper)
@@ -43,8 +47,37 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
                 return BadRequest();
             else
                 int.TryParse(groupID, out ID);
-
-            return Ok();
+            if (this.authorizationProvider.IsAuthorized(groupID))
+            {
+                try
+                {
+                    var repository = this.dataFactory.GetMassRehireRepository();
+                    var repoQueue = this.dataFactory.GetQueueRepository();
+                    var batchesToSend = await repository
+                        .SetDataAsync(base.GetUserContext(), serializedmodel);
+                    if (batchesToSend.Count<DataloadBatch>() != 0)
+                    {
+                        await repoQueue.PushDataAsync(batchesToSend);
+                        return Ok();
+                    }
+                    else
+                    {
+                        Logger.WarnFormat("Import failed for organisation \"{0}\".", groupID);
+                        return NotFound();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger.ErrorFormat("Mass Terminate failed on getting the repository at {0}, with error message {1}",
+                        controllerAction, e.Message);
+                    throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                }
+            }
+            else
+            {
+                Logger.WarnFormat("Unauthorized call made to supplier for organisation \"{0}\".", groupID);
+                return Unauthorized();
+            }
         }
     }
 }
