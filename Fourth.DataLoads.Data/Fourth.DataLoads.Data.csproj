@@ -142,6 +142,7 @@
     <Compile Include="Entities\Common\DataloadBatch.cs" />
     <Compile Include="Entities\Common\DataLoadErrors.cs" />
     <Compile Include="Entities\Common\DataloadType.cs" />
+    <Compile Include="Entities\Dataloads\MassRehire.cs" />
     <Compile Include="Interfaces\ErrorModel.cs" />
     <Compile Include="Interfaces\IMarker.cs" />
     <Compile Include="Interfaces\IPortalRepository.cs" />
@@ -168,7 +169,7 @@
     <Compile Include="Entities\Portal\MassTerminationPortal.cs" />
     <Compile Include="Repositories\MassRehireRepository.cs" />
     <Compile Include="SqlServer\StagingDBContext.cs" />
-    <Compile Include="Entities\Mass Terminate\MassTermination.cs" />
+    <Compile Include="Entities\Dataloads\MassTermination.cs" />
     <Compile Include="Repositories\MassTerminateRepository.cs" />
     <Compile Include="Interfaces\IDataFactory.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

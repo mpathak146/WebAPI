@@ -23,6 +23,9 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
         /// <summary> The log4net Logger instance. </summary>
         private readonly ILog Logger =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MassRehireController"/> class.
+        /// </summary>
         public MassRehireController(IDataFactory factory, 
             IAuthorizationProvider authorization,
             IMappingFactory mapper)
@@ -31,14 +34,15 @@ namespace Fourth.DataLoads.ApiEndPoint.Controllers
             this.authorizationProvider = authorization;
             this._mapFactory = mapper;
         }
-
+        [HttpPost]
+        [Route("Dataload/Groups/{groupID}/MassRehire")]
         public async Task<IHttpActionResult> SetDataAsync(string groupID, 
             [FromBody] List<MassRehireModel> input)
         {
             int ID;
             var mapper = this._mapFactory.Mapper;
             var serializedmodel = mapper.Map<List<MassRehireModelSerialized>>(input);
-            controllerAction = "MassTerminate: By User: for groupID:" + groupID;
+            controllerAction = "MassRehire: By User: for groupID:" + groupID;
 
             
             if (string.IsNullOrEmpty(groupID) 
