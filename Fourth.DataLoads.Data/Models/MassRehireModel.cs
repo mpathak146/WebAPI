@@ -8,7 +8,6 @@ namespace Fourth.DataLoads.Data.Entities
     {
         public string EmployeeNumber { get; set; }
         public string RehireDate { get; set; }
-
     }
     [Serializable]
     public class MassRehireModelSerialized : IMarker
