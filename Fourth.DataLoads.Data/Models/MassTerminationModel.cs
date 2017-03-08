@@ -9,7 +9,6 @@
         public string EmployeeNumber { get; set; }
         public string TerminationDate { get; set; }
         public string TerminationReason { get; set; }
-
     }
     [Serializable]
     public partial class MassTerminationModelSerialized : IMarker
