@@ -36,6 +36,13 @@ namespace Fourth.DataLoads.Data.SqlServer
         public async Task<IEnumerable<DataloadBatch>> SetDataAsync(UserContext userContext, List<MassRehireModelSerialized> input)
         {
             var batchesToSent = new List<DataloadBatch>();
+            batchesToSent.Add(new DataloadBatch
+            {
+                BatchID = Guid.Parse("bf0a634d-c76a-4f53-838d-ec9742e5d348"),
+                JobID = Guid.Parse("bf0a634d-c76a-4f53-838d-ec9742e5d348"),
+                OrganizationID = "85",
+                User = "StubUser"
+            });
             return batchesToSent;
         }
     }
