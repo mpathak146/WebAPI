@@ -18,22 +18,22 @@ namespace DataloadAPIAutomatedTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PostingMassRehireWithInvalidSchemaShouldReturnError")]
-    public partial class PostingMassRehireWithInvalidSchemaShouldReturnErrorFeature
+    [NUnit.Framework.DescriptionAttribute("PostingMassRehireWithInvalidDateStillReturnsOk")]
+    public partial class PostingMassRehireWithInvalidDateStillReturnsOkFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "PostingRequestWithInvalidSchemaShouldReturnError.feature"
+#line 1 "PostingMassRehireWithInvalidDateStillReturnsOk.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PostingMassRehireWithInvalidSchemaShouldReturnError", "\tIn order to ensure an error response from MassTerminationRequest when invalid Sc" +
-                    "hema is supplied\r\n\tAs an Informatica user/system\r\n\tI want to post an invalid sch" +
-                    "ema request and check if I receive an error response", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PostingMassRehireWithInvalidDateStillReturnsOk", "\tIn order to ensure a response from MassTerminationRequest when invalid data is s" +
+                    "upplied\r\n\tAs an Informatica user/system\r\n\tI want to post an invalid date request" +
+                    " and check if I receive a response", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,10 +66,10 @@ namespace DataloadAPIAutomatedTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Post To Mass Rehire With Invalid Schema")]
+        [NUnit.Framework.DescriptionAttribute("Post To Mass Rehire")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassRehire\"", new string[0])]
-        public virtual void PostToMassRehireWithInvalidSchema(string groupID, string userID, string endpoint, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\"76\"", "\"Informatica\"", "\"Dataload/Groups/76/MassRehire\"", "\"InvalidDate\"", new string[0])]
+        public virtual void PostToMassRehire(string groupID, string userID, string endpoint, string massRehire, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -77,7 +77,7 @@ namespace DataloadAPIAutomatedTests.Features
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post To Mass Rehire With Invalid Schema", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post To Mass Rehire", @__tags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -87,11 +87,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And(string.Format("I setup POST {0} request with {1} and {2}", endpoint, groupID, userID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I setup invalid schema to post Rehire", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I setup valid {0} data to post on Mass Rehire", massRehire), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.When("I Post Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("I should get error as the response status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get the response status is ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

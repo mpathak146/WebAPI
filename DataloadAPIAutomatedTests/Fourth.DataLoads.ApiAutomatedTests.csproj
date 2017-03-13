@@ -81,10 +81,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PostingMassTerminationRequestAcceptsRequest.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\PostingMassRehireWithInvalidDateStillReturnsOk.feature.cs">
+      <DependentUpon>PostingMassRehireWithInvalidDateStillReturnsOk.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\PostingRequestWithInvalidDateShouldStillOkTheRequest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PostingRequestWithInvalidDateShouldStillOkTheRequest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\PostingMassRehireWithInvalidSchemaShouldReturnError.feature.cs">
+      <DependentUpon>PostingMassRehireWithInvalidSchemaShouldReturnError.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Features\PostingRequestWithInvalidSchemaShouldReturnError.feature.cs">
       <AutoGen>True</AutoGen>
@@ -116,6 +126,7 @@
     <Compile Include="Steps\PostingMassRehireRequestIsAcceptedSteps.cs" />
     <Compile Include="Steps\PostingMassTerminationRequestAcceptsRequestSteps.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidDateShouldStillOkTheRequest.cs" />
+    <Compile Include="Steps\PostingRehireWithInvalidSchemaShouldReturnErrorSteps.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidSchemaShouldReturnError.cs" />
     <Compile Include="Steps\PostingValidMassTerminationWorks_RollbackLaterSteps.cs" />
     <Compile Include="Steps\VerifyGetSpecificJobSuccessOnValidButIncorrectGuidSteps.cs" />
@@ -146,9 +157,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PostingMassTerminationRequestAcceptsRequest.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\PostingMassRehireWithInvalidDateStillReturnsOk.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PostingMassRehireWithInvalidDateStillReturnsOk.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\PostingRequestWithInvalidDateShouldStillOkTheRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PostingRequestWithInvalidDateShouldStillOkTheRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PostingMassRehireWithInvalidSchemaShouldReturnError.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PostingMassRehireWithInvalidSchemaShouldReturnError.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\PostingRequestWithInvalidSchemaShouldReturnError.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
