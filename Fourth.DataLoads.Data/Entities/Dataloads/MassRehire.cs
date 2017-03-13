@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Data.SqlTypes;
+
     [Table("t_MassRehire")]
     public partial class MassRehire
     {
@@ -15,7 +17,8 @@
         public Guid DataLoadJobRefId { get; set; }
         [ForeignKey("DataLoadBatch"), Column(Order = 2)]
         public Guid DataLoadBatchRefId { get; set; }
-        [Column(Order = 3)]
+
+        [MaxLength(128), Column(Order = 3), Required]
         public string EmployeeNumber { get; set; }
         [Column(Order = 4)]
         public DateTime RehireDate { get; set; }

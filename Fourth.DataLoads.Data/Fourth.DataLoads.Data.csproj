@@ -152,6 +152,10 @@
     <Compile Include="Migrations\201612061543024_InitialSetup.Designer.cs">
       <DependentUpon>201612061543024_InitialSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703101413155_Rehire.cs" />
+    <Compile Include="Migrations\201703101413155_Rehire.Designer.cs">
+      <DependentUpon>201703101413155_Rehire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataloadBatch.cs" />
     <Compile Include="Models\DataLoadUploads.cs" />
     <Compile Include="Models\MassRehireModel.cs" />
@@ -194,6 +198,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612061543024_InitialSetup.resx">
       <DependentUpon>201612061543024_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101413155_Rehire.resx">
+      <DependentUpon>201703101413155_Rehire.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

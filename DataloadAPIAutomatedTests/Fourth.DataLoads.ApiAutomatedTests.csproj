@@ -71,6 +71,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\PostingMassRehireRequestIsAccepted.feature.cs">
+      <DependentUpon>PostingMassRehireRequestIsAccepted.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\PostingMassTerminationRequestAcceptsRequest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,6 +113,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CommonSteps.cs" />
+    <Compile Include="Steps\PostingMassRehireRequestIsAcceptedSteps.cs" />
     <Compile Include="Steps\PostingMassTerminationRequestAcceptsRequestSteps.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidDateShouldStillOkTheRequest.cs" />
     <Compile Include="Steps\PostingRequestWithInvalidSchemaShouldReturnError.cs" />
@@ -131,6 +137,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\PostingMassRehireRequestIsAccepted.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PostingMassRehireRequestIsAccepted.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\PostingMassTerminationRequestAcceptsRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

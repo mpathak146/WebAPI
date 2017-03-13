@@ -23,6 +23,7 @@ namespace Fourth.DataLoads.Data
                 Migrations.Configuration>());
         }
         public virtual DbSet<MassTermination> MassTerminations {get; set;}
+        public virtual DbSet<MassRehire> MassRehires { get; set; }
         public virtual DbSet<DataLoad> DataLoad { get; set; }
         public virtual DbSet<DataLoadType> DataLoadType { get; set; }
         public virtual DbSet<DataLoadErrors> DataLoadErrors { get; set; }
@@ -46,7 +47,9 @@ namespace Fourth.DataLoads.Data
             modelBuilder.Entity<DataLoadType>().Property(t => t.DataloadTypeID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
-            
+            //modelBuilder.Entity<MassRehire>().HasOptional(x => x.DataLoadBatch)
+            //    .WithRequired()
+            //    .WillCascadeOnDelete(false);
 
             //modelBuilder.Entity<DataLoadBatch>().HasOptional(t => t.MassesToTerminate)
             //    .WithOptionalDependent()

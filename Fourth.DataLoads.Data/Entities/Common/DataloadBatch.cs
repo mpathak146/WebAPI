@@ -12,6 +12,7 @@
         public DataLoad()
         {
             this.MassesToTerminate = new HashSet<MassTermination>();
+            this.MassesToRehire = new HashSet<MassRehire>();
         }
         [Key]
         [Column(Order = 0)]
@@ -30,7 +31,7 @@
         [ForeignKey("DataloadTypeRefID")]
         public virtual DataLoadType DataLoadType { get; set; }
         public virtual ICollection<MassTermination> MassesToTerminate { get; set; }
-        public virtual ICollection<DataLoadErrors> dataloadErrors { get; set; }   
-
+        public virtual ICollection<DataLoadErrors> dataloadErrors { get; set; }
+        public ICollection<MassRehire> MassesToRehire { get; set; }
     }
 }
