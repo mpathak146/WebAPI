@@ -9,7 +9,7 @@ Scenario Outline: Post To Mass Terminate With Invalid Schema
 	And I have the client initialized
 	And I setup POST <Endpoint> request with <GroupID> and <UserID>
 	And I setup invalid schema to post
-	When I Post Mass Termination Request
+	When I Post Request
 	Then I should get error as the response status
 
 	Examples: 

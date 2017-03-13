@@ -88,7 +88,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.And(string.Format("I setup employee with {0} data to post", employeeNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("I Post Mass Termination Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I Post Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.And("I pause for sometime", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
