@@ -12,30 +12,29 @@ using System.Threading.Tasks;
 
 namespace Fourth.DataLoads.Listener.Services
 {
-    class MassTerminationService : IMassTerminationService<Commands.DataloadRequest>
+    class MassRehireService : IMassRehireService<Commands.DataloadRequest>
     {
         private readonly ILog Logger =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public async Task<bool> ProcessPayload(Commands.DataloadRequest payload, 
             IDataFactory dataFactory)
         {
-            if (payload.Dataload != Commands.DataLoadTypes.MASS_TERMINATION) return false;
+            if (payload.Dataload != Commands.DataLoadTypes.MASS_REHIRE) return false;
+            Logger.Info("Entering ProcessPayload in MassRehireService");
 
-            Logger.Info("Entering ProcessPayload in MassTerminationService");
-
-            List<MassTerminationModelSerialized> result=null;
+            List<MassRehireModelSerialized> result=null;
             string batchID = payload.BatchID;
             try
             {
                 if (dataFactory.GetPortalRepository().CopyDataloadBatchToPortal(payload))
                 {
                     Logger.DebugFormat("payload batch recorded to portal, BatchID: {0}", batchID);
-                    result = dataFactory.GetMassTerminateRepository().GetValidBatch(Guid.Parse(batchID));
+                    result = dataFactory.GetMassRehireRepository().GetValidBatch(Guid.Parse(batchID));
                     Logger.DebugFormat("Valid batch retrieved, BatchID: {0}", batchID);
                     foreach (var emp in result)
                     {
-                        dataFactory.GetPortalRepository().ProcessMassTerminate(emp, payload);
-                        Logger.DebugFormat("Processed mass termination for Employee Number: {0}", batchID);
+                        dataFactory.GetPortalRepository().ProcessMassRehire(emp, payload);
+                        Logger.DebugFormat("Processed mass Rehire for Employee Number: {0}", batchID);
                     }
                     dataFactory.GetPortalRepository().CopyTerminationStagingErrorsToPortal(payload);
                     Logger.DebugFormat("All staging errors are copied to the portal db for Batch {0}", batchID);

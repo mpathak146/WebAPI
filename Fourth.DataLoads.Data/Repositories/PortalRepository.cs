@@ -82,7 +82,7 @@ namespace Fourth.DataLoads.Data.SqlServer
             }
             return true;
         }
-        public void DumpStagingErrorsToPortal(Commands.DataloadRequest payload)
+        public void CopyTerminationStagingErrorsToPortal(Commands.DataloadRequest payload)
         {
             int groupID = int.Parse(payload.OrganisationId);
             Logger.InfoFormat("Validating a given employee number");
@@ -157,7 +157,7 @@ namespace Fourth.DataLoads.Data.SqlServer
             return table;
         }
 
-        public bool DumpDataloadBatchToPortal(Commands.DataloadRequest payload)
+        public bool CopyDataloadBatchToPortal(Commands.DataloadRequest payload)
         {
             int groupID = int.Parse(payload.OrganisationId);
             using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
@@ -174,7 +174,7 @@ namespace Fourth.DataLoads.Data.SqlServer
                         cmd.CommandText = command;
                         cmd.Parameters.Add(new SqlParameter("@BatchID", payload.BatchID));
                         cmd.Parameters.Add(new SqlParameter("@JobID", payload.JobID));
-                        cmd.Parameters.Add(new SqlParameter("@DataloadTypeID", DataLoadTypes.MASS_TERMINATION));
+                        cmd.Parameters.Add(new SqlParameter("@DataloadTypeID", payload.Dataload));
                         cmd.Parameters.Add(new SqlParameter("@DateUploaded", DateTime.Now));
                         cmd.Parameters.Add(new SqlParameter("@UploadedBy", payload.RequestedBy));
                         var result = cmd.ExecuteScalar();
@@ -316,6 +316,107 @@ namespace Fourth.DataLoads.Data.SqlServer
                         "Exception Message: {0}, Inner Exception Message: {1}",
                         e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
                         return null;
+                    }
+                }
+            }
+        }
+
+        public bool ProcessMassRehire(MassRehireModelSerialized employee, Commands.DataloadRequest payload)
+        {
+            int groupID = int.Parse(payload.OrganisationId);
+            Logger.InfoFormat("Validating a given employee number");
+            using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
+            {
+                try
+                {
+                    var command = "sprc_DL_ProcessMassRehire";
+
+                    using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                    {
+                        sqlConnection.Open();
+                        var cmd = sqlConnection.CreateCommand();
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandText = command;
+                        cmd.Parameters.Add(new SqlParameter("@BatchID", employee.DataLoadBatchId));
+                        cmd.Parameters.Add(new SqlParameter("@JobID", employee.DataLoadJobId));
+                        cmd.Parameters.Add(new SqlParameter("@EmployeeNumber", employee.EmployeeNumber));
+                        cmd.Parameters.Add(new SqlParameter("@TerminationDate", employee.RehireDate));
+                        cmd.Parameters.Add(new SqlParameter("@UploadedBy", employee.DataLoadBatchId));
+
+                        var result = cmd.ExecuteScalar();
+
+                        if (result.GetType() != typeof(DBNull))
+                        {
+                            if ((int?)result == 1)
+                            {
+                                Logger.InfoFormat("No Error reported for EmployeeNumber: {0} for GroupID: {1}",
+                                    new object[] { employee, groupID });
+                                return true;
+                            }
+                            else
+                            {
+                                Logger.ErrorFormat("Error in processing Mass Terminate for EmployeeNumber: {0} for GroupID: {1}",
+                                    new object[] { employee, groupID });
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger.FatalFormat("Error in processing Mass Terminate, " +
+                        "Exception Message: {0}, Inner Exception Message: {1}",
+                        e.Message, e.InnerException == null ? "null" : e.InnerException.Message);
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+        public void CopyRehireStagingErrorsToPortal(Commands.DataloadRequest payload)
+        {
+            int groupID = int.Parse(payload.OrganisationId);
+            Logger.InfoFormat("Validating a given employee number");
+            using (var context = _contextFactory.GetPortalDBContextAsync(groupID))
+            {
+                using (var stagingContext = _contextFactory.GetStagingDBContext())
+                {
+                    var errors = (from err in stagingContext.DataLoadErrors
+                                  where (err.DataLoadBatchRefId.ToString() == payload.BatchID)
+                                  select err)
+                                 .AsEnumerable()
+                                 .Select(x => new
+                                 {
+                                     MassRehireId = "",
+                                     DataLoadJobRefId = x.DataLoadJobRefId,
+                                     DataLoadBatchRefId = x.DataLoadBatchRefId,
+                                     ClientID = 0,
+                                     EmployeeNumber = GetParam(x.ErrRecord, "EmployeeNumber"),
+                                     RehireDate = GetParam(x.ErrRecord, "RehireDate"),
+                                     ErrorStatus = 2,
+                                     ErrorDescription = x.ErrDescription
+                                 });
+                    using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
+                    {
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlConnection))
+                        {
+                            bulkCopy.DestinationTableName = "dbo.t_DL_MassRehire";
+                            try
+                            {
+                                sqlConnection.Open();
+                                var bulk = ConvertToDataTable(errors.ToList());
+                                bulkCopy.WriteToServer(bulk);
+                            }
+                            catch (Exception e)
+                            {
+                                Logger.FatalFormat("Error doing bulk upload into t_DL_MassRehire with message {0}", e.Message);
+                            }
+                            finally
+                            {
+                                sqlConnection.Close();
+                            }
+                        }
                     }
                 }
             }

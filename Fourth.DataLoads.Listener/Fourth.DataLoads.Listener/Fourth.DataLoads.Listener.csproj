@@ -167,6 +167,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="ContainerConfig.cs" />
+    <Compile Include="Handlers\IMassRehireService.cs" />
     <Compile Include="Handlers\IMassTerminationService.cs" />
     <Compile Include="Handlers\SqlErrorCodes.cs" />
     <Compile Include="IListenerService.cs" />
@@ -185,6 +186,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MassRehireService.cs" />
     <Compile Include="Services\MassTerminationService.cs" />
   </ItemGroup>
   <ItemGroup>

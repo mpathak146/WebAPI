@@ -13,5 +13,5 @@ Scenario Outline: Post To Mass Rehire With Invalid Schema
 	Then I should get error as the response status
 
 	Examples: 
-	| GroupID | UserID			| Endpoint								|
+	| GroupID | UserID			| Endpoint							|
 	| "76"      | "Informatica" | "Dataload/Groups/76/MassRehire"	|

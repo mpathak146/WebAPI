@@ -10,9 +10,11 @@ namespace Fourth.DataLoads.Data.Interfaces
     public interface IPortalRepository
     {
         bool ProcessMassTerminate(MassTerminationModelSerialized employee, Commands.DataloadRequest payload);
-        void DumpStagingErrorsToPortal(Commands.DataloadRequest payload);
-        bool DumpDataloadBatchToPortal(Commands.DataloadRequest payload);
+        void CopyTerminationStagingErrorsToPortal(Commands.DataloadRequest payload);
+        void CopyRehireStagingErrorsToPortal(Commands.DataloadRequest payload);
+        bool CopyDataloadBatchToPortal(Commands.DataloadRequest payload);
         Task<IEnumerable<DataLoadUploads>> GetDataLoadUploads(int groupID, string dateFrom, int dataloadType);
         Task<IEnumerable<ErrorModel>> GetDataLoadErrors(int groupID, string jobID);
+        bool ProcessMassRehire(MassRehireModelSerialized employee, Commands.DataloadRequest payload);
     }
 }
