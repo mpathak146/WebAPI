@@ -82,7 +82,8 @@ namespace Fourth.DataLoads.Data.Entities
                                         JobID = jobGuid,
                                         BatchID = id,
                                         OrganizationID = userContext.OrganisationId,
-                                        User = userContext.UserId
+                                        User = userContext.UserId,
+                                        Dataload= Commands.DataLoadTypes.MASS_TERMINATION
                                     });
                                 }
                                 Logger.InfoFormat("MassTermination schema saved to entities, begining transaction commit");

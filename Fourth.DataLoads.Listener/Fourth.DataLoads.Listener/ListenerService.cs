@@ -30,15 +30,18 @@ namespace Fourth.DataLoads.Listener
         /// <summary> The message bus instance to use when sending messages. </summary>
         private IMessageBus _messageBus;
         private IMassTerminationService<Commands.DataloadRequest> _massTerminationService;
+        private IMassRehireService<Commands.DataloadRequest> _massRehireService;
         private IDataFactory _dataFactory;
 
 
         public ListenerService(IMessagingFactory messagingFactory, 
             IMassTerminationService<Commands.DataloadRequest> massTerminationService,
+            IMassRehireService<Commands.DataloadRequest> massRehireService,
             IDataFactory datafactory)
         {
             InitializeComponent();
             _massTerminationService = massTerminationService;
+            _massRehireService = massRehireService;
             _messagingFactory = messagingFactory;
             _dataFactory = datafactory;
         }
@@ -76,7 +79,10 @@ namespace Fourth.DataLoads.Listener
 
         private void RegisterHandlers()
         {
-            this._messageListener.RegisterHandler(new MassTerminationHandler(this._massTerminationService, _dataFactory));
+            this._messageListener.RegisterHandler(new MessageRelayHandler
+                (this._massTerminationService,
+                _massRehireService, 
+                _dataFactory));
         }
 
         protected override void OnStop()

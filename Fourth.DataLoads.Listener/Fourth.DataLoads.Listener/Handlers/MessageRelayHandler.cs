@@ -14,21 +14,24 @@ namespace Fourth.DataLoads.Listener.Handlers
     /// Handles commands of type 'DataloadRequest' that the service has received through 
     /// Orchestration API    
     /// </summary>
-    public class MassTerminationHandler : IMessageHandler<Commands.DataloadRequest>
+    public class MessageRelayHandler : IMessageHandler<Commands.DataloadRequest>
     {
         /// <summary> The class Logger instance. </summary>
         private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        IMassTerminationService<Commands.DataloadRequest> MassTerminationService;
-        IDataFactory DataFactory;
+        private IMassTerminationService<Commands.DataloadRequest> MassTerminationService;
+        internal IDataFactory DataFactory;
+        private IMassRehireService<Commands.DataloadRequest> MassRehireService;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MassTerminationHandler (IMassTerminationService<Commands.DataloadRequest> massTerminationService
-            , IDataFactory dataFactory)
+        public MessageRelayHandler (IMassTerminationService<Commands.DataloadRequest> massTerminationService,
+            IMassRehireService<Commands.DataloadRequest> massRehireService
+            ,IDataFactory dataFactory)
         {
             MassTerminationService = massTerminationService;
+            MassRehireService = massRehireService;
             this.DataFactory = dataFactory;
         }
 
@@ -47,8 +50,16 @@ namespace Fourth.DataLoads.Listener.Handlers
 
                 // Log the incoming payload
                 Logger.DebugFormat("{0} received: TrackingId: \"{1}\"; {2}", typeof(Commands.DataloadRequest).Name, trackingId, payload.ToString().Replace("\n", "; "));
-
-                var result = await this.MassTerminationService.ProcessPayload(payload, this.DataFactory);
+                bool result=false;
+                switch (payload.Dataload)
+                {
+                    case Commands.DataLoadTypes.MASS_TERMINATION:
+                        result = await this.MassTerminationService.ProcessPayload(payload, this.DataFactory);
+                        break;
+                    case Commands.DataLoadTypes.MASS_REHIRE:
+                        result = await this.MassRehireService.ProcessPayload(payload, this.DataFactory);
+                        break;
+                }
 
                 // Report success 
                 Logger.InfoFormat("Successfully imported record to Id \"{0}\" for Organisation Id \"{1}\"", result, payload.OrganisationId);

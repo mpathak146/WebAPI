@@ -177,7 +177,7 @@
     <Compile Include="ListenerService.Designer.cs">
       <DependentUpon>ListenerService.cs</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\MassTerminationHandler.cs" />
+    <Compile Include="Handlers\MessageRelayHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

@@ -31,7 +31,7 @@ namespace Fourth.DataLoads.Data.Repositories
                     .SetBatchID(batch.BatchID.ToString())
                     .SetJobID(batch.JobID.ToString())
                     .SetRequestedBy(batch.User)
-                    .SetDataload(Commands.DataLoadTypes.MASS_TERMINATION);
+                    .SetDataload(batch.Dataload);
                     var message = builder.Build();
 
                     await AzureSender.Instance.SendAsync(message);

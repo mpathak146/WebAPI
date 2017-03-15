@@ -12,6 +12,7 @@ using Dapper;
 using System.Linq;
 using EntityFramework.BulkInsert.Extensions;
 using System.Data.Entity.Infrastructure;
+using Fourth.Orchestration.Model.People;
 
 namespace Fourth.DataLoads.Data.SqlServer
 {
@@ -132,7 +133,8 @@ namespace Fourth.DataLoads.Data.SqlServer
                                         JobID = jobGuid,
                                         BatchID = id,
                                         OrganizationID = userContext.OrganisationId,
-                                        User = userContext.UserId
+                                        User = userContext.UserId,
+                                        Dataload = Commands.DataLoadTypes.MASS_REHIRE
                                     });
                                 }
                                 Logger.InfoFormat("MassRehire schema saved to entities, begining transaction commit");

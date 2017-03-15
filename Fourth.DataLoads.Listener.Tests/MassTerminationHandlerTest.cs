@@ -13,9 +13,16 @@ namespace Fourth.DataLoads.Listener.Tests
     [TestClass]
     public class MassTerminationHandlerTest: TestBase
     {
+        MessageRelayHandler handler;
         public MassTerminationHandlerTest()
         {
             this.MassTerminateService.Setup(x => x.ProcessPayload(It.IsAny<Commands.DataloadRequest>(), It.IsAny<IDataFactory>())).ReturnsAsync(true).Verifiable();
+
+        }
+        [TestInitialize]
+        public void Setup()
+        {
+            handler= new MessageRelayHandler(this.MassTerminateService.Object, this.MassRehireService.Object, It.IsAny<IDataFactory>());
         }
 
         [TestMethod]
@@ -26,7 +33,6 @@ namespace Fourth.DataLoads.Listener.Tests
 
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
             Assert.IsTrue(result.Result == MessageHandlerResult.Fatal);
@@ -37,7 +43,6 @@ namespace Fourth.DataLoads.Listener.Tests
         {
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
 
@@ -56,7 +61,6 @@ namespace Fourth.DataLoads.Listener.Tests
 
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
             Assert.IsTrue(result.Result == MessageHandlerResult.Fatal);
@@ -74,7 +78,6 @@ namespace Fourth.DataLoads.Listener.Tests
 
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
             Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
@@ -93,7 +96,6 @@ namespace Fourth.DataLoads.Listener.Tests
 
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
             Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
@@ -113,7 +115,6 @@ namespace Fourth.DataLoads.Listener.Tests
 
             Commands.DataloadRequest message = GetPayload();
 
-            var handler = new MassTerminationHandler(this.MassTerminateService.Object, It.IsAny<IDataFactory>());
 
             var result = handler.HandleAsync(message, "TrackingId");
             Assert.IsTrue(result.Result == MessageHandlerResult.Retry);
