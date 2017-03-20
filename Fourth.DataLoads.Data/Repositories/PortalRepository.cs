@@ -222,7 +222,8 @@ namespace Fourth.DataLoads.Data.SqlServer
                         WHERE DL.DateUploaded > '{0}' and dlt.DataloadTypeID={1} 
                         GROUP BY DL.DataLoadJobRefId, DL.DateUploaded,DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy
                         HAVING DL.DateUploaded = (SELECT MAX(D.DateUploaded) FROM t_DL_DataLoad D 
-                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)", dateFrom);
+                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId) 
+                        ORDER BY DateUploaded DESC", dateFrom);
                 }
                 else
                 {
@@ -230,7 +231,8 @@ namespace Fourth.DataLoads.Data.SqlServer
                         FROM t_DL_DataLoad DL left join t_DL_DataloadType dlt ON dl.DataloadTypeID = dlt.DataloadTypeID
                         GROUP BY DL.DataLoadJobRefId, DL.DateUploaded,DL.DataLoadBatchRefId, dlt.DataloadName,DL.UploadedBy
                         HAVING DL.DateUploaded = (SELECT MAX(D.DateUploaded) FROM t_DL_DataLoad D 
-                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)", dateFrom);
+                        WHERE D.DataLoadJobRefId = DL.DataLoadJobRefId GROUP BY D.DataLoadJobRefId)
+                        ORDER BY DateUploaded DESC", dateFrom);
                 }
 
                 using (var sqlConnection = new SqlConnection(context.Result.Database.Connection.ConnectionString))
