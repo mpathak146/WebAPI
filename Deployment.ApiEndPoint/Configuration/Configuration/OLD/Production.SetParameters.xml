@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>  
+    <setParameter name="IIS Web Application Name" value="ess-api" />
+    <setParameter name="BrandingServiceUrl" value="http://fourth-branding.azurewebsites.net/" />
+    <setParameter name="BaseUrl" value="https://api.fourth.com"  />
+    <setParameter name="ShowException" value="false"  />
+    <setParameter name="BaseHelpUrl" value="http://help.fourth.com/ess"  />
+    <setParameter name="LoggingThreshold" value="All"  />
+</parameters>

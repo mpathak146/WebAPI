@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>  
+    <setParameter name="IIS Web Application Name" value="ess-api" />
+    <setParameter name="BrandingServiceUrl" value="http://fourth-branding.azurewebsites.net/" />
+    <setParameter name="BaseUrl" value="https://api.fourth.com"  />
+    <setParameter name="ShowException" value="false"  />
+    <setParameter name="BaseHelpUrl" value="http://help.fourth.com/ess"  />
+    <setParameter name="LoggingThreshold" value="All"  />
+  <setParameter name="MessageStoreConnection" value="DefaultEndpointsProtocol=https;AccountName=fourthorchestration;AccountKey=EvkDMR5rHSaAD8p8xCGKrNofZH2tfkZsj5JGPdzPMv8/sS4af2souLFBci06pQOUK2lRQAENvUc2CAuiXMCD2A=="  />
+  <setParameter name="OrchestrationConnection" value="Endpoint=sb://fourth-production.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=uGoIDjI8Qrpc6L9eip78Pa6b6y3HofmT4Pl96eMIrcY="  />
+  <setParameter name="OrchestrationMaxConcurrentCalls" value="2"  />
+</parameters>

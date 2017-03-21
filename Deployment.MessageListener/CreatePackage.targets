@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2007">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir).build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir).build\MSBuild.Community.Tasks.targets" 
+          Condition="Exists('$(SolutionDir).build\MSBuild.Community.Tasks.targets')" />
+  <UsingTask TaskName="TransformXml" 
+             AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll"/>
+
+  <!-- These attributes are used replace values in DeployService.ps1 -->
+  <PropertyGroup>
+
+    <!-- Service name used for start, stop and installation -->
+    <ServiceName>Fourth.DataLoads.Listener</ServiceName>
+
+    <!-- The root namespace of the service -->
+    <ServiceNamespace>Fourth.DataLoads.Listener</ServiceNamespace>
+
+    <!-- Installation path for the service -->
+    <ServicePath>\windows-services\Fourth Dataloads Listener</ServicePath>
+
+    <!-- Path to upload the installation package to -->
+    <PackagePath>\windows-services\Installers\Fourth Dataloads Listener</PackagePath>
+    
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SourceDirectory>$(SolutionDir)$(ServiceNamespace)\Fourth.DataLoads.Listener\bin\$(Configuration)</SourceDirectory>
+    <OutputDirectory>$(ProjectDir)bin\$(Configuration)</OutputDirectory>
+  </PropertyGroup>
+
+  <!-- Place all the application files here - they will be copied to <Root>\Package\Content -->
+  <ItemGroup>
+    <ContentFiles Include="$(SourceDirectory)\APICommon.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Autofac.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Autofac.Integration.WebApi.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\AutoMapper.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Dapper.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\EntityFramework.BulkInsert.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\EntityFramework.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\EntityFramework.MappingAPI.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\EntityFramework.SqlServer.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Analytics.Infrastructure.Client.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.DataLoads.ApiEndPoint.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.DataLoads.Data.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.DataLoads.Listener.exe"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.DataLoads.Listener.exe.config"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Orchestration.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Orchestration.Messaging.Azure.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Orchestration.Messaging.MsmqBuffer.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Orchestration.Model.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Fourth.Orchestration.Storage.Azure.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Google.ProtocolBuffers.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Google.ProtocolBuffers.Serialization.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\log4net.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.Azure.KeyVault.Core.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.Data.Edm.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.Data.OData.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.Data.Services.Client.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.ServiceBus.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.SqlServer.Types.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.Web.Infrastructure.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.WindowsAzure.Configuration.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Microsoft.WindowsAzure.Storage.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Newtonsoft.Json.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Net.Http.Formatting.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\Newtonsoft.Json.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Spatial.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.Http.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.Http.WebHost.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.Mvc.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.Razor.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.WebPages.Deployment.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.WebPages.dll"/>
+    <ContentFiles Include="$(SourceDirectory)\System.Web.WebPages.Razor.dll"/>
+    <!--ContentFiles Include="$(SourceDirectory)\WebApiContrib.Formatting.Siren.dll"/-->    
+  </ItemGroup>
+
+  <!-- DO NOT CHANGE ANYTHING BELOW HERE -->
+
+  <!-- Place all the setup scripts here - they will be copied to <Root>\Package\Content  -->
+  <ItemGroup>
+    <SetupFiles Include="PackageInstaller.ps1"/>
+    <SetupFiles Include="InstallUtil.exe"/>
+    <SetupFiles Include="InstallUtil.exe.config"/>
+  </ItemGroup>
+
+  <!-- Place all the main deployment script here - this will be copied to <Root> -->
+  <ItemGroup>
+    <DeployFiles Include="DeployService.ps1"/>
+  </ItemGroup>
+
+  <!-- Set the directories -->
+  <PropertyGroup>
+    <PackageDir>$(OutputDirectory)\Package</PackageDir>
+    <ContentDir>$(PackageDir)\Content</ContentDir>
+    <ConfigDir>$(PackageDir)\Configuration</ConfigDir>
+  </PropertyGroup>
+
+  <!-- Clear and re-create the directory structure -->
+  <Target Name="CreatePackageDirectories">
+    <RemoveDir Directories="$(ConfigDir); $(ContentDir); $(PackageDir)" ContinueOnError="true" />
+    <MakeDir Directories="$(PackageDir)" />
+    <MakeDir Directories="$(ConfigDir)" />
+    <MakeDir Directories="$(ContentDir)" />
+  </Target>
+
+  <!-- Copy all the content and setup files -->
+  <Target Name="CopyFiles" DependsOnTargets="CreatePackageDirectories">
+    <Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(OutputDirectory)" />
+    <Copy SourceFiles="@(ContentFiles)" DestinationFolder="$(ContentDir)" />
+    <Copy SourceFiles="@(SetupFiles)" DestinationFolder="$(PackageDir)">
+      <Output TaskParameter ="CopiedFiles" ItemName="ModifiedSetupFiles"/>
+    </Copy>
+
+    <!-- Do a find and replace on the deployment script -->
+    <FileUpdate Files="$(PackageDir)\PackageInstaller.ps1" Regex='"REPLACE_ServiceName"' ReplacementText='"$(ServiceName)"' />
+    <FileUpdate Files="$(PackageDir)\PackageInstaller.ps1" Regex='"REPLACE_ServiceFileName"' ReplacementText='"$(ServiceNamespace).exe"' />
+    <FileUpdate Files="$(PackageDir)\PackageInstaller.ps1" Regex='"REPLACE_TargetConfigurationFileName"' ReplacementText='"$(ServiceNamespace).exe.config"' />
+    <FileUpdate Files="$(PackageDir)\PackageInstaller.ps1" Regex='"REPLACE_PackagePath"' ReplacementText='"$(PackagePath)"' />
+
+    <FileUpdate Files="$(OutputDirectory)\DeployService.ps1" Regex='"REPLACE_ServiceName"' ReplacementText='"$(ServiceName)"' />
+    <FileUpdate Files="$(OutputDirectory)\DeployService.ps1" Regex='"REPLACE_ServicePath"' ReplacementText='"$(ServicePath)"' />
+    <FileUpdate Files="$(OutputDirectory)\DeployService.ps1" Regex='"REPLACE_PackagePath"' ReplacementText='"$(PackagePath)"' />
+  </Target>
+
+  <!-- Transform the configuration files -->
+  <Target Name="CreateConfiguration" DependsOnTargets="CopyFiles">
+
+    <!-- Find all the transform templates for app.config-->
+    <ItemGroup>
+      <Transforms Include="Configuration\app.*.config" />
+    </ItemGroup>
+
+    <!-- Transform all the templates, dropping the output into the installer's Configuration directory -->
+    <TransformXml Source="Configuration\app.config"
+                  Transform="%(Transforms.Identity)"
+                  Destination="$(PackageDir)\%(Transforms.Identity)" />
+  </Target>
+
+  <!-- Trigger target (was used to create a zip archive) -->
+  <Target Name="CreatePackage" DependsOnTargets="CreateConfiguration">
+
+
+  </Target>
+
+  <Target Name="CleanPackage">
+    <RemoveDir Directories="$(PackageDir)\Configuration; $(ContentDir); $(PackageDir);$(DeploymentPackageForProjectPath);" ContinueOnError="false" />
+  </Target>
+
+</Project>

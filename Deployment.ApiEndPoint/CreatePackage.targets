@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build\</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.build\MSBuild.Community.Tasks.targets" Condition="Exists('$(SolutionDir)\.build\MSBuild.Community.Tasks.targets')" />
+
+  <PropertyGroup>
+    <!-- The name of the assembly to deploy -->
+    <WebProject>Fourth.DataLoads.ApiEndPoint</WebProject>
+
+    <!-- The name of the deployment project -->
+    <DeployProject>Deployment.ApiEndPoint</DeployProject>
+
+    <!-- The name of the deployment script -->
+    <DeployScriptFilename>DeployApiEndpoint.ps1</DeployScriptFilename>
+
+  </PropertyGroup>
+
+  <!-- DO NOT CHANGE ANYTHING BELOW HERE -->
+  <PropertyGroup>
+    <SourceDirectory>$(SolutionDir)$(WebProject)\bin\$(Configuration)</SourceDirectory>
+    <OutputDirectory>$(SolutionDir)$(DeployProject)\bin\$(Configuration)</OutputDirectory>
+  </PropertyGroup>
+
+  <!-- The right parameter file is swapped in at deploy-time -->
+  <ItemGroup>
+    <ConfigFiles Include="$(SolutionDir)$(DeployProject)\Configuration\*.SetParameters.xml" />
+  </ItemGroup>
+
+  <!-- Place all the setup scripts here - they will be copied to InstallDir -->
+  <ItemGroup>
+    <SetupFiles Include="$(DeployScriptFilename)"/>
+  </ItemGroup>
+
+  <!-- Create an MSDeploy package -->
+  <Target Name="WebPackage">
+    <MSBuild Projects="$(SolutionDir)\$(WebProject)\$(WebProject).csproj" Targets="Package"
+        properties="Configuration=$(Configuration);
+        CodeAnalysis=$(CodeAnalysis);
+        StyleCopEnabled=$(StyleCopEnabled);
+        RestorePackages=false;
+        DeployOnBuild=true;
+        DeployTarget=Package;
+        CreatePackageOnPublish=true;
+        EnablePackageProcessLoggingAndAssert=true;
+        PackageAsSingleFile=true;
+        PackageLocation=$(OutputDirectory)\WebPackage\WebPackage.zip;
+        IgnoreDeployManagedRuntimeVersion=true">
+    </MSBuild>
+  </Target>
+
+  <!-- Create the package -->
+  <Target Name="CreatePackage" DependsOnTargets="WebPackage">
+    
+    <RemoveDir Directories="$(OutputDirectory)\Configuration" ContinueOnError="true" />
+    <MakeDir Directories="$(OutputDirectory)\Configuration" />
+    
+    <Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(OutputDirectory)\Configuration" />
+    <Copy SourceFiles="@(SetupFiles)" DestinationFolder="$(OutputDirectory)" />
+
+    <!-- Do a find and replace on the deployment script -->
+    <FileUpdate Files="$(OutputDirectory)\$(DeployScriptFilename)" Regex='"REPLACE_ProjectName"' ReplacementText='"$(WebProject)"' />
+  </Target>
+
+  <!-- Clean package directory -->
+  <Target Name="CleanPackage">
+    <RemoveDir Directories="$(OutputDirectory)" ContinueOnError="false" />
+  </Target>
+</Project>

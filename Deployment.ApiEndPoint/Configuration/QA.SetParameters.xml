@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="DataloadAPI" />
+  <setParameter name="BrandingServiceUrl" value="http://fourth-branding.azurewebsites.net/" />
+  <setParameter name="BaseUrl" value="http://10.10.20.80:83"  />
+  <setParameter name="ShowException" value="true"  />
+  <setParameter name="BaseHelpUrl" value="http://help.fourth.com/ps"  />
+  <setParameter name="LoggingThreshold" value="All"  />
+  <setParameter name="MessageStoreConnection" value="DefaultEndpointsProtocol=https;AccountName=qaintegrated;AccountKey=wo7PJVF0vcwWm91lWNVPFA6xoyyH1P2mpkLhVp8ZE0Ma03MS9FZL/EQkWRAmCMwrMxlKGIS8w+mnKkzCVBtdcw=="  />
+  <setParameter name="OrchestrationConnection" value="Endpoint=sb://fourth-qai.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=I98P1I+H4zWVv9yP4x5Q1XJUmRQ3YiLKotj+RAXYZmk="  />
+  <setParameter name="OrchestrationMaxConcurrentCalls" value="2"  />
+</parameters>

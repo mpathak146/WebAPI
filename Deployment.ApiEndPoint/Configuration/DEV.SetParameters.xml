@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="ess-api" />
+  <setParameter name="BrandingServiceUrl" value="http://fourth-branding.azurewebsites.net/" />
+  <setParameter name="BaseUrl" value="http://10.10.20.79:83"  />  
+  <setParameter name="ShowException" value="true"  />
+  <setParameter name="BaseHelpUrl" value="http://help.fourth.com/ess"  />
+  <setParameter name="LoggingThreshold" value="All"  />
+  <setParameter name="MessageStoreConnection" value="DefaultEndpointsProtocol=https;AccountName=esstestorcherstration;AccountKey=PpYf4dldrwkFvCYyxVr8nXFCEFoIjGUHNjWPpa5xh+NSY/t4n5lM4IUNkx0ZPq2RfvhyyJozM93taCZAr9rm9Q=="  />
+  <setParameter name="OrchestrationConnection" value="Endpoint=sb://bmtestorchestration.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=VfPEAiqEzcapCdT8eMeFt00aHuOXJ3YKZm0/W/IldHc="  />
+  <setParameter name="OrchestrationMaxConcurrentCalls" value="2"  />
+</parameters>
