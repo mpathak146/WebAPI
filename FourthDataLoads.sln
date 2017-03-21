@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fourth.DataLoads.ApiAutomat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutomatedTests", "AutomatedTests", "{BF021AD8-B9C1-4DE9-A4FB-04AB0E1C63A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deployment.ApiEndPoint", "Deployment.ApiEndPoint\Deployment.ApiEndPoint.csproj", "{83438B36-5193-4891-B877-B9525135A1F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deployment.MessageListener", "Deployment.MessageListener\Deployment.MessageListener.csproj", "{1C9EF3B9-293D-4648-B7F7-B4C0B53FC798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,14 @@ Global
 		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82F4E022-E3F5-4A40-8BF8-33A896239AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83438B36-5193-4891-B877-B9525135A1F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83438B36-5193-4891-B877-B9525135A1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83438B36-5193-4891-B877-B9525135A1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83438B36-5193-4891-B877-B9525135A1F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9EF3B9-293D-4648-B7F7-B4C0B53FC798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9EF3B9-293D-4648-B7F7-B4C0B53FC798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9EF3B9-293D-4648-B7F7-B4C0B53FC798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9EF3B9-293D-4648-B7F7-B4C0B53FC798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
