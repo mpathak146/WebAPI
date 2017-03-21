@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Xml.Linq;
 using System.Xml;
 using Fourth.DataLoads.Data.Models;
+using Dapper;
 
 namespace Fourth.DataLoads.Data.SqlServer
 {
@@ -168,16 +169,16 @@ namespace Fourth.DataLoads.Data.SqlServer
                 {
                     try
                     {
-                        sqlConnection.Open();
-                        var cmd = sqlConnection.CreateCommand();
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.CommandText = command;
-                        cmd.Parameters.Add(new SqlParameter("@BatchID", payload.BatchID));
-                        cmd.Parameters.Add(new SqlParameter("@JobID", payload.JobID));
-                        cmd.Parameters.Add(new SqlParameter("@DataloadTypeID", payload.Dataload));
-                        cmd.Parameters.Add(new SqlParameter("@DateUploaded", DateTime.Now));
-                        cmd.Parameters.Add(new SqlParameter("@UploadedBy", payload.RequestedBy));
-                        var result = cmd.ExecuteScalar();
+                        var spParam = new DynamicParameters();
+                        spParam.Add("@BatchID", payload.BatchID);
+                        spParam.Add("@JobID", payload.JobID);
+                        spParam.Add("@DataloadTypeID", payload.Dataload);
+                        spParam.Add("@DateUploaded", DateTime.Now);
+                        spParam.Add("@UploadedBy", payload.RequestedBy);
+                        spParam.Add("@ReturnedVal", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                        var result = sqlConnection.ExecuteScalar(command, 
+                            spParam, commandType: CommandType.StoredProcedure);
 
                         if (result.GetType() != typeof(DBNull))
                         {
