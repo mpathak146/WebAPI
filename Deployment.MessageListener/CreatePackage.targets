@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2007">
+<Project ToolsVersion="4.0" DefaultTargets="CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildCommunityTasksPath>$(SolutionDir).build</MSBuildCommunityTasksPath>
   </PropertyGroup>
